@@ -1,8 +1,19 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <!-- 状态栏颜色-->
+        <item name="colorPrimaryDark">@color/primary_dark_material_dark</item>
+        <!-- toolbar's color-->
+        <item name="colorPrimary">#2196F3</item>
+        <!-- the style of the back-->
+        <item name="drawerArrowStyle">@style/Widget.AppCompat.DrawerArrowToggle</item>
+
+    </style>
+
+    <style name="AppTheme.DrawerArrowToggle" parent="AppTheme.DrawerArrowToggle">
+        <item name="color">@color/white</item>
     </style>
 
 </resources>
