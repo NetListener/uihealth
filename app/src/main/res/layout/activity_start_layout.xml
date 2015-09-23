@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <include layout="@layout/toolbar_start_layout"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:textColor="#3E2723"
+        android:textSize="40dp"
+        android:typeface="normal"
+        android:id="@+id/textview_startfragment_title"
+        android:gravity="center"
+        android:text="心生健康"
+        android:layout_marginTop="50dp"
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:textColor="#616161"
+        android:textSize="20dp"
+        android:typeface="normal"
+        android:id="@+id/textview_startfragment_introduce"
+        android:gravity="center"
+        android:text="@string/startactivity_introduce"
+        android:layout_marginTop="30dp"
+        />
+
+    <com.gc.materialdesign.views.ButtonFlat
+        android:id="@+id/btn_startactivity_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#3E2723"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:textSize="30sp"
+        android:text="开始新的检测" />
+
+
+
+
+</LinearLayout>

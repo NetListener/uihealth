@@ -4,4 +4,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <string name="action_done">完成</string>
+    
+    <string name="startactivity_introduce">预测十年内因心肌梗塞或心血管疾病而死亡的概率</string>
+
 </resources>
