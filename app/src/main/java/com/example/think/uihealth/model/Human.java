@@ -14,12 +14,21 @@ public class Human {
     private double totalCholesterol;
     private double HDLCholesterol;
     private double bloodPressure;
-    private double SmokerValue;
-
+    private double smokerValue;
+    private double diabetesValue;
 
     public Human(){
         sex = MALE;
         age = 20;
+    }
+
+    public static class HumanHolder{
+        private static final Human instance = new Human();
+    }
+
+
+    public static Human getInstance(){
+        return HumanHolder.instance;
     }
 
     public String getSex() {
@@ -63,11 +72,18 @@ public class Human {
     }
 
     public double getSmokerValue() {
-        return SmokerValue;
+        return smokerValue;
     }
 
     public void setSmokerValue(double SmokerValue) {
-        this.SmokerValue = SmokerValue;
+        this.smokerValue = SmokerValue;
     }
 
+    public double getDiabetesValue() {
+        return diabetesValue;
+    }
+
+    public void setDiabetesValue(double diabetesValue) {
+        this.diabetesValue = diabetesValue;
+    }
 }

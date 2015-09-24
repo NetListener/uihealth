@@ -7,9 +7,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 import com.example.think.uihealth.R;
+import com.example.think.uihealth.model.Human;
+import com.example.think.uihealth.strategy.Strategy;
+import com.example.think.uihealth.strategy.impl.CalculateCHDStrategy;
+import com.kermit.exutils.utils.ExUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,6 +30,8 @@ public class ResultActivity extends AppCompatActivity{
 
     private String mResult;
 
+    private Strategy mStrategy;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -38,6 +44,10 @@ public class ResultActivity extends AppCompatActivity{
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+        mStrategy = new CalculateCHDStrategy();
+        mStrategy.setValue(Human.getInstance());
+        result.setText((int)(Double.parseDouble(mStrategy.getResult()) * 100) + "%");
     }
 
     @Override

@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.config.TestContent;
+import com.example.think.uihealth.model.Human;
+import com.example.think.uihealth.strategy.Strategy;
 import com.example.think.uihealth.view.adapter.ContentRecycleviewAdapter;
 import com.example.think.uihealth.view.adapter.ContentViewpagerAdapter;
 
@@ -25,7 +27,7 @@ import butterknife.ButterKnife;
  */
 public class ContentFragment extends Fragment{
 
-    public static final String TAG = "CONTENTFRAGMENT";
+    public static final String TAG = "ContentFragment";
 
     private ArrayList<String[]> mContents;
     private String[] mTitles;
@@ -35,6 +37,7 @@ public class ContentFragment extends Fragment{
     private static OnLastItemClickListener mListener;
 
     private static ViewPager mFragmentViewpager;
+
 
     public interface OnLastItemClickListener{
         void activitySkip();
@@ -56,11 +59,15 @@ public class ContentFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_content_layout, container, false);
-        mFragmentViewpager = (ViewPager) view.findViewById(R.id.viewpager_fragment_testcontent);
         ButterKnife.bind(this ,view);
+        return view;
+    }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        mFragmentViewpager = (ViewPager) view.findViewById(R.id.viewpager_fragment_testcontent);
         //初始化itemfragment的变量值
         mContents = TestContent.getContents();
         mTitles = TestContent.TITLES;
@@ -68,17 +75,12 @@ public class ContentFragment extends Fragment{
         // TODO: 2015/9/22 viewpager适配器
         for(int i = 0; i < mTitles.length; i++){
             mFragments.add(ContentItemFragment.newInstance(mTitles[i], mContents.get(i)));
-            Log.i("ContentFragment", mContents.get(i)[0]);
         }
 
         mContentViewPagerAdapter = new ContentViewpagerAdapter(getActivity().getSupportFragmentManager(),
                 mFragments);
 
         mFragmentViewpager.setAdapter(mContentViewPagerAdapter);
-
-
-
-        return view;
     }
 
     public static ViewPager getViewPager(){
