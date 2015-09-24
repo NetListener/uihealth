@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#795548">
+
+
+    <include layout="@layout/toolbar_result_layout"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/textview_resultfragment_result"
+        android:textSize="50dp"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:text="hahaha"
+        />
+
+</LinearLayout>

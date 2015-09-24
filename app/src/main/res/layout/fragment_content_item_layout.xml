@@ -4,13 +4,14 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="90dp"
         android:textColor="#fff"
-        android:textSize="30dp"
+        android:textSize="40dp"
+        android:background="@color/content_title"
         android:typeface="normal"
         android:id="@+id/textview_fragment_title"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="30dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="50dp"
         />
 
     <android.support.v7.widget.RecyclerView
@@ -18,10 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
-
         android:layout_centerHorizontal="true"
         android:layout_below="@id/textview_fragment_title"
-        >
-    </android.support.v7.widget.RecyclerView>
+        />
 
 </RelativeLayout>

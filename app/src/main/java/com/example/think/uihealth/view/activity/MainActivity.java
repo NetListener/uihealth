@@ -1,18 +1,64 @@
 package com.example.think.uihealth.view.activity;
 
+import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.example.think.uihealth.R;
+import com.example.think.uihealth.view.fragment.ContentFragment;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String RESULT = "RESULT";
+
+    @Bind(R.id.toolbar_main)
+    Toolbar mToolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+
+        mToolbar.setTitle("");
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ContentFragment.getViewPager().arrowScroll(1);
+            }
+        });
+
+        ContentFragment mContentFragment = new ContentFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frg_main_testcontent, mContentFragment);
+        transaction.commit();
+
+        //页面跳转
+        mContentFragment.setOnLastItemClickListener(new ContentFragment.OnLastItemClickListener() {
+            @Override
+            public void activitySkip() {
+                Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+                // TODO: 2015/9/23 放结果值进去
+                //intent.putExtra(RESULT, );
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -30,9 +76,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
