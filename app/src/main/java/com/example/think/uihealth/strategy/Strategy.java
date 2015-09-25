@@ -6,7 +6,7 @@ package com.example.think.uihealth.strategy;
  */
 public interface Strategy {
 
-    void getValue(Object dataBean);
+    void setValue(Object dataBean);
 
     void calculate();
 

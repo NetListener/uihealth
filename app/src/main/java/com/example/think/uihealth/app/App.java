@@ -3,7 +3,7 @@ package com.example.think.uihealth.app;
 import android.app.Application;
 import android.content.Context;
 
-import com.jude.utils.JUtils;
+import com.kermit.exutils.utils.ExUtils;
 
 /**
  * Created by think on 2015/9/22.
@@ -17,7 +17,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        JUtils.initialize(this);
+        ExUtils.initialize(this);
     }
 
 

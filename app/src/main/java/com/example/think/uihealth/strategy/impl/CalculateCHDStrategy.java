@@ -61,6 +61,14 @@ import com.example.think.uihealth.strategy.Strategy;
  * LDL 低密度脂蛋白
  */
 
+
+//*  normal         0.0
+//        *  high_normal    0.28320
+//        *  state_I_hypertension      0.52169
+//        *  state_II_hypertension     0.61859
+//        *  diabetes       0.42839    (diabetes 糖尿病)
+//        *  not_diabetes   0.0
+
 public class CalculateCHDStrategy implements Strategy {
 
     public static final double L_AGE = 0.04826;
@@ -70,6 +78,25 @@ public class CalculateCHDStrategy implements Strategy {
     public static final double CHOLESTEROL_200_TO_239 = 0.17692;
     public static final double CHOLESTEROL_240_TO_279 = 0.50539;
     public static final double CHOLESTEROL_NOT_UNDER_280 = 0.65713;
+
+    public static final double HDL_CHOLESTEROL_UNDER_35 = 0.49744;
+    public static final double HDL_CHOLESTEROL_35_TO_44 = 0.24310;
+    public static final double HDL_CHOLESTEROL_45_TO_49 = 0.0;
+    public static final double HDL_CHOLESTEROL_50_TO_59 = -0.05107;
+    public static final double HDL_CHOLESTEROL_NOT_UNDER_60 = -0.00226;
+
+    public static final double NORMAL = 0.0;
+    public static final double HIGH_NORMAL = 0.28320;
+    public static final double STATE_I_HYPERTENSION = 0.52169;
+    public static final double STATE_II_HYPERTENSION = 0.61859;
+
+
+    public static final double DIABETES = 0.42839;
+    public static final double NOT_DIABETES = 0.0;
+
+
+    public static final double SMOKER = 0.52337;
+    public static final double NOT_SMOKER = 0.0;
 
     public static final double G_MALE = 3.0975;
     public static final double G_FEMALE = 9.92545;
@@ -81,7 +108,7 @@ public class CalculateCHDStrategy implements Strategy {
     private Human mHuman;
 
     @Override
-    public void getValue(Object dataBean) {
+    public void setValue(Object dataBean) {
         mHuman = (Human) dataBean;
     }
 
@@ -96,9 +123,10 @@ public class CalculateCHDStrategy implements Strategy {
     }
 
     private double FuncL(){
-        double chol = 0;
+        double chol;
         chol = L_AGE * mHuman.getAge() + mHuman.getTotalCholesterol()
-                + mHuman.getHDLCholesterol() + mHuman.getBloodPressure() + mHuman.getSmokerValue();
+                + mHuman.getHDLCholesterol() + mHuman.getBloodPressure()
+                + mHuman.getSmokerValue() + mHuman.getDiabetesValue();
         return chol;
     }
     private double FuncG(){

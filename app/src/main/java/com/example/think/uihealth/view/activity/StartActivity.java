@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.think.uihealth.R;
+import com.gc.materialdesign.views.ButtonFlat;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -16,7 +17,7 @@ import butterknife.ButterKnife;
 public class StartActivity extends AppCompatActivity{
 
     @Bind(R.id.btn_startactivity_start)
-    com.gc.materialdesign.views.ButtonFlat mButton;
+    ButtonFlat mButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

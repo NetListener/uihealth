@@ -2,16 +2,12 @@ package com.example.think.uihealth.view.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.example.think.uihealth.R;
-import com.example.think.uihealth.app.App;
-import com.jude.utils.JUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -63,7 +59,6 @@ public class ContentRecycleviewAdapter extends RecyclerView.Adapter<ContentRecyc
     public void onBindViewHolder(MyViewHolder myViewHolder, final int i) {
 
         myViewHolder.mRecycleViewContent.setText(mContents[i]);
-        Log.i("ContentRecycleViewAdapter", mContents[i]);
 
         if(mListener != null){
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {

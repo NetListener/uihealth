@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class TestContent {
 
     public final static String[] TITLES = {"性别?", "年龄?", "总胆固醇含量?", "吸烟?",
-    "高密度脂蛋白?", "是否使用高血压药物？", "心脏的收缩压?"};
+    "高密度脂蛋白?", "血压情况", "是否糖尿病？"};
 
     public final static ArrayList<String[]> CONTENTS = new ArrayList<>();
 
@@ -29,11 +29,10 @@ public class TestContent {
     "> 60 mg/dl"};
 
     //是否使用高血压药物
-    public final static String[] HYPERTENSION_MEDITION = {"使用", "未使用"};
+    public final static String[] HYPERTENSION_MEDITION = {"正常", "血压偏高", "高血压I", "高血压II"};
 
     //心脏的收缩压
-    public final static String[] SYSTOLIC_BLOOD_PRESURE = {"< 120 mg/dl", "120-129 mg/dl",
-    "130-139 mg/dl", "140-159 mg/dl", "> 160 mg/dl"};
+    public final static String[] SYSTOLIC_BLOOD_PRESURE = {"是", "不是"};
 
 
     public static ArrayList<String[]> getContents(){
