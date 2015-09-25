@@ -87,5 +87,4 @@ public class ContentFragment extends Fragment{
         return mFragmentViewpager;
     }
 
-
 }

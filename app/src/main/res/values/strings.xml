@@ -6,6 +6,6 @@
 
     <string name="action_done">完成</string>
     
-    <string name="startactivity_introduce">预测十年内因心肌梗塞或心血管疾病而死亡的概率</string>
+    <string name="startactivity_introduce">预测十年内您的冠心病发病率</string>
 
 </resources>

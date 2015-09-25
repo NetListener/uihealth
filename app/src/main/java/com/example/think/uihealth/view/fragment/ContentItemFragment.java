@@ -203,10 +203,10 @@ public class ContentItemFragment extends Fragment{
                 }else if (title.equals(TITLES[6])){
                     switch (pos){
                         case 0:
-                            Human.getInstance().setDiabetesValue(CalculateCHDStrategy.NOT_DIABETES);
+                            Human.getInstance().setDiabetesValue(CalculateCHDStrategy.DIABETES);
                             break;
                         case 1:
-                            Human.getInstance().setDiabetesValue(CalculateCHDStrategy.DIABETES);
+                            Human.getInstance().setDiabetesValue(CalculateCHDStrategy.NOT_DIABETES);
                             break;
                         default:
                             Human.getInstance().setDiabetesValue(CalculateCHDStrategy.NOT_DIABETES);

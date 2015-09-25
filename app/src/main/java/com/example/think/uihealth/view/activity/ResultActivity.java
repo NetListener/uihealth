@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +14,8 @@ import com.example.think.uihealth.R;
 import com.example.think.uihealth.model.Human;
 import com.example.think.uihealth.strategy.Strategy;
 import com.example.think.uihealth.strategy.impl.CalculateCHDStrategy;
+import com.example.think.uihealth.view.fragment.ContentFragment;
+import com.kermit.exutils.utils.ActivityCollector;
 import com.kermit.exutils.utils.ExUtils;
 
 import butterknife.Bind;
@@ -44,6 +47,14 @@ public class ResultActivity extends AppCompatActivity{
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityCollector.getInstance().closeActivity(ResultActivity.this);
+            }
+        });
+
+        ActivityCollector.getInstance().pushActivity(this);
 
         mStrategy = new CalculateCHDStrategy();
         mStrategy.setValue(Human.getInstance());
@@ -65,9 +76,16 @@ public class ResultActivity extends AppCompatActivity{
                 // TODO: 2015/9/23 返回到最初的活动
                 Intent intent = new Intent(ResultActivity.this, StartActivity.class);
                 startActivity(intent);
+                ActivityCollector.getInstance().closeActivity(ResultActivity.this);
                 break;
         }
         
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityCollector.getInstance().popActivity(this);
     }
 }
