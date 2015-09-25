@@ -25,8 +25,8 @@ public class TestContent {
     public final static String[] SMOKER = {"是", "否"};
 
     //高密度脂蛋白
-    public final static String[] HDL = {"< 40 mg/dl", "40-49 mg/dl", "50-59 mg/dl",
-    "> 60 mg/dl"};
+    public final static String[] HDL = {"< 35 mg/dl", "35-44 mg/dl", "45-49 mg/dl", "50-59 mg/dl",
+    ">= 60 mg/dl"};
 
     //是否使用高血压药物
     public final static String[] HYPERTENSION_MEDITION = {"正常", "血压偏高", "高血压I", "高血压II"};

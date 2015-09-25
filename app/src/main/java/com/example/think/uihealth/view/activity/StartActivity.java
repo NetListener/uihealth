@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.example.think.uihealth.R;
 import com.gc.materialdesign.views.ButtonFlat;
+import com.kermit.exutils.utils.ActivityCollector;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -15,6 +16,8 @@ import butterknife.ButterKnife;
  * Created by Zane on 2015/9/23.
  */
 public class StartActivity extends AppCompatActivity{
+
+    public static final String TAG = "StartActivity";
 
     @Bind(R.id.btn_startactivity_start)
     ButtonFlat mButton;
@@ -25,6 +28,9 @@ public class StartActivity extends AppCompatActivity{
         setContentView(R.layout.activity_start_layout);
         ButterKnife.bind(this);
 
+        ActivityCollector.getInstance().pushActivity(this);
+
+
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,7 +38,14 @@ public class StartActivity extends AppCompatActivity{
                 Intent intent = new Intent(StartActivity.this, MainActivity.class);
 
                 startActivity(intent);
+                ActivityCollector.getInstance().closeActivity(StartActivity.this);
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityCollector.getInstance().popActivity(this);
     }
 }
