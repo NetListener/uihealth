@@ -62,7 +62,8 @@ public class StartActivity extends AppCompatActivity{
                     .setPositiveButton("是", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            ActivityCollector.getInstance().closeActivity(StartActivity.this);
+                            ActivityCollector.getInstance().closeAllActivity();
+
                         }
                     })
                     .show();

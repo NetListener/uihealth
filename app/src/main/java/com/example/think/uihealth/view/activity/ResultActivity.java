@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -74,9 +75,11 @@ public class ResultActivity extends AppCompatActivity{
         switch (id){
             case R.id.action_done:
                 // TODO: 2015/9/23 返回到最初的活动
+                ActivityCollector.getInstance().closeActivity(ResultActivity.this);
+                ActivityCollector.getInstance().closeActivityByName("com.example.think.uihealth.view" +
+                        ".activity.MainActivity");
                 Intent intent = new Intent(ResultActivity.this, StartActivity.class);
                 startActivity(intent);
-                ActivityCollector.getInstance().closeActivity(ResultActivity.this);
                 break;
         }
         
