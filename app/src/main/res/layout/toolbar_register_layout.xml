@@ -4,20 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:id="@+id/toolbar_startactivity"
+    android:id="@+id/toolbar_registeractivity"
     android:background="?attr/colorPrimary"
     android:minHeight="?attr/actionBarSize"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-    app:theme="@style/ResultToolbarTheme"
+    app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
     >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textview_startactivity"
         android:gravity="center"
         android:layout_gravity="center"
-        android:text="首页"
+        android:text="用户注册"
         android:typeface="normal"
         android:textColor="#fff"
         android:textSize="25dp"

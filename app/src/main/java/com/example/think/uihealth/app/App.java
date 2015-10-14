@@ -4,9 +4,10 @@ import android.app.Application;
 import android.content.Context;
 
 import com.kermit.exutils.utils.ExUtils;
+import com.kermit.exutils.utils.LogUtils;
 
 /**
- * Created by think on 2015/9/22.
+ * Created by Zane on 2015/9/22.
  */
 public class App extends Application {
 

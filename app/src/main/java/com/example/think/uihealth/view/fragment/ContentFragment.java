@@ -23,7 +23,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by think on 2015/9/22.
+ * Created by Zane on 2015/9/22.
  */
 public class ContentFragment extends Fragment{
 

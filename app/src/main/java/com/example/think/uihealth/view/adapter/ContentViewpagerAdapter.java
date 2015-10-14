@@ -9,7 +9,7 @@ import com.example.think.uihealth.view.fragment.ContentItemFragment;
 import java.util.List;
 
 /**
- * Created by think on 2015/9/22.
+ * Created by Zane on 2015/9/22.
  */
 public class ContentViewpagerAdapter extends FragmentStatePagerAdapter{
 

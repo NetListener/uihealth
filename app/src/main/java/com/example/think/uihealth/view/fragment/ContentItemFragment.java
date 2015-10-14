@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 import static com.example.think.uihealth.config.TestContent.TITLES;
 
 /**
- * Created by think on 2015/9/22.
+ * Created by Zane on 2015/9/22.
  */
 public class ContentItemFragment extends Fragment{
 

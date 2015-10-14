@@ -5,8 +5,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.think.uihealth.R;
 import com.gc.materialdesign.views.ButtonFlat;
@@ -24,6 +28,34 @@ public class StartActivity extends AppCompatActivity{
 
     @Bind(R.id.btn_startactivity_start)
     ButtonFlat mButton;
+    @Bind(R.id.textview_startactivity)
+    TextView mTextview;
+    @Bind(R.id.toolbar_startactivity)
+    Toolbar mToolbar;
+
+    private Boolean isAutoChange = false;
+    public static final String AUTOCHANGE = "AUTOCHANGE";
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_loginactivity, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.action_changeuser:
+                Intent intent = new Intent(StartActivity.this, LoginActivity.class);
+                intent.putExtra(AUTOCHANGE, isAutoChange);
+                startActivity(intent);
+                ActivityCollector.getInstance().closeActivity(StartActivity.this);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +63,38 @@ public class StartActivity extends AppCompatActivity{
         setContentView(R.layout.activity_start_layout);
         ButterKnife.bind(this);
 
+        mToolbar.setTitle("");
+        setSupportActionBar(mToolbar);
+        //getSupportActionBar().setHomeButtonEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         ActivityCollector.getInstance().pushActivity(this);
+
+        Intent intent = this.getIntent();
+        final String userName = intent.getStringExtra(LoginActivity.LOGIN_USERNAME);
+
+        mTextview.setText("欢迎"+userName);
+
+
+        //change ths test size in buttonflat
+
+
+
+//        mToolbar.setOnMenuItemClickListener(new android.support.v7.widget.Toolbar.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//
+//                int id = item.getItemId();
+//                switch (id){
+//                    case R.id.action_changeuser:
+//                        Intent intent = new Intent(StartActivity.this, LoginActivity.class);
+//                        startActivity(intent);
+//                        break;
+//                }
+//
+//                return true;
+//            }
+//        });
 
 
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -39,9 +102,9 @@ public class StartActivity extends AppCompatActivity{
             public void onClick(View v) {
 
                 Intent intent = new Intent(StartActivity.this, MainActivity.class);
-
+                intent.putExtra(LoginActivity.LOGIN_USERNAME, userName);
                 startActivity(intent);
-                //ActivityCollector.getInstance().closeActivity(StartActivity.this);
+
             }
         });
     }

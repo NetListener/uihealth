@@ -3,7 +3,7 @@ package com.example.think.uihealth.config;
 import java.util.ArrayList;
 
 /**
- * Created by think on 2015/9/22.
+ * Created by Zane on 2015/9/22.
  * 每项测试的常量信息
  */
 public class TestContent {

@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <!-- 状态栏颜色-->
         <item name="colorPrimaryDark">@color/primary_dark_material_dark</item>
@@ -14,6 +14,11 @@
 
     <style name="AppTheme.DrawerArrowToggle" parent="AppTheme.DrawerArrowToggle">
         <item name="color">@color/white</item>
+    </style>
+
+    <style name="ResultToolbarTheme" parent="Widget.AppCompat.Toolbar">
+        <!-- 字体的大小-->
+        <item name="android:textSize">20dp</item>
     </style>
 
 </resources>

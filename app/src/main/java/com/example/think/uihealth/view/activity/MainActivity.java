@@ -22,6 +22,9 @@ import com.kermit.exutils.utils.ExUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * Created by Zane on 2015/9/23.
+ */
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
@@ -39,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         ActivityCollector.getInstance().pushActivity(this);
+
+        final String userName = this.getIntent().getStringExtra(LoginActivity.LOGIN_USERNAME);
 
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
@@ -62,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void activitySkip() {
                 Intent intent = new Intent(MainActivity.this, ResultActivity.class);
-                // TODO: 2015/9/23 放结果值进去
-                //intent.putExtra(RESULT, );
+
+                intent.putExtra(LoginActivity.LOGIN_USERNAME, userName);
                 startActivity(intent);
             }
         });

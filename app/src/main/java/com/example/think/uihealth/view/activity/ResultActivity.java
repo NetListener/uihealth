@@ -36,12 +36,16 @@ public class ResultActivity extends AppCompatActivity{
 
     private Strategy mStrategy;
 
+    private String userNmae;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_layout);
         ButterKnife.bind(this);
+
+        userNmae = this.getIntent().getStringExtra(LoginActivity.LOGIN_USERNAME);
 
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
@@ -54,6 +58,7 @@ public class ResultActivity extends AppCompatActivity{
                 ActivityCollector.getInstance().closeActivity(ResultActivity.this);
             }
         });
+
 
         ActivityCollector.getInstance().pushActivity(this);
 
@@ -79,6 +84,7 @@ public class ResultActivity extends AppCompatActivity{
                 ActivityCollector.getInstance().closeActivityByName("com.example.think.uihealth.view" +
                         ".activity.MainActivity");
                 Intent intent = new Intent(ResultActivity.this, StartActivity.class);
+                intent.putExtra(LoginActivity.LOGIN_USERNAME, userNmae);
                 startActivity(intent);
                 break;
         }
