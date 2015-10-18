@@ -43,6 +43,17 @@
         android:textSize="30sp"
         android:text="开始新的检测" />
 
+    <com.gc.materialdesign.views.ButtonFlat
+        android:id="@+id/btn_startactivity_query"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#3E2723"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:textSize="30sp"
+        android:text="我的历史数据" />
+
+
 
 
 

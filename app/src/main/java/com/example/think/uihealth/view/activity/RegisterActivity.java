@@ -11,6 +11,7 @@ import android.widget.EditText;
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.model.BmobUser;
 import com.gc.materialdesign.views.ButtonRectangle;
+import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.kermit.exutils.utils.ActivityCollector;
 import com.kermit.exutils.utils.ExUtils;
 
@@ -31,10 +32,13 @@ public class RegisterActivity extends AppCompatActivity{
     EditText mEmail;
     @Bind(R.id.btn_registeractivity_register)
     ButtonRectangle mButton;
+    @Bind(R.id.progressbar_registeractivity)
+    ProgressBarCircularIndeterminate mProgress;
 
     private BmobUser mBmobUser;
     private int passwordNum;
     private int usernameNum;
+    private Boolean isAutoChange = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity{
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mProgress.setVisibility(View.VISIBLE);
                 if(passwordNum >= 6 && usernameNum != 0) {
                     //开始向云后台存数据
                     mBmobUser = new BmobUser();
@@ -96,8 +101,10 @@ public class RegisterActivity extends AppCompatActivity{
                     mBmobUser.signUp(RegisterActivity.this, new SaveListener() {
                         @Override
                         public void onSuccess() {
+                            mProgress.setVisibility(View.INVISIBLE);
                             ExUtils.Toast("注册成功");
                             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                            intent.putExtra(StartActivity.AUTOCHANGE, false);
                             startActivity(intent);
                         }
 

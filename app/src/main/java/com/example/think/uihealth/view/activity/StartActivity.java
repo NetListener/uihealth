@@ -13,11 +13,18 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.think.uihealth.R;
+import com.example.think.uihealth.model.BmobUser;
+import com.example.think.uihealth.model.BmobUserData;
 import com.gc.materialdesign.views.ButtonFlat;
+import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.kermit.exutils.utils.ActivityCollector;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindListener;
 
 /**
  * Created by Zane on 2015/9/23.
@@ -28,13 +35,17 @@ public class StartActivity extends AppCompatActivity{
 
     @Bind(R.id.btn_startactivity_start)
     ButtonFlat mButton;
+    @Bind(R.id.btn_startactivity_query)
+    ButtonFlat mButtonQuery;
     @Bind(R.id.textview_startactivity)
     TextView mTextview;
     @Bind(R.id.toolbar_startactivity)
     Toolbar mToolbar;
 
     private Boolean isAutoChange = false;
+    private BmobUser mUser;
     public static final String AUTOCHANGE = "AUTOCHANGE";
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,6 +60,7 @@ public class StartActivity extends AppCompatActivity{
             case R.id.action_changeuser:
                 Intent intent = new Intent(StartActivity.this, LoginActivity.class);
                 intent.putExtra(AUTOCHANGE, isAutoChange);
+
                 startActivity(intent);
                 ActivityCollector.getInstance().closeActivity(StartActivity.this);
                 break;
@@ -80,22 +92,13 @@ public class StartActivity extends AppCompatActivity{
 
 
 
-//        mToolbar.setOnMenuItemClickListener(new android.support.v7.widget.Toolbar.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem item) {
-//
-//                int id = item.getItemId();
-//                switch (id){
-//                    case R.id.action_changeuser:
-//                        Intent intent = new Intent(StartActivity.this, LoginActivity.class);
-//                        startActivity(intent);
-//                        break;
-//                }
-//
-//                return true;
-//            }
-//        });
-
+        mButtonQuery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(StartActivity.this, BeforeDataActivity.class);
+                startActivity(intent1);
+            }
+        });
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override

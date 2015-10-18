@@ -77,10 +77,9 @@ public class ContentItemFragment extends Fragment{
 
         mFragmentTextview.setText(title);
 
-        // TODO: 2015/9/22 设置recycleview
-        mAdapter = new ContentRecycleviewAdapter(getActivity(), mContents);
 
-        // TODO: 2015/9/23 添加最后一个页面实现fragment跳转的逻辑 以及存储信息的逻辑
+        mAdapter = new ContentRecycleviewAdapter(getActivity(), mContents);
+        //为点击事件传值给算法
         mAdapter.setOnItemClickListener(new ContentRecycleviewAdapter.OnItemClickListener() {
             @Override
             public void OnClick(View view, int pos) {
@@ -224,5 +223,6 @@ public class ContentItemFragment extends Fragment{
         mFragmentRecycleview.setAdapter(mAdapter);
         mManager = new LinearLayoutManager(getActivity());
         mFragmentRecycleview.setLayoutManager(mManager);
+
     }
 }

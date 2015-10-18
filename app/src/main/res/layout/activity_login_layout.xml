@@ -98,6 +98,15 @@
             android:textColorLink="#FF0066CC"
             android:textSize="20dp"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_loginactivity_qqlogin"
+            android:text="QQ账号登入"
+            android:layout_below="@id/textview_loginactivity_register"
+
+            />
+
         <com.gc.materialdesign.views.ProgressBarCircularIndeterminate
             android:id="@+id/progressbar_loginactivity"
             android:layout_width="80dp"

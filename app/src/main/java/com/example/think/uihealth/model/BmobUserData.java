@@ -1,9 +1,11 @@
 package com.example.think.uihealth.model;
 
+import cn.bmob.v3.BmobObject;
+
 /**
  * Created by Zane on 2015/10/12.
  */
-public class BmobUserData {
+public class BmobUserData extends BmobObject{
 
     private String sex;
     private int age;
@@ -12,7 +14,17 @@ public class BmobUserData {
     private double bloodPressure;
     private double smokerValue;
     private double diabetesValue;
-    private int Result;
+    private double Result;
+
+    private BmobUser mUser;//一条数据只能对应一个用户，一对一关系, Pointer type
+
+    public BmobUser getmUser() {
+        return mUser;
+    }
+
+    public void setmUser(BmobUser mUser) {
+        this.mUser = mUser;
+    }
 
     public String getSex() {
         return sex;
@@ -70,11 +82,11 @@ public class BmobUserData {
         this.diabetesValue = diabetesValue;
     }
 
-    public int getResult() {
+    public double getResult() {
         return Result;
     }
 
-    public void setResult(int result) {
+    public void setResult(double result) {
         Result = result;
     }
 }

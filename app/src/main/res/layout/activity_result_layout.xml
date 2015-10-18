@@ -12,7 +12,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="您十年内的的发病率为："
+        android:text="您十年内的发病率为："
         android:textColor="#fff"
         android:gravity="center"
         android:textSize="30dp"
@@ -20,13 +20,35 @@
         />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/textview_resultfragment_result"
-        android:textSize="100dp"
+        android:textSize="80dp"
         android:textColor="#fff"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="30dp"
+        android:text="haha"
+        />
+
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:text="保存数据"
+        android:id="@+id/btn_resultactivity_savedata"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="100dp"
+        android:textSize="24dp"
+        android:background="#80D8FF"
+        />
+    <com.gc.materialdesign.views.ProgressBarCircularIndeterminate
+        android:id="@+id/progressbar_resulatactivity"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="#1E88E5"
+        android:layout_gravity="center"
         android:gravity="center"
-        android:text="hahaha"
+        android:visibility="invisible"
+
         />
 
 </LinearLayout>

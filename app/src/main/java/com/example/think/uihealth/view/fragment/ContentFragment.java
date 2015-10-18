@@ -72,7 +72,6 @@ public class ContentFragment extends Fragment{
         mContents = TestContent.getContents();
         mTitles = TestContent.TITLES;
 
-        // TODO: 2015/9/22 viewpager适配器
         for(int i = 0; i < mTitles.length; i++){
             mFragments.add(ContentItemFragment.newInstance(mTitles[i], mContents.get(i)));
         }
