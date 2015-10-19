@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_gravity="center"
-        android:text="用户登入"
+        android:text="用户登录"
         android:typeface="normal"
         android:textColor="#fff"
         android:textSize="25dp"
