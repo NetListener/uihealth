@@ -93,13 +93,13 @@ public class ResultActivity extends AppCompatActivity {
                 mUser = BmobUser.getCurrentUser(ResultActivity.this, BmobUser.class);
                 mBmobUserData = new BmobUserData();
                 mBmobUserData.setResult((Double.parseDouble(mStrategy.getResult()) * 100));
-                mBmobUserData.setAge(mHuman.getAge());
-                mBmobUserData.setBloodPressure(mHuman.getBloodPressure());
-                mBmobUserData.setDiabetesValue(mHuman.getDiabetesValue());
-                mBmobUserData.setHDLCholesterol(mHuman.getHDLCholesterol());
-                mBmobUserData.setSex(mHuman.getSex());
-                mBmobUserData.setSmokerValue(mHuman.getSmokerValue());
-                mBmobUserData.setTotalCholesterol(mHuman.getTotalCholesterol());
+                mBmobUserData.setAge(mHuman.getAgeBmob());
+                mBmobUserData.setBloodPressure(mHuman.getBloodPressureBmob());
+                mBmobUserData.setDiabetesValue(mHuman.getDiabetesValueBmob());
+                mBmobUserData.setHDLCholesterol(mHuman.getHDLCholesterolBmob());
+                mBmobUserData.setSex(mHuman.getSexBmob());
+                mBmobUserData.setSmokerValue(mHuman.getSmolerValueBmob());
+                mBmobUserData.setTotalCholesterol(mHuman.getTotalCholesterolBmob());
                 mBmobUserData.setmUser(mUser);
                 mBmobUserData.save(ResultActivity.this, new SaveListener() {
                     @Override

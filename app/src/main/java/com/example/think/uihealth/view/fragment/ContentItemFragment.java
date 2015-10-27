@@ -11,12 +11,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.think.uihealth.R;
+import com.example.think.uihealth.config.TestContent;
 import com.example.think.uihealth.model.Human;
 import com.example.think.uihealth.strategy.Strategy;
 import com.example.think.uihealth.strategy.impl.CalculateCHDStrategy;
 import com.example.think.uihealth.view.adapter.ContentRecycleviewAdapter;
 
-import org.apache.http.impl.io.ChunkedInputStream;
+
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -88,127 +89,163 @@ public class ContentItemFragment extends Fragment{
                     switch (pos) {
                         case 0:
                             Human.getInstance().setSex(Human.MALE);
+                            Human.getInstance().setSexBmob(TestContent.GENDER[0]);
                             break;
                         case 1:
                             Human.getInstance().setSex(Human.FEMALE);
+                            Human.getInstance().setSexBmob(TestContent.GENDER[1]);
                             break;
                         default:
                             Human.getInstance().setSex(Human.MALE);
+                            Human.getInstance().setSexBmob(TestContent.GENDER[0]);
                     }
                 }else if (title.equals(TITLES[1])){
                     switch (pos){
                         case 0:
                             Human.getInstance().setAge(27);
+                            Human.getInstance().setAgeBmob(TestContent.AGE[0]);
                             break;
                         case 1:
                             Human.getInstance().setAge(37);
+                            Human.getInstance().setAgeBmob(TestContent.AGE[1]);
                             break;
                         case 2:
                             Human.getInstance().setAge(42);
+                            Human.getInstance().setAgeBmob(TestContent.AGE[2]);
                             break;
                         case 3:
                             Human.getInstance().setAge(46);
+                            Human.getInstance().setAgeBmob(TestContent.AGE[3]);
                             break;
                         case 4:
                             Human.getInstance().setAge(52);
+                            Human.getInstance().setAgeBmob(TestContent.AGE[4]);
                             break;
                         case 5:
                             Human.getInstance().setAge(56);
+                            Human.getInstance().setAgeBmob(TestContent.AGE[5]);
                             break;
                         case 6:
                             Human.getInstance().setAge(62);
+                            Human.getInstance().setAgeBmob(TestContent.AGE[6]);
                             break;
                         case 7:
                             Human.getInstance().setAge(67);
+                            Human.getInstance().setAgeBmob(TestContent.AGE[7]);
                             break;
                         case 8:
                             Human.getInstance().setAge(72);
+                            Human.getInstance().setAgeBmob(TestContent.AGE[8]);
                             break;
                         case 9:
                             Human.getInstance().setAge(76);
+                            Human.getInstance().setAgeBmob(TestContent.AGE[9]);
                             break;
                         default:
                             Human.getInstance().setAge(27);
+                            Human.getInstance().setAgeBmob(TestContent.AGE[0]);
                     }
                 }else if (title.equals(TITLES[2])){
                     switch (pos){
                         case 0:
                             Human.getInstance().setTotalCholesterol(CalculateCHDStrategy.CHOLESTEROL_UNDER_160);
+                            Human.getInstance().setTotalCholesterolBmob(TestContent.TOTAL_CHOLESTEROL[0]);
                             break;
                         case 1:
                             Human.getInstance().setTotalCholesterol(CalculateCHDStrategy.CHOLESTEROL_160_TO_199);
+                            Human.getInstance().setTotalCholesterolBmob(TestContent.TOTAL_CHOLESTEROL[1]);
                             break;
                         case 2:
                             Human.getInstance().setTotalCholesterol(CalculateCHDStrategy.CHOLESTEROL_200_TO_239);
+                            Human.getInstance().setTotalCholesterolBmob(TestContent.TOTAL_CHOLESTEROL[2]);
                             break;
                         case 3:
                             Human.getInstance().setTotalCholesterol(CalculateCHDStrategy.CHOLESTEROL_240_TO_279);
+                            Human.getInstance().setTotalCholesterolBmob(TestContent.TOTAL_CHOLESTEROL[3]);
                             break;
                         case 4:
                             Human.getInstance().setTotalCholesterol(CalculateCHDStrategy.CHOLESTEROL_NOT_UNDER_280);
+                            Human.getInstance().setTotalCholesterolBmob(TestContent.TOTAL_CHOLESTEROL[4]);
                             break;
                         default:
                             Human.getInstance().setTotalCholesterol(CalculateCHDStrategy.CHOLESTEROL_UNDER_160);
+                            Human.getInstance().setTotalCholesterolBmob(TestContent.TOTAL_CHOLESTEROL[0]);
                     }
                 }else if (title.equals(TITLES[3])){
                     switch (pos){
                         case 0:
                             Human.getInstance().setSmokerValue(CalculateCHDStrategy.SMOKER);
+                            Human.getInstance().setSmolerValueBmob(TestContent.SMOKER[0]);
                             break;
                         case 1:
                             Human.getInstance().setSmokerValue(CalculateCHDStrategy.NOT_SMOKER);
+                            Human.getInstance().setSmolerValueBmob(TestContent.SMOKER[1]);
                             break;
                         default:
                             Human.getInstance().setSmokerValue(CalculateCHDStrategy.NOT_SMOKER);
-
+                            Human.getInstance().setSmolerValueBmob(TestContent.SMOKER[0]);
                     }
                 }else if (title.equals(TITLES[4])){
                     switch (pos){
                         case 0:
                             Human.getInstance().setHDLCholesterol(CalculateCHDStrategy.HDL_CHOLESTEROL_UNDER_35);
+                            Human.getInstance().setHDLCholesterolBmob(TestContent.HDL[0]);
                             break;
                         case 1:
                             Human.getInstance().setHDLCholesterol(CalculateCHDStrategy.HDL_CHOLESTEROL_35_TO_44);
+                            Human.getInstance().setHDLCholesterolBmob(TestContent.HDL[1]);
                             break;
                         case 2:
                             Human.getInstance().setHDLCholesterol(CalculateCHDStrategy.HDL_CHOLESTEROL_45_TO_49);
+                            Human.getInstance().setHDLCholesterolBmob(TestContent.HDL[2]);
                             break;
                         case 3:
                             Human.getInstance().setHDLCholesterol(CalculateCHDStrategy.HDL_CHOLESTEROL_50_TO_59);
+                            Human.getInstance().setHDLCholesterolBmob(TestContent.HDL[3]);
                             break;
                         case 4:
                             Human.getInstance().setHDLCholesterol(CalculateCHDStrategy.HDL_CHOLESTEROL_NOT_UNDER_60);
+                            Human.getInstance().setHDLCholesterolBmob(TestContent.HDL[4]);
                             break;
                         default:
                             Human.getInstance().setHDLCholesterol(CalculateCHDStrategy.HDL_CHOLESTEROL_35_TO_44);
+                            Human.getInstance().setHDLCholesterolBmob(TestContent.HDL[0]);
                     }
                 }else if (title.equals(TITLES[5])){
                     switch (pos){
                         case 0:
                             Human.getInstance().setBloodPressure(CalculateCHDStrategy.NORMAL);
+                            Human.getInstance().setBloodPressureBmob(TestContent.HYPERTENSION_MEDITION[0]);
                             break;
                         case 1:
                             Human.getInstance().setBloodPressure(CalculateCHDStrategy.HIGH_NORMAL);
+                            Human.getInstance().setBloodPressureBmob(TestContent.HYPERTENSION_MEDITION[1]);
                             break;
                         case 2:
                             Human.getInstance().setBloodPressure(CalculateCHDStrategy.STATE_I_HYPERTENSION);
+                            Human.getInstance().setBloodPressureBmob(TestContent.HYPERTENSION_MEDITION[2]);
                             break;
                         case 3:
                             Human.getInstance().setBloodPressure(CalculateCHDStrategy.STATE_II_HYPERTENSION);
+                            Human.getInstance().setBloodPressureBmob(TestContent.HYPERTENSION_MEDITION[3]);
                             break;
                         default:
                             Human.getInstance().setBloodPressure(CalculateCHDStrategy.NORMAL);
+                            Human.getInstance().setBloodPressureBmob(TestContent.HYPERTENSION_MEDITION[0]);
                     }
                 }else if (title.equals(TITLES[6])){
                     switch (pos){
                         case 0:
                             Human.getInstance().setDiabetesValue(CalculateCHDStrategy.DIABETES);
+                            Human.getInstance().setDiabetesValueBmob(TestContent.SYSTOLIC_BLOOD_PRESURE[0]);
                             break;
                         case 1:
                             Human.getInstance().setDiabetesValue(CalculateCHDStrategy.NOT_DIABETES);
+                            Human.getInstance().setDiabetesValueBmob(TestContent.SYSTOLIC_BLOOD_PRESURE[1]);
                             break;
                         default:
                             Human.getInstance().setDiabetesValue(CalculateCHDStrategy.NOT_DIABETES);
+                            Human.getInstance().setDiabetesValueBmob(TestContent.SYSTOLIC_BLOOD_PRESURE[0]);
                     }
                 }
 

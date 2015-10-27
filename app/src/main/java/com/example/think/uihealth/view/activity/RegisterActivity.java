@@ -111,6 +111,7 @@ public class RegisterActivity extends AppCompatActivity{
                         @Override
                         public void onFailure(int i, String s) {
                             ExUtils.ToastLong(s);
+                            mProgress.setVisibility(View.INVISIBLE);
                         }
                     });
                 }

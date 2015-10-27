@@ -168,7 +168,7 @@ public class LoginActivity extends AppCompatActivity {
             cn.bmob.v3.BmobUser mBmobUser2 = BmobUser.getCurrentUser(this);
             if (mBmobUser2 != null) {
                 Intent intent = new Intent(LoginActivity.this, StartActivity.class);
-                intent.putExtra(LOGIN_USERNAME, mUserName.getText().toString());
+                intent.putExtra(LOGIN_USERNAME, mBmobUser2.getUsername());
                 loginCheckBox.setChecked(true);
                 startActivity(intent);
                 ActivityCollector.getInstance().closeActivity(LoginActivity.this);
@@ -221,8 +221,9 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess() {
                         mProgressbar.setVisibility(View.INVISIBLE);
+                        cn.bmob.v3.BmobUser bmobUser = cn.bmob.v3.BmobUser.getCurrentUser(LoginActivity.this);
                         Intent intent = new Intent(LoginActivity.this, StartActivity.class);
-                        intent.putExtra(LOGIN_USERNAME, mUserName.getText().toString());
+                        intent.putExtra(LOGIN_USERNAME, bmobUser.getUsername());
                         ActivityCollector.getInstance().closeActivity(LoginActivity.this);
                         startActivity(intent);
                     }
@@ -299,7 +300,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void onCancel() {
-
+            mProgressbar.setVisibility(View.INVISIBLE);
         }
 
         //同步获取用户信息
@@ -346,6 +347,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(int i, String s) {
 
                 QQLoginAfterRegister(nickname, openidHashcode);
+
             }
         });
     }
@@ -364,11 +366,13 @@ public class LoginActivity extends AppCompatActivity {
                 intent.putExtra(LOGIN_USERNAME, nickname);
                 ActivityCollector.getInstance().closeActivity(LoginActivity.this);
                 startActivity(intent);
+                mProgressbar.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onFailure(int i, String s) {
                 ExUtils.Toast(s);
+                mProgressbar.setVisibility(View.INVISIBLE);
             }
         });
     }

@@ -10,12 +10,19 @@ public class Human {
     public static final String FEMALE = "female";
 
     private String sex;
+    private String sexBmob;
     private int age;
+    private String ageBmob;
     private double totalCholesterol;
+    private String totalCholesterolBmob;
     private double HDLCholesterol;
+    private String HDLCholesterolBmob;
     private double bloodPressure;
+    private String bloodPressureBmob;
     private double smokerValue;
+    private String smolerValueBmob;
     private double diabetesValue;
+    private String diabetesValueBmob;
 
     public Human(){
         sex = MALE;
@@ -26,6 +33,61 @@ public class Human {
         private static final Human instance = new Human();
     }
 
+    public String getSexBmob() {
+        return sexBmob;
+    }
+
+    public void setSexBmob(String sexBmob) {
+        this.sexBmob = sexBmob;
+    }
+
+    public String getAgeBmob() {
+        return ageBmob;
+    }
+
+    public void setAgeBmob(String ageBmob) {
+        this.ageBmob = ageBmob;
+    }
+
+    public String getTotalCholesterolBmob() {
+        return totalCholesterolBmob;
+    }
+
+    public void setTotalCholesterolBmob(String totalCholesterolBmob) {
+        this.totalCholesterolBmob = totalCholesterolBmob;
+    }
+
+    public String getHDLCholesterolBmob() {
+        return HDLCholesterolBmob;
+    }
+
+    public void setHDLCholesterolBmob(String HDLCholesterolBmob) {
+        this.HDLCholesterolBmob = HDLCholesterolBmob;
+    }
+
+    public String getSmolerValueBmob() {
+        return smolerValueBmob;
+    }
+
+    public void setSmolerValueBmob(String smolerValueBmob) {
+        this.smolerValueBmob = smolerValueBmob;
+    }
+
+    public String getBloodPressureBmob() {
+        return bloodPressureBmob;
+    }
+
+    public void setBloodPressureBmob(String bloodPressureBmob) {
+        this.bloodPressureBmob = bloodPressureBmob;
+    }
+
+    public String getDiabetesValueBmob() {
+        return diabetesValueBmob;
+    }
+
+    public void setDiabetesValueBmob(String diabetesValueBmob) {
+        this.diabetesValueBmob = diabetesValueBmob;
+    }
 
     public static Human getInstance(){
         return HumanHolder.instance;

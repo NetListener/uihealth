@@ -78,6 +78,7 @@ public class BeforeDataActivity extends AppCompatActivity{
                         intent.putExtra(HDL, list.get(pos).getHDLCholesterol());
                         intent.putExtra(sex, list.get(pos).getSex());
                         intent.putExtra(smoke, list.get(pos).getSmokerValue());
+                        intent.putExtra(diabetes_mellitus, list.get(pos).getDiabetesValue());
                         startActivity(intent);
 
                     }
@@ -88,6 +89,7 @@ public class BeforeDataActivity extends AppCompatActivity{
                         mBmobUserData.delete(BeforeDataActivity.this, new DeleteListener() {
                             @Override
                             public void onSuccess() {
+
                                 new MaterialDialog.Builder(BeforeDataActivity.this)
                                         .items(new CharSequence[]{"删除"})
                                         .itemsCallback(new MaterialDialog.ListCallback() {
@@ -110,6 +112,7 @@ public class BeforeDataActivity extends AppCompatActivity{
                             @Override
                             public void onFailure(int i, String s) {
                                 ExUtils.Toast(s);
+                                mProgress.setVisibility(View.INVISIBLE);
                             }
                         });
                     }
@@ -123,6 +126,7 @@ public class BeforeDataActivity extends AppCompatActivity{
             @Override
             public void onError(int i, String s) {
                 ExUtils.ToastLong(s);
+                mProgress.setVisibility(View.INVISIBLE);
             }
         });
 

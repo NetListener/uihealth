@@ -10,121 +10,122 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="50dp">
+        android:layout_height="70dp"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             style="@style/MyMoreBeforeDataTextview"
-            android:text="性别"
+            android:text="性别:"
             />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             style="@style/MyMoreBeforeResyltTextview"
             android:id="@+id/textview_morebeforedata_sex"
+            android:text="haha"
             />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
+        android:layout_height="70dp"
+        android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="年龄: "
             style="@style/MyMoreBeforeDataTextview"
             />
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             style="@style/MyMoreBeforeResyltTextview"
             android:id="@+id/textview_morebeforedata_age"
             />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
+        android:layout_height="70dp"
+        android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="总胆固醇含量:"
             style="@style/MyMoreBeforeDataTextview"
             />
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             style="@style/MyMoreBeforeResyltTextview"
             android:id="@+id/textview_morebeforedata_cholesterol"
             />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
+        android:layout_height="70dp"
+        android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="吸烟："
             style="@style/MyMoreBeforeDataTextview"
             />
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             style="@style/MyMoreBeforeResyltTextview"
             android:id="@+id/textview_morebeforedata_smoke"
             />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
+        android:layout_height="70dp"
+        android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="高密度脂蛋白:"
             style="@style/MyMoreBeforeDataTextview"
             />
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             style="@style/MyMoreBeforeResyltTextview"
             android:id="@+id/textview_morebeforedata_HDL"
             />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
+        android:layout_height="70dp"
+        android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="血压情况:"
             style="@style/MyMoreBeforeDataTextview"
             />
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             style="@style/MyMoreBeforeResyltTextview"
             android:id="@+id/textview_morebeforedata_bloodpresure"
             />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
+        android:layout_height="70dp"
+        android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="是否糖尿病:"
             style="@style/MyMoreBeforeDataTextview"
             />
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             style="@style/MyMoreBeforeResyltTextview"
             android:id="@+id/textview_morebeforedata_diabetes_mellitus"
             />

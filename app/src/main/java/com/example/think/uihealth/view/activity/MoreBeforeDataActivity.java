@@ -46,8 +46,8 @@ public class MoreBeforeDataActivity extends AppCompatActivity{
         mTextviewCholesterol.setText(intent.getStringExtra(BeforeDataActivity.cholesterol));
         mTextviewDiabetes.setText(intent.getStringExtra(BeforeDataActivity.diabetes_mellitus));
         mTextviewHDL.setText(intent.getStringExtra(BeforeDataActivity.HDL));
-        mTextviewSmoke.setText(BeforeDataActivity.smoke);
-        mTextviewSex.setText(BeforeDataActivity.sex);
+        mTextviewSmoke.setText(intent.getStringExtra(BeforeDataActivity.smoke));
+        mTextviewSex.setText(intent.getStringExtra(BeforeDataActivity.sex));
 
     }
 

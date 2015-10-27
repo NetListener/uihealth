@@ -8,12 +8,12 @@ import cn.bmob.v3.BmobObject;
 public class BmobUserData extends BmobObject{
 
     private String sex;
-    private int age;
-    private double totalCholesterol;
-    private double HDLCholesterol;
-    private double bloodPressure;
-    private double smokerValue;
-    private double diabetesValue;
+    private String age;
+    private String totalCholesterol;
+    private String HDLCholesterol;
+    private String bloodPressure;
+    private String smokerValue;
+    private String diabetesValue;
     private double Result;
 
     private BmobUser mUser;//一条数据只能对应一个用户，一对一关系, Pointer type
@@ -34,51 +34,51 @@ public class BmobUserData extends BmobObject{
         this.sex = sex;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
-    public double getTotalCholesterol() {
+    public String getTotalCholesterol() {
         return totalCholesterol;
     }
 
-    public void setTotalCholesterol(double totalCholesterol) {
+    public void setTotalCholesterol(String totalCholesterol) {
         this.totalCholesterol = totalCholesterol;
     }
 
-    public double getHDLCholesterol() {
+    public String getHDLCholesterol() {
         return HDLCholesterol;
     }
 
-    public void setHDLCholesterol(double HDLCholesterol) {
+    public void setHDLCholesterol(String HDLCholesterol) {
         this.HDLCholesterol = HDLCholesterol;
     }
 
-    public double getBloodPressure() {
+    public String getBloodPressure() {
         return bloodPressure;
     }
 
-    public void setBloodPressure(double bloodPressure) {
+    public void setBloodPressure(String bloodPressure) {
         this.bloodPressure = bloodPressure;
     }
 
-    public double getSmokerValue() {
+    public String getSmokerValue() {
         return smokerValue;
     }
 
-    public void setSmokerValue(double smokerValue) {
+    public void setSmokerValue(String smokerValue) {
         this.smokerValue = smokerValue;
     }
 
-    public double getDiabetesValue() {
+    public String getDiabetesValue() {
         return diabetesValue;
     }
 
-    public void setDiabetesValue(double diabetesValue) {
+    public void setDiabetesValue(String diabetesValue) {
         this.diabetesValue = diabetesValue;
     }
 
