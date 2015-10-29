@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.think.uihealth.R;
@@ -21,9 +22,12 @@ import com.kermit.exutils.utils.ActivityCollector;
 import com.kermit.exutils.utils.ExUtils;
 
 import java.text.NumberFormat;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 
 /**
@@ -40,15 +44,23 @@ public class ResultActivity extends AppCompatActivity {
     Button mButton;
     @Bind(R.id.progressbar_resulatactivity)
     ProgressBarCircularIndeterminate mProgress;
+    @Bind(R.id.imageview_resultactivity_arrow)
+    ImageView mArrowImageView;
+    @Bind(R.id.btn_resultactivity_testagain)
+    Button mButtonTestAgain;
+    @Bind(R.id.btn_resultactivity_comparedata)
+    Button mButtonCompare;
 
-    private String mResult;
-
+    private double mResult;
+    private double mLasteResult;
     private Strategy mStrategy;
-
     private String userNmae;
-    private BmobUser mUser;
     private BmobUserData mBmobUserData;
     private Human mHuman;
+    private BmobUser mUser;
+    private int saveTimes = 0;
+    private Boolean isArrowDown;
+    private Boolean isQuerySuccess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,24 +80,47 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ActivityCollector.getInstance().closeActivity(ResultActivity.this);
+                saveTimes = 0;
             }
         });
 
-
         ActivityCollector.getInstance().pushActivity(this);
 
-        //显示结果
-        mStrategy = new CalculateCHDStrategy();
-        mStrategy.setValue(Human.getInstance());
-        NumberFormat numberFormat = NumberFormat.getNumberInstance();
-        numberFormat.setMaximumFractionDigits(2);
-        result.setText(numberFormat.format((Double.parseDouble(mStrategy.getResult()) * 100)) + "%");
+        mProgress.setVisibility(View.VISIBLE);
 
+        mUser = BmobUser.getCurrentUser(ResultActivity.this, BmobUser.class);
+        BmobQuery<BmobUserData> query = new BmobQuery<BmobUserData>();
+        query.addWhereEqualTo("mUser", mUser);
+        query.order("-updatedAt");
+        query.findObjects(ResultActivity.this, new FindListener<BmobUserData>() {
+            @Override
+            public void onSuccess(List<BmobUserData> list) {
+                mResult = list.get(saveTimes).getResult();
+                getLasteResult();
+                mProgress.setVisibility(View.INVISIBLE);
+                isQuerySuccess = true;
+                if(mLasteResult > mResult){
+                    isArrowDown = false;
+                }else {
+                    isArrowDown = true;
+                }
+                showResult(isArrowDown, isQuerySuccess);
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                ExUtils.Toast(s);
+                getLasteResult();
+                isQuerySuccess = false;
+                mProgress.setVisibility(View.INVISIBLE);
+                showResult(false, isQuerySuccess);
+            }
+        });
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                saveTimes++;
                 mProgress.setVisibility(View.VISIBLE);
 
                 mHuman = Human.getInstance();
@@ -118,6 +153,28 @@ public class ResultActivity extends AppCompatActivity {
         });
     }
 
+    private void showResult(Boolean isArrowDown, Boolean isQuerySuccess) {
+        //显示结果
+
+        NumberFormat numberFormat = NumberFormat.getNumberInstance();
+        numberFormat.setMaximumFractionDigits(2);
+        result.setText(numberFormat.format(mLasteResult) + "%");
+
+        if(isQuerySuccess){
+            if(isArrowDown){
+                mArrowImageView.setImageResource(R.drawable.down);
+            }else {
+                mArrowImageView.setImageResource(R.drawable.up);
+            }
+        }
+    }
+
+    private void getLasteResult() {
+        mStrategy = new CalculateCHDStrategy();
+        mStrategy.setValue(Human.getInstance());
+        mLasteResult = (Double.parseDouble(mStrategy.getResult()) * 100);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_resultactivity, menu);
@@ -146,5 +203,6 @@ public class ResultActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         ActivityCollector.getInstance().popActivity(this);
+        saveTimes = 0;
     }
 }

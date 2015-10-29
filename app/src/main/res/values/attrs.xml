@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CombineTextImageviewView">
+        <attr name="imageSrc" format="reference"/>
+        <attr name="text" format="string"/>
+        <attr name="textSize" format="dimension"/>
+        <attr name="marginCenter" format="dimension"/>
+        <attr name="textColor" format="reference"/>
+    </declare-styleable>
+</resources>

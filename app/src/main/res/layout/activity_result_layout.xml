@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#795548">
+    android:background="#43536e">
 
 
     <include layout="@layout/toolbar_result_layout"/>
@@ -19,27 +19,39 @@
         android:layout_marginTop="50dp"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textview_resultfragment_result"
-        android:textSize="80dp"
-        android:textColor="#fff"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="30dp"
-        android:text="haha"
-        />
+    <!--<com.example.think.uihealth.widget.CombineTextImageviewView-->
+        <!--xmlns:pt2="http://schemas.android.com/apk/res/com.example.think.uihealth"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="90dp"-->
+        <!-- -->
+        <!--pt2:textSize = "80sp"-->
+        <!--pt2:textColor = "@color/white"-->
+        <!--android:layout_marginTop="80dp"-->
+        <!--android:layout_marginLeft="70dp"-->
+        <!--pt2:imageSrc = "@drawable/down"-->
 
-    <Button
-        android:layout_width="180dp"
-        android:layout_height="80dp"
-        android:text="保存数据"
-        android:id="@+id/btn_resultactivity_savedata"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="100dp"
-        android:textSize="24dp"
-        android:background="#80D8FF"
-        />
+        <!--/>-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="60dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            android:id="@+id/textview_resultfragment_result"
+            android:textColor = "@color/white"
+            android:layout_marginLeft="20dp"
+            android:textSize="80sp"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            android:src="@drawable/down"
+            android:layout_toRightOf="@id/textview_resultfragment_result"
+            android:id="@+id/imageview_resultactivity_arrow"
+            />
+    </RelativeLayout>
+
     <com.gc.materialdesign.views.ProgressBarCircularIndeterminate
         android:id="@+id/progressbar_resulatactivity"
         android:layout_width="80dp"
@@ -48,7 +60,39 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:visibility="invisible"
-
+        android:layout_marginTop="10dp"
         />
+
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:text="保存数据"
+        android:id="@+id/btn_resultactivity_savedata"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="100dp"
+        android:textSize="24dp"
+        android:background="#1E88E5"
+        />
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:text="重新测试"
+        android:id="@+id/btn_resultactivity_testagain"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="100dp"
+        android:textSize="24dp"
+        android:background="#1E88E5"
+        />
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:text="比较数据"
+        android:id="@+id/btn_resultactivity_comparedata"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="100dp"
+        android:textSize="24dp"
+        android:background="#1E88E5"
+        />
+
 
 </LinearLayout>

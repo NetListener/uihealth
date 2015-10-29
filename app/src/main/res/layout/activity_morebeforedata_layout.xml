@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/content_title">
 
 
     <include layout="@layout/toolbar_beforedata_layout"/>
@@ -19,14 +20,19 @@
             style="@style/MyMoreBeforeDataTextview"
             android:text="性别:"
             />
-
-        <TextView
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/MyMoreBeforeResyltTextview"
             android:id="@+id/textview_morebeforedata_sex"
-            android:text="haha"
+            pt:imageSrc="@drawable/point3"
+            pt:textSize="24sp"
+            pt:marginCenter="50dp"
+            pt:text = " "
+            pt:textColor = "@color/white"
+            android:layout_marginLeft="40dp"
             />
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,12 +44,19 @@
             android:text="年龄: "
             style="@style/MyMoreBeforeDataTextview"
             />
-        <TextView
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/MyMoreBeforeResyltTextview"
             android:id="@+id/textview_morebeforedata_age"
+            pt:imageSrc="@drawable/point3"
+            pt:textSize="24sp"
+            pt:marginCenter="50dp"
+            pt:text = " "
+            pt:textColor = "@color/white"
+            android:layout_marginLeft="40dp"
             />
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,12 +68,19 @@
             android:text="总胆固醇含量:"
             style="@style/MyMoreBeforeDataTextview"
             />
-        <TextView
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/MyMoreBeforeResyltTextview"
             android:id="@+id/textview_morebeforedata_cholesterol"
+            pt:imageSrc="@drawable/point3"
+            pt:textSize="24sp"
+            pt:marginCenter="50dp"
+            pt:text = " "
+            pt:textColor = "@color/white"
+            android:layout_marginLeft="40dp"
             />
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -72,12 +92,19 @@
             android:text="吸烟："
             style="@style/MyMoreBeforeDataTextview"
             />
-        <TextView
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/MyMoreBeforeResyltTextview"
             android:id="@+id/textview_morebeforedata_smoke"
+            pt:imageSrc="@drawable/point3"
+            pt:textSize="24sp"
+            pt:marginCenter="50dp"
+            pt:text = " "
+            pt:textColor = "@color/white"
+            android:layout_marginLeft="40dp"
             />
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -89,12 +116,19 @@
             android:text="高密度脂蛋白:"
             style="@style/MyMoreBeforeDataTextview"
             />
-        <TextView
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/MyMoreBeforeResyltTextview"
             android:id="@+id/textview_morebeforedata_HDL"
+            pt:imageSrc="@drawable/point3"
+            pt:textSize="24sp"
+            pt:marginCenter="50dp"
+            pt:text = " "
+            pt:textColor = "@color/white"
+            android:layout_marginLeft="40dp"
             />
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -106,12 +140,19 @@
             android:text="血压情况:"
             style="@style/MyMoreBeforeDataTextview"
             />
-        <TextView
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/MyMoreBeforeResyltTextview"
             android:id="@+id/textview_morebeforedata_bloodpresure"
+            pt:imageSrc="@drawable/point3"
+            pt:textSize="24sp"
+            pt:marginCenter="50dp"
+            pt:text = " "
+            pt:textColor = "@color/white"
+            android:layout_marginLeft="40dp"
             />
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -123,12 +164,19 @@
             android:text="是否糖尿病:"
             style="@style/MyMoreBeforeDataTextview"
             />
-        <TextView
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/MyMoreBeforeResyltTextview"
             android:id="@+id/textview_morebeforedata_diabetes_mellitus"
+            pt:imageSrc="@drawable/point3"
+            pt:textSize="24sp"
+            pt:marginCenter="50dp"
+            pt:text = " "
+            pt:textColor = "@color/white"
+            android:layout_marginLeft="40dp"
             />
+
     </LinearLayout>
 
 </LinearLayout>

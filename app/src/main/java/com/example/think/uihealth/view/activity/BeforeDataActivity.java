@@ -85,36 +85,37 @@ public class BeforeDataActivity extends AppCompatActivity{
 
                     @Override
                     public void OnLongClick(View view, final int pos) {
-                        BmobUserData mBmobUserData = list.get(pos);
-                        mBmobUserData.delete(BeforeDataActivity.this, new DeleteListener() {
-                            @Override
-                            public void onSuccess() {
-
-                                new MaterialDialog.Builder(BeforeDataActivity.this)
-                                        .items(new CharSequence[]{"删除"})
-                                        .itemsCallback(new MaterialDialog.ListCallback() {
-                                            @Override
-                                            public void onSelection(MaterialDialog materialDialog, View view, int i
-                                                    , CharSequence charSequence) {
-                                                switch (i) {
-                                                    case 0:
+                        final BmobUserData mBmobUserData = list.get(pos);
+                        new MaterialDialog.Builder(BeforeDataActivity.this)
+                                .items(new CharSequence[]{"删除"})
+                                .itemsCallback(new MaterialDialog.ListCallback() {
+                                    @Override
+                                    public void onSelection(MaterialDialog materialDialog, View view, int i
+                                            , CharSequence charSequence) {
+                                        switch (i) {
+                                            case 0:
+                                                mBmobUserData.delete(BeforeDataActivity.this, new DeleteListener() {
+                                                    @Override
+                                                    public void onSuccess() {
                                                         List<BmobUserData> mBmobUserData = mAdapter.getmBmobUsers();
                                                         mBmobUserData.remove(pos);
                                                         mAdapter.setmBmobUsers(mBmobUserData);
                                                         mAdapter.notifyDataSetChanged();
                                                         ExUtils.Toast("删除成功");
-                                                        break;
-                                                }
-                                            }
-                                        }).show();
-                            }
+                                                    }
 
-                            @Override
-                            public void onFailure(int i, String s) {
-                                ExUtils.Toast(s);
-                                mProgress.setVisibility(View.INVISIBLE);
-                            }
-                        });
+                                                    @Override
+                                                    public void onFailure(int i, String s) {
+                                                        ExUtils.Toast(s);
+                                                        mProgress.setVisibility(View.INVISIBLE);
+                                                    }
+                                                });
+
+                                                break;
+                                        }
+                                    }
+                                }).show();
+
                     }
                 });
 
