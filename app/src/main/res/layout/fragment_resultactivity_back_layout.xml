@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#43536e">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent">
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/combine_resultfragment_laste"
+            pt:imageSrc="@drawable/point3"
+            pt:textSize="16sp"
+            pt:marginCenter="50dp"
+            pt:text = "本次测试"
+            pt:textColor = "@color/white"
+            android:layout_marginLeft="20dp"
+            />
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/combine_resultfragment_before"
+            android:layout_toRightOf="@id/combine_resultfragment_laste"
+            pt:imageSrc="@drawable/point2"
+            pt:textSize="16sp"
+            pt:marginCenter="50dp"
+            pt:text = "上次测试"
+            pt:textColor = "@color/resultfragmenttext"
+            android:layout_marginLeft="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_sex"
+            style="@style/MyMoreResultFragmentTextview"
+            android:layout_below="@id/combine_resultfragment_laste"
+            android:text="性别："
+            />
+
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_sexresult"
+            android:layout_below="@id/textview_resultfragment_sex"
+            pt:imageSrc="@drawable/point2"
+            pt:textSize="16sp"
+            pt:marginCenter="50dp"
+            pt:text = "男"
+            pt:textColor = "@color/resultfragmenttext"
+            android:layout_marginLeft="20dp"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/MyMoreBeforeResyltTextview"
+            android:id="@+id/textview_resultfragment_beforeresult"
+            android:text="上次测试结果: 72.5%"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/null_1"
+            style="@style/MyMoreResultFragmentTextview"
+            android:layout_below="@id/textview_resultfragment_beforeresult"
+            />
+
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_beforesexresult"
+            android:layout_below="@id/null_1"
+            pt:imageSrc="@drawable/point3"
+            pt:textSize="16sp"
+            pt:marginCenter="50dp"
+            pt:text = "男"
+            pt:textColor = "@color/white"
+            android:layout_marginLeft="20dp"
+            />
+    </RelativeLayout>
+
+
+</LinearLayout>
