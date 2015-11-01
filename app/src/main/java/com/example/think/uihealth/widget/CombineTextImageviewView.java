@@ -53,7 +53,7 @@ public class CombineTextImageviewView extends RelativeLayout{
             srcId = a.getResourceId(R.styleable.CombineTextImageviewView_imageSrc, 0);
             Log.i(TAG, String.valueOf(srcId));
             marginCenter = a.getDimensionPixelOffset(R.styleable.CombineTextImageviewView_marginCenter, 0);
-
+            text = a.getString(R.styleable.CombineTextImageviewView_text);
             Log.i(TAG, String.valueOf(marginCenter));
             textSize = a.getDimension(R.styleable.CombineTextImageviewView_textSize, 0);
             Log.i(TAG, String.valueOf(textSize));
@@ -73,7 +73,7 @@ public class CombineTextImageviewView extends RelativeLayout{
         LayoutParams params = new LayoutParams(context, attrs);
         params.setMargins(ExUtils.px2dip(marginCenter), 0, 0, 0);
         mTextview.setLayoutParams(params);
-
+        mTextview.setText(text);
     }
 
     public void setText(String text){

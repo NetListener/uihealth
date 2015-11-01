@@ -1,11 +1,13 @@
 package com.example.think.uihealth.model;
 
+import java.io.Serializable;
+
 import cn.bmob.v3.BmobObject;
 
 /**
  * Created by Zane on 2015/10/12.
  */
-public class BmobUserData extends BmobObject{
+public class BmobUserData extends BmobObject implements Serializable{
 
     private String sex;
     private String age;

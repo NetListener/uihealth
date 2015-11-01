@@ -43,8 +43,6 @@ public class ResultPreviousFragment extends android.support.v4.app.Fragment{
     ProgressBarCircularIndeterminate mProgress;
     @Bind(R.id.imageview_resultactivity_arrow)
     ImageView mArrowImageView;
-    @Bind(R.id.btn_resultactivity_testagain)
-    Button mButtonTestAgain;
     @Bind(R.id.btn_resultactivity_comparedata)
     Button mButtonCompare;
 
@@ -58,20 +56,17 @@ public class ResultPreviousFragment extends android.support.v4.app.Fragment{
     private Boolean isArrowDown;
     private Boolean isQuerySuccess;
     private OnCompareButtonClickListener mCompareButtonClickListener;
-    private OnTestAgainButtonClickListener mTestAgainButtonClickListener;
+    private ResultCompareFragment resultCompareFragment;
+
 
     public interface OnCompareButtonClickListener{
-        void compareButtonClick();
+        void compareButtonClick(ResultCompareFragment resultCompareFragment);
     }
-    public interface OnTestAgainButtonClickListener{
-        void testAgainButtonClick();
-    }
+
     public void setOnCompareButtonClickListener(OnCompareButtonClickListener mCompareButtonClickListener){
         this.mCompareButtonClickListener = mCompareButtonClickListener;
     }
-    public void setOnTestAgainButtonClickListener(OnTestAgainButtonClickListener mTestAgainButtonClickListener){
-        this.mTestAgainButtonClickListener = mTestAgainButtonClickListener;
-    }
+
 
     @Override
     public void onAttach(Context context) {
@@ -89,9 +84,10 @@ public class ResultPreviousFragment extends android.support.v4.app.Fragment{
             @Override
             public void onClick(View v) {
                 //callback
-                mCompareButtonClickListener.compareButtonClick();
+                mCompareButtonClickListener.compareButtonClick(resultCompareFragment);
             }
         });
+
 
         mProgress.setVisibility(View.VISIBLE);
 
@@ -103,16 +99,22 @@ public class ResultPreviousFragment extends android.support.v4.app.Fragment{
         query.findObjects(getActivity(), new FindListener<BmobUserData>() {
             @Override
             public void onSuccess(List<BmobUserData> list) {
-                mResult = list.get(saveTimes).getResult();
+                mHuman = Human.getInstance();
+                mResult = list.get(0).getResult();
                 getLasteResult();
                 mProgress.setVisibility(View.INVISIBLE);
                 isQuerySuccess = true;
                 if (mLasteResult > mResult) {
                     isArrowDown = false;
-                } else {
+                } else if(mLasteResult < mResult){
                     isArrowDown = true;
+                }else if(mLasteResult == mResult){
+                    isArrowDown = null;
                 }
                 showResult(isArrowDown, isQuerySuccess);
+                //生成比较数据的碎片
+                resultCompareFragment = ResultCompareFragment.newInstance(list, mHuman,
+                        (Double.parseDouble(mStrategy.getResult()) * 100));
             }
 
             @Override
@@ -121,26 +123,15 @@ public class ResultPreviousFragment extends android.support.v4.app.Fragment{
                 getLasteResult();
                 isQuerySuccess = false;
                 mProgress.setVisibility(View.INVISIBLE);
-                showResult(false, isQuerySuccess);
+                showResult(null, isQuerySuccess);
             }
         });
-
-        //重测按钮的监听
-        mButtonTestAgain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mTestAgainButtonClickListener.testAgainButtonClick();
-            }
-        });
-
         //保存数据的按钮,这个不用给ACTIVITY提供回调方法了。
         mButtonSaveData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveTimes++;
-                mProgress.setVisibility(View.VISIBLE);
 
-                mHuman = Human.getInstance();
+                mProgress.setVisibility(View.VISIBLE);
 
                 mUser = BmobUser.getCurrentUser(getActivity(), BmobUser.class);
                 mBmobUserData = new BmobUserData();
@@ -179,10 +170,12 @@ public class ResultPreviousFragment extends android.support.v4.app.Fragment{
         result.setText(numberFormat.format(mLasteResult) + "%");
 
         if(isQuerySuccess){
-            if(isArrowDown){
+            if(isArrowDown.equals(true)){
                 mArrowImageView.setImageResource(R.drawable.down);
-            }else {
+            }else if(isArrowDown.equals(false)){
                 mArrowImageView.setImageResource(R.drawable.up);
+            }else if(isArrowDown.equals(null)){
+                mArrowImageView.setImageResource(0);
             }
         }
     }

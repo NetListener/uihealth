@@ -29,7 +29,6 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="90dp"
-            android:src="@drawable/down"
             android:layout_toRightOf="@id/textview_resultfragment_result"
             android:id="@+id/imageview_resultactivity_arrow"
             />
@@ -52,27 +51,18 @@
         android:text="保存数据"
         android:id="@+id/btn_resultactivity_savedata"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="100dp"
+        android:layout_marginLeft="90dp"
         android:textSize="24dp"
         android:background="#1E88E5"
         />
-    <Button
-        android:layout_width="180dp"
-        android:layout_height="50dp"
-        android:text="重新测试"
-        android:id="@+id/btn_resultactivity_testagain"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="100dp"
-        android:textSize="24dp"
-        android:background="#1E88E5"
-        />
+
     <Button
         android:layout_width="180dp"
         android:layout_height="50dp"
         android:text="比较数据"
         android:id="@+id/btn_resultactivity_comparedata"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="100dp"
+        android:layout_marginLeft="90dp"
         android:textSize="24dp"
         android:background="#1E88E5"
         />

@@ -10,32 +10,19 @@
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="match_parent">
+
         <com.example.think.uihealth.widget.CombineTextImageviewView
             xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/combine_resultfragment_laste"
-            pt:imageSrc="@drawable/point3"
-            pt:textSize="16sp"
-            pt:marginCenter="50dp"
+            pt:imageSrc="@drawable/pointblue"
+            pt:textSize="24sp"
             pt:text = "本次测试"
             pt:textColor = "@color/white"
+            pt:marginCenter = "50dp"
             android:layout_marginLeft="20dp"
             />
-        <com.example.think.uihealth.widget.CombineTextImageviewView
-            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/combine_resultfragment_before"
-            android:layout_toRightOf="@id/combine_resultfragment_laste"
-            pt:imageSrc="@drawable/point2"
-            pt:textSize="16sp"
-            pt:marginCenter="50dp"
-            pt:text = "上次测试"
-            pt:textColor = "@color/resultfragmenttext"
-            android:layout_marginLeft="20dp"
-            />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,18 +31,165 @@
             android:layout_below="@id/combine_resultfragment_laste"
             android:text="性别："
             />
-
         <com.example.think.uihealth.widget.CombineTextImageviewView
             xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textview_resultfragment_sexresult"
             android:layout_below="@id/textview_resultfragment_sex"
-            pt:imageSrc="@drawable/point2"
+            pt:imageSrc="@drawable/pointblue"
             pt:textSize="16sp"
             pt:marginCenter="50dp"
             pt:text = "男"
-            pt:textColor = "@color/resultfragmenttext"
+            pt:textColor = "@color/white"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_age"
+            style="@style/MyMoreResultFragmentTextview"
+            android:layout_below="@id/textview_resultfragment_sexresult"
+            android:text="年龄："
+            />
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_ageresult"
+            android:layout_below="@id/textview_resultfragment_age"
+            pt:imageSrc="@drawable/pointblue"
+            pt:textSize="16sp"
+            pt:marginCenter="50dp"
+            pt:text = "男"
+            pt:textColor = "@color/white"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_totalcho"
+            style="@style/MyMoreResultFragmentTextview"
+            android:layout_below="@id/textview_resultfragment_ageresult"
+            android:text="总胆固醇含量："
+            />
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_choresult"
+            android:layout_below="@id/textview_resultfragment_totalcho"
+            pt:imageSrc="@drawable/pointblue"
+            pt:textSize="16sp"
+            pt:marginCenter="50dp"
+            pt:text = "男"
+            pt:textColor = "@color/white"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_smoke"
+            style="@style/MyMoreResultFragmentTextview"
+            android:layout_below="@id/textview_resultfragment_choresult"
+            android:text="吸烟："
+            />
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_smokeresult"
+            android:layout_below="@id/textview_resultfragment_smoke"
+            pt:imageSrc="@drawable/pointblue"
+            pt:textSize="16sp"
+            pt:marginCenter="50dp"
+            pt:text = "男"
+            pt:textColor = "@color/white"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_HDL"
+            style="@style/MyMoreResultFragmentTextview"
+            android:layout_below="@id/textview_resultfragment_smokeresult"
+            android:text="高密度脂蛋白："
+
+            />
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_HDLresult"
+            android:layout_below="@id/textview_resultfragment_HDL"
+            pt:imageSrc="@drawable/pointblue"
+            pt:textSize="16sp"
+            pt:marginCenter="50dp"
+            pt:text = "男"
+            pt:textColor = "@color/white"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_bloodpresure"
+            style="@style/MyMoreResultFragmentTextview"
+            android:layout_below="@id/textview_resultfragment_HDLresult"
+            android:text="血压情况："
+            />
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_bloodpresureresult"
+            android:layout_below="@id/textview_resultfragment_bloodpresure"
+            pt:imageSrc="@drawable/pointblue"
+            pt:textSize="16sp"
+            pt:marginCenter="50dp"
+            pt:text = "男"
+            pt:textColor = "@color/white"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_diabetes_mellitus"
+            style="@style/MyMoreResultFragmentTextview"
+            android:layout_below="@id/textview_resultfragment_bloodpresureresult"
+            android:text="是否糖尿病："
+            />
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_diabetes_mellitusresult"
+            android:layout_below="@id/textview_resultfragment_diabetes_mellitus"
+            pt:imageSrc="@drawable/pointblue"
+            pt:textSize="16sp"
+            pt:marginCenter="50dp"
+            pt:text = "男"
+            pt:textColor = "@color/white"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_result"
+            style="@style/MyMoreResultFragmentTextview"
+            android:layout_below="@id/textview_resultfragment_diabetes_mellitusresult"
+            android:text="患病概率："
+            />
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_result_result"
+            android:layout_below="@id/textview_resultfragment_result"
+            pt:imageSrc="@drawable/pointblue"
+            pt:textSize="16sp"
+            pt:marginCenter="50dp"
+            pt:text = "男"
+            pt:textColor = "@color/white"
             android:layout_marginLeft="20dp"
             />
 
@@ -66,19 +200,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/MyMoreBeforeResyltTextview"
-            android:id="@+id/textview_resultfragment_beforeresult"
-            android:text="上次测试结果: 72.5%"
+            android:id="@+id/combine_resultfragment_before"
+            pt:imageSrc="@drawable/pointwhite"
+            pt:textSize="24sp"
+            pt:text = "上次测试"
+            pt:marginCenter = "50dp"
+            pt:textColor = "@color/resultfragmenttext"
+            android:layout_marginLeft="20dp"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/null_1"
             style="@style/MyMoreResultFragmentTextview"
-            android:layout_below="@id/textview_resultfragment_beforeresult"
+            android:layout_below="@id/combine_resultfragment_before"
             />
 
         <com.example.think.uihealth.widget.CombineTextImageviewView
@@ -87,11 +226,154 @@
             android:layout_height="wrap_content"
             android:id="@+id/textview_resultfragment_beforesexresult"
             android:layout_below="@id/null_1"
-            pt:imageSrc="@drawable/point3"
+            pt:imageSrc="@drawable/pointwhite"
             pt:textSize="16sp"
             pt:marginCenter="50dp"
             pt:text = "男"
-            pt:textColor = "@color/white"
+            pt:textColor = "@color/resultfragmenttext"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/null_2"
+            style="@style/MyMoreResultFragmentTextview"
+            android:layout_below="@id/textview_resultfragment_beforesexresult"
+            />
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_beforeageresult"
+            android:layout_below="@id/null_2"
+            pt:imageSrc="@drawable/pointwhite"
+            pt:textSize="16sp"
+            pt:marginCenter="50dp"
+            pt:text = "男"
+            pt:textColor = "@color/resultfragmenttext"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/null_3"
+            style="@style/MyMoreResultFragmentTextview"
+            android:layout_below="@id/textview_resultfragment_beforeageresult"
+            />
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_beforechoresult"
+            android:layout_below="@id/null_3"
+            pt:imageSrc="@drawable/pointwhite"
+            pt:textSize="16sp"
+            pt:marginCenter="50dp"
+            pt:text = "男"
+            pt:textColor = "@color/resultfragmenttext"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/null_4"
+            style="@style/MyMoreResultFragmentTextview"
+            android:layout_below="@id/textview_resultfragment_beforechoresult"
+            />
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_beforesmokeresult"
+            android:layout_below="@id/null_4"
+            pt:imageSrc="@drawable/pointwhite"
+            pt:textSize="16sp"
+            pt:marginCenter="50dp"
+            pt:text = "男"
+            pt:textColor = "@color/resultfragmenttext"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/null_5"
+            style="@style/MyMoreResultFragmentTextview"
+            android:layout_below="@id/textview_resultfragment_beforesmokeresult"
+            />
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_beforeHDLresult"
+            android:layout_below="@id/null_5"
+            pt:imageSrc="@drawable/pointwhite"
+            pt:textSize="16sp"
+            pt:marginCenter="50dp"
+            pt:text = "男"
+            pt:textColor = "@color/resultfragmenttext"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/null_6"
+            style="@style/MyMoreResultFragmentTextview"
+            android:layout_below="@id/textview_resultfragment_beforeHDLresult"
+
+            />
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_beforebloodpresureresult"
+            android:layout_below="@id/null_6"
+            pt:imageSrc="@drawable/pointwhite"
+            pt:textSize="16sp"
+            pt:marginCenter="50dp"
+            pt:text = "男"
+            pt:textColor = "@color/resultfragmenttext"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/null_7"
+            style="@style/MyMoreResultFragmentTextview"
+            android:layout_below="@id/textview_resultfragment_beforebloodpresureresult"
+
+            />
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_beforediabetes_mellitusresult"
+            android:layout_below="@id/null_7"
+            pt:imageSrc="@drawable/pointwhite"
+            pt:textSize="16sp"
+            pt:marginCenter="50dp"
+            pt:text = "男"
+            pt:textColor = "@color/resultfragmenttext"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/null_8"
+            style="@style/MyMoreResultFragmentTextview"
+            android:layout_below="@id/textview_resultfragment_beforediabetes_mellitusresult"
+
+            />
+        <com.example.think.uihealth.widget.CombineTextImageviewView
+            xmlns:pt="http://schemas.android.com/apk/res/com.example.think.uihealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_resultfragment_result_beforeresult"
+            android:layout_below="@id/null_8"
+            pt:imageSrc="@drawable/pointwhite"
+            pt:textSize="16sp"
+            pt:marginCenter="50dp"
+            pt:text = "男"
+            pt:textColor = "@color/resultfragmenttext"
             android:layout_marginLeft="20dp"
             />
     </RelativeLayout>

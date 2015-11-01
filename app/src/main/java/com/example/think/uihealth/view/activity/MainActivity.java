@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
                 intent.putExtra(LoginActivity.LOGIN_USERNAME, userName);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         });
 

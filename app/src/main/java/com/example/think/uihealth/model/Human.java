@@ -1,10 +1,12 @@
 package com.example.think.uihealth.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Kermit on 15-9-22.
  * e-mail : wk19951231@163.com
  */
-public class Human {
+public class Human implements Serializable{
 
     public static final String MALE = "male";
     public static final String FEMALE = "female";

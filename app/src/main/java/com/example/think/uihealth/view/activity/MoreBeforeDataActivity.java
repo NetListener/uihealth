@@ -41,15 +41,12 @@ public class MoreBeforeDataActivity extends AppCompatActivity {
         Intent intent = this.getIntent();
 
         ActivityCollector.getInstance().pushActivity(this);
-        //mTextviewAge = (CombineTextImageviewView) findViewById(R.id.textview_morebeforedata_age);
         mTextviewAge.setText(intent.getStringExtra(BeforeDataActivity.age));
         mTextviewBloodPresure.setText(intent.getStringExtra(BeforeDataActivity.bloodpresure));
         mTextviewCholesterol.setText(intent.getStringExtra(BeforeDataActivity.cholesterol));
         mTextviewDiabetes.setText(intent.getStringExtra(BeforeDataActivity.diabetes_mellitus));
         mTextviewHDL.setText(intent.getStringExtra(BeforeDataActivity.HDL));
         mTextviewSmoke.setText(intent.getStringExtra(BeforeDataActivity.smoke));
-
-        //mTextviewSex = (CombineTextImageviewView)findViewById(R.id.textview_morebeforedata_sex);
         mTextviewSex.setText(intent.getStringExtra(BeforeDataActivity.sex));
 
     }

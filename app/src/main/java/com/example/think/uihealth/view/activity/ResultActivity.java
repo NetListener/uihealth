@@ -1,6 +1,8 @@
 package com.example.think.uihealth.view.activity;
 
-import android.app.FragmentManager;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -8,33 +10,23 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+
 
 import com.example.think.uihealth.R;
-import com.example.think.uihealth.model.BmobUser;
-import com.example.think.uihealth.model.BmobUserData;
-import com.example.think.uihealth.model.Human;
-import com.example.think.uihealth.strategy.Strategy;
-import com.example.think.uihealth.strategy.impl.CalculateCHDStrategy;
+
 import com.example.think.uihealth.view.fragment.ResultCompareFragment;
 import com.example.think.uihealth.view.fragment.ResultPreviousFragment;
-import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
-import com.kermit.exutils.utils.ActivityCollector;
-import com.kermit.exutils.utils.ExUtils;
 
-import java.text.NumberFormat;
-import java.util.List;
+import com.kermit.exutils.utils.ActivityCollector;
+
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.SaveListener;
+
 
 /**
  * Created by Zane on 2015/9/23.
@@ -48,6 +40,7 @@ public class ResultActivity extends AppCompatActivity {
 
     private ResultCompareFragment mCompareFragment;
     private ResultPreviousFragment mPreviousFragment;
+    private int countFragment = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +67,38 @@ public class ResultActivity extends AppCompatActivity {
         ActivityCollector.getInstance().pushActivity(this);
 
         mPreviousFragment = new ResultPreviousFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.framelayout_resultactivity_exchangebyfragment, mPreviousFragment);
+        final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.framelayout_resultactivity_exchangebyfragment, mPreviousFragment);
+        //添加这个碎片到返回栈
+        transaction.addToBackStack(null);
         transaction.commit();
+        countFragment = 1;
+
+        mPreviousFragment.setOnCompareButtonClickListener(new ResultPreviousFragment.OnCompareButtonClickListener() {
+            @Override
+            public void compareButtonClick(ResultCompareFragment resultCompareFragment) {
+                mCompareFragment = resultCompareFragment;
+                FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
+                transaction1.add(R.id.framelayout_resultactivity_exchangebyfragment, mCompareFragment);
+                transaction1.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                transaction1.addToBackStack(null);
+                countFragment = 2;
+                transaction1.commit();
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if(countFragment == 2){
+            countFragment = 1;
+        }else if(countFragment == 1){
+            ActivityCollector.getInstance().closeActivity(ResultActivity.this);
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override

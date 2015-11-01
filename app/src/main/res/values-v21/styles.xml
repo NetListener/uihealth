@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <style name="AppTheme" parent="android:Theme.Material">
+                <!-- Customize your theme here. -->
+                <!-- 状态栏颜色-->
+                <item name="colorPrimaryDark">@color/primary_dark_material_dark</item>
+                <!-- toolbar's color-->
+                <item name="colorPrimary">#80D8FF</item>
+                <!-- the style of the back-->
+                <item name="drawerArrowStyle">@style/Widget.AppCompat.DrawerArrowToggle</item>
+
+        </style>
+</resources>
