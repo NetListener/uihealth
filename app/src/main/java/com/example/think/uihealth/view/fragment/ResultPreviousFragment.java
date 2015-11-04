@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,10 +54,12 @@ public class ResultPreviousFragment extends android.support.v4.app.Fragment{
     private Human mHuman;
     private BmobUser mUser;
     private int saveTimes = 0;
-    private Boolean isArrowDown;
-    private Boolean isQuerySuccess;
+    private int isArrowDown;//0 up, 1 down, 2 null;
+    private boolean isQuerySuccess;
+    private boolean isFirstTest;
     private OnCompareButtonClickListener mCompareButtonClickListener;
     private ResultCompareFragment resultCompareFragment;
+    private static final String TAG = "ResultPreviousFragment";
 
 
     public interface OnCompareButtonClickListener{
@@ -84,7 +87,11 @@ public class ResultPreviousFragment extends android.support.v4.app.Fragment{
             @Override
             public void onClick(View v) {
                 //callback
-                mCompareButtonClickListener.compareButtonClick(resultCompareFragment);
+                if(isFirstTest == false) {
+                    mCompareButtonClickListener.compareButtonClick(resultCompareFragment);
+                }else {
+                    ExUtils.Toast("没有数据进行比较");
+                }
             }
         });
 
@@ -100,30 +107,41 @@ public class ResultPreviousFragment extends android.support.v4.app.Fragment{
             @Override
             public void onSuccess(List<BmobUserData> list) {
                 mHuman = Human.getInstance();
-                mResult = list.get(0).getResult();
-                getLasteResult();
-                mProgress.setVisibility(View.INVISIBLE);
-                isQuerySuccess = true;
-                if (mLasteResult > mResult) {
-                    isArrowDown = false;
-                } else if(mLasteResult < mResult){
-                    isArrowDown = true;
-                }else if(mLasteResult == mResult){
-                    isArrowDown = null;
+                Log.i(TAG, String.valueOf(list.size()));
+                if(list.size() != 0) {
+                    isFirstTest = false;
+                    mResult = list.get(0).getResult();
+                    getLasteResult();
+                    mProgress.setVisibility(View.INVISIBLE);
+                    isQuerySuccess = true;
+                    if (mLasteResult > mResult) {
+                        isArrowDown = 0;
+                    } else if (mLasteResult < mResult) {
+                        isArrowDown = 1;
+                    } else if (mLasteResult == mResult) {
+                        isArrowDown = 2;
+                    }
+                    showResult(isArrowDown, isQuerySuccess);
+                    //生成比较数据的碎片
+                    resultCompareFragment = ResultCompareFragment.newInstance(list, mHuman,
+                            (Double.parseDouble(mStrategy.getResult()) * 100));
+                }else {
+                    isFirstTest = true;
+                    mProgress.setVisibility(View.INVISIBLE);
+                    getLasteResult();
+                    isQuerySuccess = true;
+                    isArrowDown = 2;
+                    showResult(isArrowDown, isQuerySuccess);
                 }
-                showResult(isArrowDown, isQuerySuccess);
-                //生成比较数据的碎片
-                resultCompareFragment = ResultCompareFragment.newInstance(list, mHuman,
-                        (Double.parseDouble(mStrategy.getResult()) * 100));
             }
 
             @Override
             public void onError(int i, String s) {
-                ExUtils.Toast(s);
+                //Log.i(TAG, "wrong");
                 getLasteResult();
                 isQuerySuccess = false;
                 mProgress.setVisibility(View.INVISIBLE);
-                showResult(null, isQuerySuccess);
+                showResult(2, isQuerySuccess);
             }
         });
         //保存数据的按钮,这个不用给ACTIVITY提供回调方法了。
@@ -162,7 +180,7 @@ public class ResultPreviousFragment extends android.support.v4.app.Fragment{
 
         return view;
     }
-    private void showResult(Boolean isArrowDown, Boolean isQuerySuccess) {
+    private void showResult(int isArrowDown, boolean isQuerySuccess) {
         //显示结果
 
         NumberFormat numberFormat = NumberFormat.getNumberInstance();
@@ -170,11 +188,11 @@ public class ResultPreviousFragment extends android.support.v4.app.Fragment{
         result.setText(numberFormat.format(mLasteResult) + "%");
 
         if(isQuerySuccess){
-            if(isArrowDown.equals(true)){
+            if(isArrowDown == 1){
                 mArrowImageView.setImageResource(R.drawable.down);
-            }else if(isArrowDown.equals(false)){
+            }else if(isArrowDown == 0){
                 mArrowImageView.setImageResource(R.drawable.up);
-            }else if(isArrowDown.equals(null)){
+            }else if(isArrowDown == 2){
                 mArrowImageView.setImageResource(0);
             }
         }

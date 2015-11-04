@@ -2,6 +2,7 @@ package com.example.think.uihealth.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.text.format.Time;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -79,6 +80,7 @@ public class CombineTextImageviewView extends RelativeLayout{
     public void setText(String text){
         Log.i(TAG, text);
         mTextview.setText(text);
+        
     }
     public void setImageSrc(int resId){
         mImageView.setImageResource(resId);
