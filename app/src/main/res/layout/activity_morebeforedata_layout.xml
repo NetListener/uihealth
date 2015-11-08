@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/content_title">
+    android:background="@color/white">
 
 
     <include layout="@layout/toolbar_beforedata_layout"/>
@@ -29,7 +29,7 @@
             pt:textSize="24sp"
             pt:marginCenter="50dp"
             pt:text = " "
-            pt:textColor = "@color/white"
+            pt:textColor = "@color/black"
             android:layout_marginLeft="40dp"
             />
 
@@ -53,7 +53,7 @@
             pt:textSize="24sp"
             pt:marginCenter="50dp"
             pt:text = " "
-            pt:textColor = "@color/white"
+            pt:textColor = "@color/black"
             android:layout_marginLeft="40dp"
             />
 
@@ -77,7 +77,7 @@
             pt:textSize="24sp"
             pt:marginCenter="50dp"
             pt:text = " "
-            pt:textColor = "@color/white"
+            pt:textColor = "@color/black"
             android:layout_marginLeft="40dp"
             />
 
@@ -101,7 +101,7 @@
             pt:textSize="24sp"
             pt:marginCenter="50dp"
             pt:text = " "
-            pt:textColor = "@color/white"
+            pt:textColor = "@color/black"
             android:layout_marginLeft="40dp"
             />
 
@@ -125,7 +125,7 @@
             pt:textSize="24sp"
             pt:marginCenter="50dp"
             pt:text = " "
-            pt:textColor = "@color/white"
+            pt:textColor = "@color/black"
             android:layout_marginLeft="40dp"
             />
 
@@ -149,7 +149,7 @@
             pt:textSize="24sp"
             pt:marginCenter="50dp"
             pt:text = " "
-            pt:textColor = "@color/white"
+            pt:textColor = "@color/black"
             android:layout_marginLeft="40dp"
             />
 
@@ -173,7 +173,7 @@
             pt:textSize="24sp"
             pt:marginCenter="50dp"
             pt:text = " "
-            pt:textColor = "@color/white"
+            pt:textColor = "@color/black"
             android:layout_marginLeft="40dp"
             />
 

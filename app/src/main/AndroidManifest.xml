@@ -54,7 +54,7 @@
             android:label="@string/app_name"/>
 
         <activity android:name=".view.activity.StartActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" android:theme="@style/MyNavigationDrawerTheme">
 
         </activity>
         <activity android:name=".view.activity.ResultActivity"
