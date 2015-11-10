@@ -221,9 +221,9 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess() {
                         mProgressbar.setVisibility(View.INVISIBLE);
-                        cn.bmob.v3.BmobUser bmobUser = cn.bmob.v3.BmobUser.getCurrentUser(LoginActivity.this);
+                        BmobUser bmobUser = BmobUser.getCurrentUser(LoginActivity.this, BmobUser.class);
                         Intent intent = new Intent(LoginActivity.this, StartActivity.class);
-                        intent.putExtra(LOGIN_USERNAME, bmobUser.getUsername());
+                        intent.putExtra(LOGIN_USERNAME, bmobUser.getNickName());
                         ActivityCollector.getInstance().closeActivity(LoginActivity.this);
                         startActivity(intent);
                     }
@@ -280,7 +280,7 @@ public class LoginActivity extends AppCompatActivity {
                 access_token = ((JSONObject) o).getString("access_token");
                 //Log.i(TAG, access_token);
 
-                //这个url是获取用户信息的接口
+                //这个url是获取用户信息的接口地址
                 url = url + "?access_token=" + access_token + "&oauth_consumer_key=" + mAppid +
                         "&openid=" + openidString + "&format=json";
 

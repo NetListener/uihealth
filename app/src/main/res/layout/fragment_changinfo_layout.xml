@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EEEEEE">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@drawable/selector"
+    android:orientation="horizontal"
+    android:layout_marginTop="8dp"
+        android:id="@+id/layout_changeuserphoto"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:padding="8dp"
+        android:layout_gravity="center"
+        android:text="修改头像"
+        />
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/imageview_changinfofragment_photo"
+        android:layout_gravity="center"
+        android:layout_marginLeft="180dp"
+        />
+
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"  />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/selector"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:id="@+id/layout_changeusernickename"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:padding="8dp"
+            android:layout_gravity="center"
+            android:text="修改昵称"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#BDBDBD"
+            android:id="@+id/textview_changeinfofragment_username"
+            android:layout_gravity="center"
+            android:textSize="24sp"
+            android:text="徐志"
+            android:layout_marginLeft="180dp"
+
+            />
+
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"  />
+
+    <com.gc.materialdesign.views.ProgressBarCircularIndeterminate
+        android:id="@+id/progressbar_changinfofragment"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="#1E88E5"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        />
+
+</LinearLayout>

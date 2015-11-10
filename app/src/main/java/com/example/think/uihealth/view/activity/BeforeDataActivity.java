@@ -81,6 +81,7 @@ public class BeforeDataActivity extends AppCompatActivity{
                         intent.putExtra(diabetes_mellitus, list.get(pos).getDiabetesValue());
                         startActivity(intent);
 
+
                     }
 
                     @Override

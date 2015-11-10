@@ -5,25 +5,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import com.example.think.uihealth.R;
-import com.example.think.uihealth.model.BmobUser;
 import com.example.think.uihealth.view.fragment.HomePageFragment;
+import com.example.think.uihealth.view.fragment.MyUserInfoFragment;
 import com.kermit.exutils.utils.ActivityCollector;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 import it.neokree.materialnavigationdrawer.elements.MaterialSection;
 
@@ -48,38 +41,52 @@ public class StartActivity extends MaterialNavigationDrawer {
     private String userName;
     private int basicColor = Color.parseColor("#33BB77");
     private SimpleDateFormat simpleDateFormat;
+    private MyUserInfoFragment mUserInfoFragment;
+    //private BmobUser mBmobUser;
 
     @Override
     public void init(Bundle bundle) {
 
-        closeDrawer();
+
         //获得USERNAME
         userName = getIntent().getStringExtra(LoginActivity.LOGIN_USERNAME);
         initData(userName);
 
-        //设置
-        setFirstAccountPhoto(getResources().getDrawable(R.drawable.ic_launcher));
+
+        //将头像从BITMAP改为DRAWBLE
+        //Log.i(TAG, String.valueOf(mBmobUser.getUserPhoto()));
+        //setSecondAccountPhoto(getResources().getDrawable(R.drawable.defaultphoto));
+        setFirstAccountPhoto(getResources().getDrawable(R.drawable.defaultphoto));
         setUsername(userName + ", 欢迎您!");
         setUserEmail(simpleDateFormat.format(new Date()));
         section_Home = newSection("我的首页", R.drawable.ic_launcher, mHomePageFragment)
                 .setSectionColor(basicColor);
-
+        section_Info = newSection("我的信息", R.drawable.ic_launcher, mUserInfoFragment)
+                .setSectionColor(basicColor);
 
         //添加section
         this.addSection(section_Home);
+        this.addSection(section_Info);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        closeDrawer();
     }
 
     public void initData(String userName){
         initFirstFragment(userName);
         initOtherFragment();
         simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
-
+        //mBmobUser = cn.bmob.v3.BmobUser.getCurrentUser(App.getInstance(), BmobUser.class);
     }
     public void initFirstFragment(String userName){
         mHomePageFragment = HomePageFragment.newInstance(userName);
     }
     public void initOtherFragment(){
         // TODO: 15/11/8 在这里获得其他子页面的碎片实例
+        mUserInfoFragment = new MyUserInfoFragment();
     }
 
     @Override

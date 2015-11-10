@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EEEEEE">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        android:id="@+id/edittext_fragment_changenickename"
+        android:hint="修改昵称"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="保存"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:id="@+id/button_fragment_updatenickname"
+        />
+
+    <com.gc.materialdesign.views.ProgressBarCircularIndeterminate
+        android:id="@+id/progressbar_changenicknamefragment"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="#1E88E5"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+
+        />
+
+</LinearLayout>

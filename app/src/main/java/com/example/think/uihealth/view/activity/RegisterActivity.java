@@ -1,6 +1,8 @@
 package com.example.think.uihealth.view.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -10,6 +12,7 @@ import android.widget.EditText;
 
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.model.BmobUser;
+import com.example.think.uihealth.util.GetEditTextWordNumber;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.kermit.exutils.utils.ActivityCollector;
@@ -49,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity{
         ActivityCollector.getInstance().pushActivity(this);
 
         //监听用户名位数
+
         mUsername.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -96,6 +100,12 @@ public class RegisterActivity extends AppCompatActivity{
                     mBmobUser.setUsername(mUsername.getText().toString());
                     mBmobUser.setPassword(mPassword.getText().toString());
                     mBmobUser.setEmail(mEmail.getText().toString());
+                    mBmobUser.setNickName(mUsername.getText().toString());
+                    //mBmobUser.setUserPhoto(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher));
+                    //mBmobUser.setUserPhoto(getResources().getDrawable(R.drawable.ic_launcher));
+                    mBmobUser.setUserPhoto("");
+                    mBmobUser.setFollowers(0);
+                    mBmobUser.setFollowing(0);
 
                     //添加注册的监听回调
                     mBmobUser.signUp(RegisterActivity.this, new SaveListener() {
