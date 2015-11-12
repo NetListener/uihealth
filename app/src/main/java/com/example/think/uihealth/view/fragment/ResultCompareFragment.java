@@ -7,10 +7,25 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
+<<<<<<< HEAD
 
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.model.bean.BmobUserData;
 import com.example.think.uihealth.model.bean.Human;
+=======
+import android.widget.TextView;
+
+import com.example.think.uihealth.R;
+import com.example.think.uihealth.model.BmobUserData;
+import com.example.think.uihealth.model.Human;
+>>>>>>> origin/dev
+=======
+
+import com.example.think.uihealth.R;
+import com.example.think.uihealth.model.bean.BmobUserData;
+import com.example.think.uihealth.model.bean.Human;
+>>>>>>> origin/dev
 import com.example.think.uihealth.widget.CombineTextImageviewView;
 
 import java.io.Serializable;

@@ -4,11 +4,28 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import android.widget.AdapterView;
+>>>>>>> origin/dev
+=======
+>>>>>>> origin/dev
 import android.widget.TextView;
 
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.app.App;
+<<<<<<< HEAD
+<<<<<<< HEAD
 import com.example.think.uihealth.model.bean.BmobUserData;
+=======
+import com.example.think.uihealth.model.BmobUserData;
+import com.example.think.uihealth.view.fragment.ContentFragment;
+import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
+>>>>>>> origin/dev
+=======
+import com.example.think.uihealth.model.bean.BmobUserData;
+>>>>>>> origin/dev
 
 import java.text.NumberFormat;
 import java.util.List;

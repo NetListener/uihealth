@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/ed_writetopic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:singleLine="true"
+            android:hint="标题"
+            />
+
+        <ImageView
+            android:id="@+id/btn_writetopic_insertimg"
+            android:layout_width="40dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+            android:padding="4dp"
+            android:src="@drawable/insert_img"
+            />
+
+        <EditText
+            android:id="@+id/ed_writetopic_content"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:textColor="#000000"
+            android:gravity="start"
+            android:background="@drawable/write_edittext"
+            />
+
+        <Button
+            android:id="@+id/button_topic_send"
+            android:layout_marginTop="24dp"
+            android:text="确认发送"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>

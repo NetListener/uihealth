@@ -1,10 +1,14 @@
 package com.example.think.uihealth.view.activity;
 
 import android.content.Intent;
-
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
+>>>>>>> origin/dev
+=======
+>>>>>>> origin/dev
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -13,13 +17,16 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.think.uihealth.R;
-
+<<<<<<< HEAD
+<<<<<<< HEAD
 import com.example.think.uihealth.model.bean.BmobUser;
-
+=======
+import com.example.think.uihealth.model.BmobUser;
 import com.example.think.uihealth.util.GetEditTextWordNumber;
-
+>>>>>>> origin/dev
+=======
 import com.example.think.uihealth.model.bean.BmobUser;
-
+>>>>>>> origin/dev
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.kermit.exutils.utils.ActivityCollector;

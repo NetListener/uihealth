@@ -12,12 +12,24 @@ import android.widget.TextView;
 
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.config.TestContent;
+<<<<<<< HEAD
+<<<<<<< HEAD
 import com.example.think.uihealth.model.bean.Human;
+import com.example.think.uihealth.strategy.impl.CalculateCHDStrategy;
+import com.example.think.uihealth.view.adapter.ContentRecycleviewAdapter;
+
+=======
+import com.example.think.uihealth.model.Human;
+import com.example.think.uihealth.strategy.Strategy;
+=======
+import com.example.think.uihealth.model.bean.Human;
+>>>>>>> origin/dev
 import com.example.think.uihealth.strategy.impl.CalculateCHDStrategy;
 import com.example.think.uihealth.view.adapter.ContentRecycleviewAdapter;
 
 
 
+>>>>>>> origin/dev
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
