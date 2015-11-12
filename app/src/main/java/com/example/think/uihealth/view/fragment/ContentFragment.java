@@ -4,22 +4,18 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.config.TestContent;
-import com.example.think.uihealth.model.Human;
-import com.example.think.uihealth.strategy.Strategy;
 import com.example.think.uihealth.view.adapter.ContentRecycleviewAdapter;
 import com.example.think.uihealth.view.adapter.ContentViewpagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**

@@ -6,18 +6,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.think.uihealth.R;
-import com.example.think.uihealth.model.BmobUser;
-import com.example.think.uihealth.model.BmobUserData;
+import com.example.think.uihealth.model.bean.BmobUser;
+import com.example.think.uihealth.model.bean.BmobUserData;
 import com.example.think.uihealth.view.adapter.BeforeDataRecycleviewAdapter;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.kermit.exutils.utils.ActivityCollector;
 import com.kermit.exutils.utils.ExUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;

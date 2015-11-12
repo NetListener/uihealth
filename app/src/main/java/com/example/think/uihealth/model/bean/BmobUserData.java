@@ -1,4 +1,6 @@
-package com.example.think.uihealth.model;
+package com.example.think.uihealth.model.bean;
+
+import com.example.think.uihealth.model.bean.BmobUser;
 
 import java.io.Serializable;
 

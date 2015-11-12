@@ -1,8 +1,6 @@
 package com.example.think.uihealth.view.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -11,8 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.think.uihealth.R;
-import com.example.think.uihealth.model.BmobUser;
-import com.example.think.uihealth.util.GetEditTextWordNumber;
+import com.example.think.uihealth.model.bean.BmobUser;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.kermit.exutils.utils.ActivityCollector;

@@ -1,4 +1,4 @@
-package com.example.think.uihealth.model;
+package com.example.think.uihealth.model.bean;
 
 
 import android.graphics.Bitmap;

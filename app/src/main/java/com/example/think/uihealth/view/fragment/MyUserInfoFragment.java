@@ -3,7 +3,6 @@ package com.example.think.uihealth.view.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -20,15 +19,12 @@ import android.widget.TextView;
 import com.bmob.BmobProFile;
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.app.App;
-import com.example.think.uihealth.model.BmobUser;
+import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.util.GetHttpImageView;
 import com.example.think.uihealth.view.activity.ChangeInfoActivity;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.kermit.exutils.utils.ExUtils;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.List;
 
 import butterknife.Bind;

@@ -4,14 +4,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.app.App;
-import com.example.think.uihealth.model.BmobUserData;
-import com.example.think.uihealth.view.fragment.ContentFragment;
-import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
+import com.example.think.uihealth.model.bean.BmobUserData;
 
 import java.text.NumberFormat;
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.example.think.uihealth.strategy.impl;
 
-import com.example.think.uihealth.model.Human;
+import com.example.think.uihealth.model.bean.Human;
 import com.example.think.uihealth.strategy.Strategy;
 
 /**

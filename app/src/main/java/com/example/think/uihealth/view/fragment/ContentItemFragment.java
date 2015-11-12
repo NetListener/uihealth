@@ -12,8 +12,7 @@ import android.widget.TextView;
 
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.config.TestContent;
-import com.example.think.uihealth.model.Human;
-import com.example.think.uihealth.strategy.Strategy;
+import com.example.think.uihealth.model.bean.Human;
 import com.example.think.uihealth.strategy.impl.CalculateCHDStrategy;
 import com.example.think.uihealth.view.adapter.ContentRecycleviewAdapter;
 

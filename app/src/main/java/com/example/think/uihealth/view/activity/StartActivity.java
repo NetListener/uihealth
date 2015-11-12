@@ -15,7 +15,7 @@ import android.view.MenuItem;
 
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.app.App;
-import com.example.think.uihealth.model.BmobUser;
+import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.util.GetHttpImageView;
 import com.example.think.uihealth.view.fragment.HomePageFragment;
 import com.example.think.uihealth.view.fragment.MyUserInfoFragment;
@@ -53,7 +53,7 @@ public class StartActivity extends MaterialNavigationDrawer {
     private int basicColor = Color.parseColor("#33BB77");
     private SimpleDateFormat simpleDateFormat;
     private MyUserInfoFragment mUserInfoFragment;
-    private MyForumFragment mForumFragment;
+    //private MyForumFragment mForumFragment;
     private BmobUser mBmobUser;
     private Bitmap changeBitmap;
     private String imageUrl;
@@ -88,8 +88,8 @@ public class StartActivity extends MaterialNavigationDrawer {
         section_Info = newSection("我的信息", R.drawable.myinfo, mUserInfoFragment)
                 .setSectionColor(basicColor);
         //把它实例化
-        section_Forum = newSection("我的论坛", R.drawable.forum, mForumFragment)
-                .setSectionColor(basicColor);
+//        section_Forum = newSection("我的论坛", R.drawable.forum, mForumFragment)
+//                .setSectionColor(basicColor);
 
         //添加section
         this.addSection(section_Home);
