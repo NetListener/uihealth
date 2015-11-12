@@ -59,6 +59,7 @@ public class ForumRecyclerViewAdapter extends RecyclerView.Adapter<ForumRecycler
 
     @Override
     public int getItemCount() {
+        if (mForumList == null) return 0;
         return mForumList.size();
     }
 

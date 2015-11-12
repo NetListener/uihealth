@@ -81,6 +81,7 @@ public class ForumFragment extends Fragment {
         if (mAdapter.addData(mForumList)){
             mAdapter.notifyDataSetChanged();
         }
+        mSwipeFragmentForum.setRefreshing(false);
     }
 
     @Override

@@ -20,6 +20,7 @@ import com.example.think.uihealth.util.GetHttpImageView;
 import com.example.think.uihealth.view.fragment.ForumFragment;
 import com.example.think.uihealth.view.fragment.HomePageFragment;
 import com.example.think.uihealth.view.fragment.MyUserInfoFragment;
+import com.example.think.uihealth.view.fragment.WriteTopicFragment;
 import com.kermit.exutils.utils.ActivityCollector;
 import com.kermit.exutils.utils.ExUtils;
 
@@ -37,7 +38,8 @@ import it.neokree.materialnavigationdrawer.elements.MaterialSection;
  *
  * 使用第三方库MatrialNavigationDrawer
  */
-public class StartActivity extends MaterialNavigationDrawer {
+public class StartActivity extends MaterialNavigationDrawer  implements
+        WriteTopicFragment.WriteTopicFragmentUploadListener{
 
     public static final String TAG = "StartActivity";
 
@@ -53,9 +55,10 @@ public class StartActivity extends MaterialNavigationDrawer {
     private String userName;
     private int basicColor = Color.parseColor("#33BB77");
     private SimpleDateFormat simpleDateFormat;
-    private MyUserInfoFragment mUserInfoFragment;
 
+    private MyUserInfoFragment mUserInfoFragment;
     private ForumFragment mForumFragment;
+    private WriteTopicFragment mWriteTopicFragment;
 
     private BmobUser mBmobUser;
     private Bitmap changeBitmap;
@@ -92,8 +95,6 @@ public class StartActivity extends MaterialNavigationDrawer {
         section_Info = newSection("我的信息", R.drawable.myinfo, mUserInfoFragment)
                 .setSectionColor(basicColor);
         //把它实例化
-
-
         section_Forum = newSection("我的论坛", R.drawable.forum, mForumFragment)
                 .setSectionColor(basicColor);
 
@@ -178,11 +179,12 @@ public class StartActivity extends MaterialNavigationDrawer {
     }
     public void initFirstFragment(String userName){
         mHomePageFragment = HomePageFragment.newInstance(userName);
-        mForumFragment = ForumFragment.newInstance();
     }
     public void initOtherFragment(){
         // TODO: 15/11/8 在这里获得其他子页面的碎片实例
         mUserInfoFragment = new MyUserInfoFragment();
+        mForumFragment = ForumFragment.newInstance();
+        mWriteTopicFragment = WriteTopicFragment.newInstance();
     }
 
     @Override
@@ -240,5 +242,13 @@ public class StartActivity extends MaterialNavigationDrawer {
     protected void onDestroy() {
         super.onDestroy();
         ActivityCollector.getInstance().popActivity(this);
+    }
+
+    @Override
+    public void UploadForumSuccess() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .remove(mWriteTopicFragment)
+                .commit();
     }
 }

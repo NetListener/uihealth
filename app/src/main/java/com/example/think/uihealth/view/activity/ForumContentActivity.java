@@ -24,15 +24,14 @@ import cn.bmob.v3.listener.FindListener;
 /**
  * Created by kermit on 15-11-11.
  */
-public class ForumContentActivity extends AppCompatActivity implements
-        WriteTopicFragment.WriteTopicFragmentUploadListener{
+public class ForumContentActivity extends AppCompatActivity{
 
     @Bind(R.id.recycler_activity_forumcontent)
     RecyclerView mRecyclerActivityForumcontent;
     @Bind(R.id.swipe_activity_forumcontent)
     SwipeRefreshLayout mSwipeActivityForumcontent;
 
-    private WriteTopicFragment mWriteTopicFragment;
+
     private ForumRecyclerViewAdapter mAdapter;
     private int page = 1;
     private LinearLayoutManager mLayoutManager;
@@ -49,7 +48,6 @@ public class ForumContentActivity extends AppCompatActivity implements
     }
 
     private void initFragment() {
-        mWriteTopicFragment = WriteTopicFragment.newInstance();
     }
 
 
@@ -90,14 +88,6 @@ public class ForumContentActivity extends AppCompatActivity implements
         page++;
     }
 
-
-    @Override
-    public void UploadForumSuccess() {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .remove(mWriteTopicFragment)
-                .commit();
-    }
 
     // TODO: 15-11-11 加载更多
     private void fetchData(){
