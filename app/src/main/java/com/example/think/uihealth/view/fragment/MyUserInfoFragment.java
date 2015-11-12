@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -50,6 +52,7 @@ public class MyUserInfoFragment extends Fragment {
 
     private String nickName;
     private String imageUrl;
+    private Bitmap changeBitmap;
     private BmobProFile bmobProFile;
     private BmobUser mUser;
     private BmobQuery<BmobUser> query;
@@ -57,6 +60,17 @@ public class MyUserInfoFragment extends Fragment {
     public static final String TAG = "MyUserInfoFragment";
     public static final String NICKNAME = "NICKNAME";
     public static final String IMAGEURL = "IMAGEURL";
+
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 1:
+                    mImageviewFragmentUserPhoto.setImageBitmap(changeBitmap);
+            }
+        }
+    };
 
     @Nullable
     @Override
@@ -80,7 +94,15 @@ public class MyUserInfoFragment extends Fragment {
                     imageUrl = list.get(0).getUserPhoto();
                     mTextviewFragmentNickname.setText(nickName);
                     if (imageUrl != null) {
-                        mImageviewFragmentUserPhoto.setImageBitmap(GetHttpImageView.getHttpBitmap(imageUrl));
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                changeBitmap = GetHttpImageView.getHttpBitmap(imageUrl);
+                                Message message = new Message();
+                                message.what = 1;
+                                handler.sendMessage(message);
+                            }
+                        }).start();
                     } else {
                         mImageviewFragmentUserPhoto.setImageResource(R.drawable.defaultphoto);
                     }
@@ -126,7 +148,16 @@ public class MyUserInfoFragment extends Fragment {
                     imageUrl = list.get(0).getUserPhoto();
                     mTextviewFragmentNickname.setText(nickName);
                     if (imageUrl != "") {
-                        mImageviewFragmentUserPhoto.setImageBitmap(GetHttpImageView.getHttpBitmap(imageUrl));
+                        //mImageviewFragmentUserPhoto.setImageBitmap(GetHttpImageView.getHttpBitmap(imageUrl));
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                changeBitmap = GetHttpImageView.getHttpBitmap(imageUrl);
+                                Message message = new Message();
+                                message.what = 1;
+                                handler.sendMessage(message);
+                            }
+                        }).start();
                     } else {
                         mImageviewFragmentUserPhoto.setImageResource(R.drawable.defaultphoto);
                     }
