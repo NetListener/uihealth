@@ -4,26 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
->>>>>>> origin/dev
-=======
->>>>>>> origin/dev
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Message;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import android.provider.ContactsContract;
->>>>>>> origin/dev
-=======
->>>>>>> origin/dev
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -41,80 +26,27 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import com.android.volley.toolbox.ImageLoader;
->>>>>>> origin/dev
-=======
->>>>>>> origin/dev
 import com.bmob.BTPFileResponse;
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadListener;
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.app.App;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import com.example.think.uihealth.model.bean.BmobUser;
-=======
-import com.example.think.uihealth.model.BmobUser;
-import com.example.think.uihealth.strategy.Strategy;
->>>>>>> origin/dev
-=======
-import com.example.think.uihealth.model.bean.BmobUser;
->>>>>>> origin/dev
 import com.example.think.uihealth.util.GetHttpImageView;
 import com.example.think.uihealth.util.PhotoUtils;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.kermit.exutils.utils.ExUtils;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-=======
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.File;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
->>>>>>> origin/dev
-=======
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
->>>>>>> origin/dev
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobQuery;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
-
-=======
-import cn.bmob.v3.BmobRealTimeData;
-import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.UpdateListener;
-import cn.bmob.v3.listener.ValueEventListener;
->>>>>>> origin/dev
-=======
-import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.UpdateListener;
->>>>>>> origin/dev
 
 /**
  * Created by Zane on 15/11/9.
@@ -238,10 +170,7 @@ public class ChangeInfoFragemnt extends Fragment {
             @Override
             public void onClick(View v) {
                 showAvatarPop();
-<<<<<<< HEAD
-=======
                 //viewParent.setBackgroundColor(getResources().getColor(R.color.material_blue_grey_800));
->>>>>>> origin/dev
             }
         });
 

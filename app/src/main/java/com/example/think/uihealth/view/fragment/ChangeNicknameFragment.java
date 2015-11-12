@@ -1,13 +1,6 @@
 package com.example.think.uihealth.view.fragment;
 
 import android.content.Context;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import android.content.Intent;
->>>>>>> origin/dev
-=======
->>>>>>> origin/dev
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,23 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.model.bean.BmobUser;
-=======
-import android.widget.TextView;
-
-import com.example.think.uihealth.R;
-import com.example.think.uihealth.model.BmobUser;
-import com.example.think.uihealth.util.GetEditTextWordNumber;
->>>>>>> origin/dev
-=======
-
-import com.example.think.uihealth.R;
-import com.example.think.uihealth.model.bean.BmobUser;
->>>>>>> origin/dev
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.kermit.exutils.utils.ExUtils;
 

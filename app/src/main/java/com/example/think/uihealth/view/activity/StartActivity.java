@@ -15,9 +15,9 @@ import android.view.MenuItem;
 
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.app.App;
-
 import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.util.GetHttpImageView;
+import com.example.think.uihealth.view.fragment.ForumFragment;
 import com.example.think.uihealth.view.fragment.HomePageFragment;
 import com.example.think.uihealth.view.fragment.MyUserInfoFragment;
 import com.kermit.exutils.utils.ActivityCollector;
@@ -55,7 +55,7 @@ public class StartActivity extends MaterialNavigationDrawer {
     private SimpleDateFormat simpleDateFormat;
     private MyUserInfoFragment mUserInfoFragment;
 
-    //private MyForumFragment mForumFragment;
+    private ForumFragment mForumFragment;
 
     private BmobUser mBmobUser;
     private Bitmap changeBitmap;
@@ -93,16 +93,15 @@ public class StartActivity extends MaterialNavigationDrawer {
                 .setSectionColor(basicColor);
         //把它实例化
 
-                .setSectionColor(basicColor);
 
-//        section_Forum = newSection("我的论坛", R.drawable.forum, mForumFragment)
-//                .setSectionColor(basicColor);
+        section_Forum = newSection("我的论坛", R.drawable.forum, mForumFragment)
+                .setSectionColor(basicColor);
 
 
         //添加section
         this.addSection(section_Home);
         this.addSection(section_Info);
-
+        this.addSection(section_Forum);
     }
 
     @Override
@@ -179,6 +178,7 @@ public class StartActivity extends MaterialNavigationDrawer {
     }
     public void initFirstFragment(String userName){
         mHomePageFragment = HomePageFragment.newInstance(userName);
+        mForumFragment = ForumFragment.newInstance();
     }
     public void initOtherFragment(){
         // TODO: 15/11/8 在这里获得其他子页面的碎片实例
@@ -224,10 +224,7 @@ public class StartActivity extends MaterialNavigationDrawer {
                     .setPositiveButton("是", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-<<<<<<< HEAD
-=======
                             finish();
->>>>>>> origin/dev
                             ActivityCollector.getInstance().closeAllActivity();
 
                         }
@@ -238,7 +235,7 @@ public class StartActivity extends MaterialNavigationDrawer {
 
         return super.onKeyDown(keyCode, event);
     }
-//
+    //
     @Override
     protected void onDestroy() {
         super.onDestroy();

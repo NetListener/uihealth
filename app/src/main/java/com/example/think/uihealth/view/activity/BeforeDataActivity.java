@@ -11,26 +11,10 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.model.bean.BmobUserData;
-
-import android.widget.Toast;
-
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.example.think.uihealth.R;
-import com.example.think.uihealth.model.BmobUser;
-import com.example.think.uihealth.model.BmobUserData;
-
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.example.think.uihealth.R;
-import com.example.think.uihealth.model.bean.BmobUser;
-import com.example.think.uihealth.model.bean.BmobUserData;
-
 import com.example.think.uihealth.view.adapter.BeforeDataRecycleviewAdapter;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.kermit.exutils.utils.ActivityCollector;
 import com.kermit.exutils.utils.ExUtils;
-
-
-import java.util.ArrayList;
 
 import java.util.List;
 

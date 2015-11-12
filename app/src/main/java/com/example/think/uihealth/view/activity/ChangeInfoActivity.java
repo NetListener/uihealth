@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import android.view.View;
 
 import com.example.think.uihealth.R;
@@ -15,22 +13,6 @@ import com.example.think.uihealth.view.fragment.MyUserInfoFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
-import android.util.Log;
-import android.view.KeyEvent;
-
-import android.view.View;
-
-import com.example.think.uihealth.R;
-import com.example.think.uihealth.view.fragment.ChangeInfoFragemnt;
-import com.example.think.uihealth.view.fragment.ChangeNicknameFragment;
-import com.example.think.uihealth.view.fragment.MyUserInfoFragment;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
-import cn.bmob.v3.BmobRealTimeData;
-import cn.bmob.v3.listener.ValueEventListener;
 
 
 

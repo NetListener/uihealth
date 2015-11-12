@@ -1,22 +1,8 @@
 package com.example.think.uihealth.view.fragment;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-=======
-import android.app.Fragment;
-import android.content.Context;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
->>>>>>> origin/dev
-=======
-import android.content.Context;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
->>>>>>> origin/dev
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,21 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.think.uihealth.R;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.model.bean.BmobUserData;
 import com.example.think.uihealth.model.bean.Human;
-=======
-import com.example.think.uihealth.model.BmobUser;
-import com.example.think.uihealth.model.BmobUserData;
-import com.example.think.uihealth.model.Human;
->>>>>>> origin/dev
-=======
-import com.example.think.uihealth.model.bean.BmobUser;
-import com.example.think.uihealth.model.bean.BmobUserData;
-import com.example.think.uihealth.model.bean.Human;
->>>>>>> origin/dev
 import com.example.think.uihealth.strategy.Strategy;
 import com.example.think.uihealth.strategy.impl.CalculateCHDStrategy;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
