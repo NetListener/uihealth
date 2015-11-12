@@ -53,6 +53,7 @@ public class StartActivity extends MaterialNavigationDrawer {
     private int basicColor = Color.parseColor("#33BB77");
     private SimpleDateFormat simpleDateFormat;
     private MyUserInfoFragment mUserInfoFragment;
+    private MyForumFragment mForumFragment;
     private BmobUser mBmobUser;
     private Bitmap changeBitmap;
     private String imageUrl;
@@ -86,10 +87,14 @@ public class StartActivity extends MaterialNavigationDrawer {
                 .setSectionColor(basicColor);
         section_Info = newSection("我的信息", R.drawable.myinfo, mUserInfoFragment)
                 .setSectionColor(basicColor);
+        //把它实例化
+        section_Forum = newSection("我的论坛", R.drawable.forum, mForumFragment)
+                .setSectionColor(basicColor);
 
         //添加section
         this.addSection(section_Home);
         this.addSection(section_Info);
+        this.addSection(section_Forum);
     }
 
     @Override
