@@ -273,7 +273,7 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 //这个openid可以用来实现QQ分享之类的，他是每一个qq用户的唯一标识码
                 openidString = ((JSONObject) o).getString("openid");
-                //获得openid的hash用来作为qq登入的用户用,永远不会变，并且一一对应
+                //获得openid的hash用来作为qq登入的用户名,永远不会变，并且一一对应
                 openidHashcode = openidString.hashCode();
 
                 Log.i(TAG, String.valueOf(openidHashcode));
@@ -336,6 +336,7 @@ public class LoginActivity extends AppCompatActivity {
     private void QQRegister(final String nickname, final int openidHashcode) {
         BmobUser bmobUser = new BmobUser();
         bmobUser.setUsername(nickname+"_"+openidHashcode);
+        //QQ用户的默认密码是123456
         bmobUser.setPassword("123456");
         bmobUser.signUp(LoginActivity.this, new SaveListener() {
             @Override

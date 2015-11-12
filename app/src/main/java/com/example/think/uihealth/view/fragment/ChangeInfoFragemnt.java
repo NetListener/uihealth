@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -186,6 +187,7 @@ public class ChangeInfoFragemnt extends Fragment {
             @Override
             public void onClick(View v) {
                 showAvatarPop();
+                //viewParent.setBackgroundColor(getResources().getColor(R.color.material_blue_grey_800));
             }
         });
 

@@ -82,9 +82,9 @@ public class StartActivity extends MaterialNavigationDrawer {
 
 
         setUserEmail(simpleDateFormat.format(new Date()));
-        section_Home = newSection("我的首页", R.drawable.ic_launcher, mHomePageFragment)
+        section_Home = newSection("我的首页", R.drawable.b, mHomePageFragment)
                 .setSectionColor(basicColor);
-        section_Info = newSection("我的信息", R.drawable.ic_launcher, mUserInfoFragment)
+        section_Info = newSection("我的信息", R.drawable.myinfo, mUserInfoFragment)
                 .setSectionColor(basicColor);
 
         //添加section
@@ -211,6 +211,7 @@ public class StartActivity extends MaterialNavigationDrawer {
                     .setPositiveButton("是", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            finish();
                             ActivityCollector.getInstance().closeAllActivity();
 
                         }
