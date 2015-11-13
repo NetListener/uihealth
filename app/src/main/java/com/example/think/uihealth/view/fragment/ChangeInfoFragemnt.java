@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,6 +34,7 @@ import com.bmob.btp.callback.UploadListener;
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.app.App;
 import com.example.think.uihealth.model.bean.BmobUser;
+import com.example.think.uihealth.util.ChangeWindowsAlpha;
 import com.example.think.uihealth.util.GetHttpImageView;
 import com.example.think.uihealth.util.PhotoUtils;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
@@ -256,13 +259,21 @@ public class ChangeInfoFragemnt extends Fragment {
     //设置选择框
     public void setPopupWindow(View view){
         popupWindow = new PopupWindow(view, ExUtils.getScreenWidth(), 900);
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                ChangeWindowsAlpha.changeWindowsAlpha(getActivity(), 1f);
+            }
+        });
         popupWindow.setTouchInterceptor(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_OUTSIDE){
                     popupWindow.dismiss();
+                    //ChangeWindowsAlpha.changeWindowsAlpha(getActivity(), 1f);
                     return false;
                 }
+                //ChangeWindowsAlpha.changeWindowsAlpha(getActivity(), 1f);
                 return false;
             }
         });
@@ -277,11 +288,16 @@ public class ChangeInfoFragemnt extends Fragment {
         popupWindow.showAtLocation(viewParent, Gravity.BOTTOM, 0, 0);
 
     }
+
     //显示选择框并添加逻辑
     public void showAvatarPop(){
         RelativeLayout layout_photo;
         RelativeLayout layout_choose;
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.pop_choose_layout, null);
+
+        //更改透明度
+        ChangeWindowsAlpha.changeWindowsAlpha(getActivity(), 0.7f);
+
         layout_choose = (RelativeLayout) view.findViewById(R.id.layout_choose);
         layout_photo = (RelativeLayout) view.findViewById(R.id.layout_photo);
 
