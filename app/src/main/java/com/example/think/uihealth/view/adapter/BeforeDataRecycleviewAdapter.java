@@ -52,7 +52,7 @@ public class BeforeDataRecycleviewAdapter extends RecyclerView.Adapter<BeforeDat
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new MyViewHolder(mLayoutInflater.inflate(R.layout.recycleview_beforedata_layout, parent,
-        false));
+                false));
     }
 
     @Override
@@ -60,7 +60,7 @@ public class BeforeDataRecycleviewAdapter extends RecyclerView.Adapter<BeforeDat
 
 
         holder.mTextViewTime.setText(mBmobUsers.get(position).getCreatedAt());
-        
+
         NumberFormat numberFormat = NumberFormat.getNumberInstance();
         numberFormat.setMaximumFractionDigits(2);
         holder.mTextViewData.setText(numberFormat.format(mBmobUsers.get(position).getResult())+"%");
@@ -89,7 +89,7 @@ public class BeforeDataRecycleviewAdapter extends RecyclerView.Adapter<BeforeDat
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
-        
+
         @Bind(R.id.textview_recycleview_beforedata_time)
         TextView mTextViewTime;
         @Bind(R.id.textview_recycleview_beforedata)

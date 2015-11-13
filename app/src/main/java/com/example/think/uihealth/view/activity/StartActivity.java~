@@ -13,15 +13,13 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.app.App;
+
 import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.util.GetHttpImageView;
-import com.example.think.uihealth.view.fragment.ForumFragment;
 import com.example.think.uihealth.view.fragment.HomePageFragment;
 import com.example.think.uihealth.view.fragment.MyUserInfoFragment;
-import com.example.think.uihealth.view.fragment.WriteTopicFragment;
 import com.kermit.exutils.utils.ActivityCollector;
 import com.kermit.exutils.utils.ExUtils;
 
@@ -39,7 +37,7 @@ import it.neokree.materialnavigationdrawer.elements.MaterialSection;
  *
  * 使用第三方库MatrialNavigationDrawer
  */
-public class StartActivity extends MaterialNavigationDrawer{
+public class StartActivity extends MaterialNavigationDrawer {
 
     public static final String TAG = "StartActivity";
 
@@ -49,16 +47,15 @@ public class StartActivity extends MaterialNavigationDrawer{
     private MaterialSection section_Forum;
     private MaterialSection section_Question;
     private MaterialSection section_Info;
-    private MaterialSection section_writetopic;
 
     private Boolean isAutoChange = false;
     public static final String AUTOCHANGE = "AUTOCHANGE";
     private String userName;
     private int basicColor = Color.parseColor("#33BB77");
     private SimpleDateFormat simpleDateFormat;
-
     private MyUserInfoFragment mUserInfoFragment;
-    private ForumFragment mForumFragment;
+
+    //private MyForumFragment mForumFragment;
 
     private BmobUser mBmobUser;
     private Bitmap changeBitmap;
@@ -83,6 +80,11 @@ public class StartActivity extends MaterialNavigationDrawer{
         //获得USERNAME
         //userName = getIntent().getStringExtra(LoginActivity.LOGIN_USERNAME);
         initData();
+        //将头像从BITMAP改为DRAWBLE
+        //Log.i(TAG, String.valueOf(mBmobUser.getUserPhoto()));
+        //setSecondAccountPhoto(getResources().getDrawable(R.drawable.defaultphoto));
+
+
         setUserEmail(simpleDateFormat.format(new Date()));
 
         section_Home = newSection("我的首页", R.drawable.b, mHomePageFragment)
@@ -90,13 +92,17 @@ public class StartActivity extends MaterialNavigationDrawer{
         section_Info = newSection("我的信息", R.drawable.myinfo, mUserInfoFragment)
                 .setSectionColor(basicColor);
         //把它实例化
-        section_Forum = newSection("我的论坛", R.drawable.forum, mForumFragment)
+
                 .setSectionColor(basicColor);
+
+//        section_Forum = newSection("我的论坛", R.drawable.forum, mForumFragment)
+//                .setSectionColor(basicColor);
+
 
         //添加section
         this.addSection(section_Home);
         this.addSection(section_Info);
-        //this.addSection(section_Forum);
+
     }
 
     @Override
@@ -177,7 +183,6 @@ public class StartActivity extends MaterialNavigationDrawer{
     public void initOtherFragment(){
         // TODO: 15/11/8 在这里获得其他子页面的碎片实例
         mUserInfoFragment = new MyUserInfoFragment();
-        mForumFragment = ForumFragment.newInstance();
     }
 
     @Override
@@ -186,7 +191,6 @@ public class StartActivity extends MaterialNavigationDrawer{
         return true;
     }
 
-    MaterialDialog dialog;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -220,7 +224,10 @@ public class StartActivity extends MaterialNavigationDrawer{
                     .setPositiveButton("是", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+<<<<<<< HEAD
+=======
                             finish();
+>>>>>>> origin/dev
                             ActivityCollector.getInstance().closeAllActivity();
 
                         }
@@ -231,7 +238,7 @@ public class StartActivity extends MaterialNavigationDrawer{
 
         return super.onKeyDown(keyCode, event);
     }
-    //
+//
     @Override
     protected void onDestroy() {
         super.onDestroy();

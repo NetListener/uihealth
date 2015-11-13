@@ -21,6 +21,9 @@
         <item name="color">@color/white</item>
     </style>
 
+    <style name="ForumActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
     <style name="ResultToolbarTheme" parent="Widget.AppCompat.Toolbar">
         <!-- 字体的大小-->
         <item name="android:textSize">20dp</item>
@@ -51,5 +54,15 @@
         <item name="android:layout_marginLeft">10dp</item>
     </style>
 
+    <style name="Forum_Text">
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
 </resources>

@@ -16,8 +16,6 @@ import com.example.think.uihealth.model.bean.Human;
 import com.example.think.uihealth.strategy.impl.CalculateCHDStrategy;
 import com.example.think.uihealth.view.adapter.ContentRecycleviewAdapter;
 
-
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
