@@ -83,11 +83,6 @@ public class StartActivity extends MaterialNavigationDrawer{
         //获得USERNAME
         //userName = getIntent().getStringExtra(LoginActivity.LOGIN_USERNAME);
         initData();
-        //将头像从BITMAP改为DRAWBLE
-        //Log.i(TAG, String.valueOf(mBmobUser.getUserPhoto()));
-        //setSecondAccountPhoto(getResources().getDrawable(R.drawable.defaultphoto));
-
-
         setUserEmail(simpleDateFormat.format(new Date()));
 
         section_Home = newSection("我的首页", R.drawable.b, mHomePageFragment)
