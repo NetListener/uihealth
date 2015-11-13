@@ -2,6 +2,7 @@ package com.example.think.uihealth.view.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,11 +27,6 @@ public class ForumRecyclerViewAdapter extends RecyclerView.Adapter<ForumRecycler
     private Context mContext;
     private List<Forum> mForumList;
 
-    public ForumRecyclerViewAdapter(Context context) {
-        this.mContext = context;
-    }
-
-
     public ForumRecyclerViewAdapter(Context context, List<Forum> list) {
         this.mContext = context;
         setData(list);
@@ -47,14 +43,17 @@ public class ForumRecyclerViewAdapter extends RecyclerView.Adapter<ForumRecycler
     public void onBindViewHolder(ForumViewHoler holder, int position) {
         // TODO: 15-11-11 绑定数据
         holder.mTvItemForum.setText(mForumList.get(position).getTitle());
-        holder.mImgItemForum.setImageBitmap(GetHttpImageView.getHttpBitmap(mForumList.get(position).getPic().get(0)));
 
-        BmobUser user = (BmobUser)BmobUser.getCurrentUser(mContext);
+        if (mForumList.get(position).getPic() != null && !TextUtils.isEmpty(mForumList.get(position).getPic().get(0))) {
+            holder.mImgItemForum.setImageBitmap(GetHttpImageView.getHttpBitmap(mForumList.get(position).getPic().get(0)));
+        }
+
+        BmobUser user = BmobUser.getCurrentUser(mContext, BmobUser.class);
         holder.mImgItemForumFace.setImageBitmap(GetHttpImageView.getHttpBitmap(user.getUserPhoto()));
         holder.mTvItemForumNickname.setText(user.getNickName());
 
         holder.mTvItemForumTime.setText(mForumList.get(position).getTime());
-        holder.mTvItemForumFeedback.setText(mForumList.get(position).getCommentCount());
+        holder.mTvItemForumFeedback.setText(mForumList.get(position).getCommentCount() + "");
     }
 
     @Override

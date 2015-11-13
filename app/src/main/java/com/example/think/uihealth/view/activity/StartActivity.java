@@ -13,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.app.App;
 import com.example.think.uihealth.model.bean.BmobUser;
@@ -38,8 +39,7 @@ import it.neokree.materialnavigationdrawer.elements.MaterialSection;
  *
  * 使用第三方库MatrialNavigationDrawer
  */
-public class StartActivity extends MaterialNavigationDrawer  implements
-        WriteTopicFragment.WriteTopicFragmentUploadListener{
+public class StartActivity extends MaterialNavigationDrawer{
 
     public static final String TAG = "StartActivity";
 
@@ -49,6 +49,7 @@ public class StartActivity extends MaterialNavigationDrawer  implements
     private MaterialSection section_Forum;
     private MaterialSection section_Question;
     private MaterialSection section_Info;
+    private MaterialSection section_writetopic;
 
     private Boolean isAutoChange = false;
     public static final String AUTOCHANGE = "AUTOCHANGE";
@@ -58,7 +59,6 @@ public class StartActivity extends MaterialNavigationDrawer  implements
 
     private MyUserInfoFragment mUserInfoFragment;
     private ForumFragment mForumFragment;
-    private WriteTopicFragment mWriteTopicFragment;
 
     private BmobUser mBmobUser;
     private Bitmap changeBitmap;
@@ -97,7 +97,6 @@ public class StartActivity extends MaterialNavigationDrawer  implements
         //把它实例化
         section_Forum = newSection("我的论坛", R.drawable.forum, mForumFragment)
                 .setSectionColor(basicColor);
-
 
         //添加section
         this.addSection(section_Home);
@@ -184,7 +183,6 @@ public class StartActivity extends MaterialNavigationDrawer  implements
         // TODO: 15/11/8 在这里获得其他子页面的碎片实例
         mUserInfoFragment = new MyUserInfoFragment();
         mForumFragment = ForumFragment.newInstance();
-        mWriteTopicFragment = WriteTopicFragment.newInstance();
     }
 
     @Override
@@ -193,6 +191,7 @@ public class StartActivity extends MaterialNavigationDrawer  implements
         return true;
     }
 
+    MaterialDialog dialog;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -242,13 +241,5 @@ public class StartActivity extends MaterialNavigationDrawer  implements
     protected void onDestroy() {
         super.onDestroy();
         ActivityCollector.getInstance().popActivity(this);
-    }
-
-    @Override
-    public void UploadForumSuccess() {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .remove(mWriteTopicFragment)
-                .commit();
     }
 }

@@ -11,9 +11,12 @@ import android.view.MenuItem;
 
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.model.bean.Forum;
+import com.example.think.uihealth.model.bean.ForumContent;
+import com.example.think.uihealth.view.adapter.ForumContentAdapter;
 import com.example.think.uihealth.view.adapter.ForumRecyclerViewAdapter;
 import com.example.think.uihealth.view.fragment.WriteTopicFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -32,9 +35,10 @@ public class ForumContentActivity extends AppCompatActivity{
     SwipeRefreshLayout mSwipeActivityForumcontent;
 
 
-    private ForumRecyclerViewAdapter mAdapter;
+    private ForumContentAdapter mAdapter;
     private int page = 1;
     private LinearLayoutManager mLayoutManager;
+    private List<ForumContent> mContents;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +57,9 @@ public class ForumContentActivity extends AppCompatActivity{
 
     private int lastVisibleItem = 0;
     private void initView() {
+        mContents = new ArrayList<>();
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new ForumRecyclerViewAdapter(this);
+        mAdapter = new ForumContentAdapter(this, mContents);
         mRecyclerActivityForumcontent.setLayoutManager(mLayoutManager);
         mRecyclerActivityForumcontent.setAdapter(mAdapter);
         mRecyclerActivityForumcontent.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -94,14 +99,14 @@ public class ForumContentActivity extends AppCompatActivity{
         new Handler().post(new Runnable() {
             @Override
             public void run() {
-                BmobQuery<Forum> query = new BmobQuery<>();
+                BmobQuery<ForumContent> query = new BmobQuery<>();
                 query.include("author");
                 query.setLimit(5);
                 query.setSkip((page - 1) * 5);
                 query.order("-time");
-                query.findObjects(ForumContentActivity.this, new FindListener<Forum>() {
+                query.findObjects(ForumContentActivity.this, new FindListener<ForumContent>() {
                     @Override
-                    public void onSuccess(List<Forum> list) {
+                    public void onSuccess(List<ForumContent> list) {
                         mAdapter.addData(list);
                     }
 

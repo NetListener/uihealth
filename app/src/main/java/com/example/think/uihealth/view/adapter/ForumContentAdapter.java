@@ -22,10 +22,6 @@ public class ForumContentAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private List<ForumContent> mContents;
 
-    public ForumContentAdapter(Context context) {
-        mContext = context;
-    }
-
     public ForumContentAdapter(Context context, List<ForumContent> contents) {
         mContext = context;
         mContents = contents;

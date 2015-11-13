@@ -1,8 +1,6 @@
 package com.example.think.uihealth.view.fragment;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,15 +14,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.model.bean.Forum;
 import com.example.think.uihealth.util.ImageProvider;
 import com.example.think.uihealth.util.ImageUtils;
-import com.gc.materialdesign.widgets.ProgressDialog;
 import com.kermit.exutils.utils.ExUtils;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -72,6 +71,10 @@ public class WriteTopicFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+
+    private String content;
+    private String title;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -80,10 +83,35 @@ public class WriteTopicFragment extends Fragment {
         return view;
     }
 
-    private String content;
-    private String title;
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        mImageProvider = new ImageProvider(getActivity());
+        mBtnWritetopicInsertimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new MaterialDialog.Builder(getActivity())
+                        .title("请选择")
+                        .items(new String[]{"添加", "删除"})
+                        .itemsCallback(new MaterialDialog.ListCallback() {
+                            @Override
+                            public void onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
+                                switch (i) {
+                                    case 0:
+                                        addImg();
+                                        break;
+                                    case 1:
+                                        mBtnWritetopicInsertimg.setImageResource(R.drawable.insert_img);
+                                        if (pics.size() != 0) pics.remove(0);
+                                        break;
+                                }
+                            }
+                        })
+                        .show();
+            }
+        });
+
         mButtonTopicSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,13 +122,12 @@ public class WriteTopicFragment extends Fragment {
                 }
                 content = mEdWritetopic.getText().toString().trim();
                 title = mEdWritetopicContent.getText().toString().trim();
-
+                uploadData(title, content);
             }
         });
     }
 
     private Forum mForum;
-
     private void uploadData(String topic, String content){
         mForum = new Forum();
 
@@ -109,7 +136,7 @@ public class WriteTopicFragment extends Fragment {
         mForum.setTitle(title);
         mForum.setContent(content);
 
-        showProgress();
+        showProgress("请稍候");
         if(bmobFile != null) {
             bmobFile.uploadblock(getActivity(), new UploadFileListener() {
                 @Override
@@ -149,48 +176,74 @@ public class WriteTopicFragment extends Fragment {
         });
     }
 
+
     private void addImg(){
-        new AlertDialog.Builder(getActivity())
-                .setItems(new String[]{"相册", "照相"}, new DialogInterface.OnClickListener() {
+        new MaterialDialog.Builder(getActivity())
+                .title("请选择图片来源")
+                .items(new String[]{"拍照", "相册"})
+                .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        preImage(which);
+                    public void onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
+                        preImage(i);
                     }
                 })
-                .create()
                 .show();
     }
 
 
-    private ProgressDialog mDialog;
-    private void showProgress(){
-        mDialog = new ProgressDialog(getActivity(), "请稍候");
-        mDialog.show();
+    private MaterialDialog dialog;
+    public void showProgress(String title){
+        dialog = new MaterialDialog.Builder(getActivity())
+                .title(title)
+                .content("请稍候")
+                .progress(true, 100)
+                .cancelable(false)
+                .show();
     }
 
-    private void dismissProgress(){
-        mDialog.dismiss();
+    public void dismissProgress(){
+        if (dialog != null){
+            dialog.dismiss();
+        }
     }
 
     private String img = "";
     private ImageProvider mImageProvider;
-    private List<String> pics;
+    private List<String> pics = new ArrayList<>();
     private BmobFile bmobFile;
     public void preImage(int style){
         ImageProvider.OnImageSelectListener onImageSelectListener = new ImageProvider.OnImageSelectListener() {
             @Override
             public void onImageSelect() {
-                showProgress();
+                showProgress("请稍候");
             }
 
             @Override
             public void onImageLoaded(Uri uri) {
                 dismissProgress();
-                if (uri != null) {
-                    ImageUtils.SaveBitmap(ImageUtils.readBitmapFromFile(uri.getPath(), 800, 400), uri.getPath());
-                    bmobFile = new BmobFile(new File(uri.getPath()));
-                    mBtnWritetopicInsertimg.setImageURI(uri);
-                }
+
+                mImageProvider.cropImage(uri, 300, 300, new ImageProvider.OnImageSelectListener() {
+                    @Override
+                    public void onImageSelect() {
+                        showProgress("修改中");
+                    }
+
+                    @Override
+                    public void onImageLoaded(Uri uri) {
+                        dismissProgress();
+                        if (uri != null) {
+                            ImageUtils.SaveBitmap(ImageUtils.readBitmapFromFile(uri.getPath(), 800, 400), uri.getPath());
+                            bmobFile = new BmobFile(new File(uri.getPath()));
+                            ExUtils.Toast(uri.getPath());
+                            mBtnWritetopicInsertimg.setImageURI(uri);
+                        }
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
             }
 
             @Override
