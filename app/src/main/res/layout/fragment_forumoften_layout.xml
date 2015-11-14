@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll_forumoften_layout"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:layout_margin="4dp"
+    android:padding="4dp"
     >
 
-    <ImageView
-        android:id="@+id/forum_add"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/addoften"
-        />
+    <GridView
+        android:id="@+id/gridview_addchoice"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="4"
+        >
+
+    </GridView>
+
 
 </LinearLayout>

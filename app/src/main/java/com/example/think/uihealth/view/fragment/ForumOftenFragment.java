@@ -1,19 +1,32 @@
 package com.example.think.uihealth.view.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.config.OftenConstant;
-import com.kermit.exutils.utils.ExUtils;
+import com.example.think.uihealth.model.bean.BmobUser;
+import com.example.think.uihealth.view.activity.ForumContentActivity;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,16 +34,15 @@ import butterknife.ButterKnife;
 /**
  * Created by kermit on 15-11-13.
  */
-public class ForumOftenFragment extends Fragment implements ChoiceFragment.ChoiceCallback{
+public class ForumOftenFragment extends Fragment implements ChoiceFragment.ChoiceCallback {
 
-    @Bind(R.id.ll_forumoften_layout)
-    LinearLayout mLlForumoftenLayout;
-
+    @Bind(R.id.gridview_addchoice)
+    GridView mGridviewAddchoice;
 
     private static ForumOftenFragment mFragment;
     private ChoiceFragment mChoiceFragment;
-    @Bind(R.id.forum_add)
-    ImageView mForumAdd;
+    private List<String> oftens;
+    private MyAdapter mAdapter;
 
     public static ForumOftenFragment newInstance() {
         if (mFragment == null) {
@@ -57,10 +69,28 @@ public class ForumOftenFragment extends Fragment implements ChoiceFragment.Choic
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mChoiceFragment = new ChoiceFragment();
         mChoiceFragment.setChoiceCallback(this);
-        mForumAdd.setOnClickListener(new View.OnClickListener() {
+
+        oftens = BmobUser.getCurrentUser(getContext(), BmobUser.class)
+                .getOften();
+        if (oftens == null) {
+            oftens = new ArrayList<>();
+            oftens.add("添加");
+        }
+        mAdapter = new MyAdapter();
+        mGridviewAddchoice.setAdapter(mAdapter);
+
+        final List<String> finalOftens = oftens;
+        mGridviewAddchoice.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                mChoiceFragment.show(getFragmentManager(), "choice");
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (finalOftens.get(position).equals("添加")) {
+                    mChoiceFragment.show(getFragmentManager(), "choice");
+                } else {
+                    String tag = finalOftens.get(position);
+                    Intent intent = new Intent(getContext(), ForumContentActivity.class);
+                    intent.putExtra("tag", tag);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -73,14 +103,51 @@ public class ForumOftenFragment extends Fragment implements ChoiceFragment.Choic
     }
 
     @Override
-    public void choiceCallback(int pos) {
+    public void choiceCallback(final int pos) {
         final int i = pos;
         mChoiceFragment.dismiss();
         new Handler().post(new Runnable() {
             @Override
             public void run() {
-                ExUtils.Toast(OftenConstant.oftenSickness[i]);
+                oftens.remove(oftens.size() - 1);
+                oftens.add(OftenConstant.oftenSickness[i]);
+                removeSame(oftens);
+                oftens.add("添加");
+                mAdapter.notifyDataSetChanged();
             }
         });
+    }
+
+    private void removeSame(List<String> list) {
+        HashSet<String> hashSet = new HashSet<>(list);
+        list.clear();
+        list.addAll(hashSet);
+    }
+
+    class MyAdapter extends BaseAdapter{
+
+
+        @Override
+        public int getCount() {
+            return oftens.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return oftens.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view = LayoutInflater.from(getContext()).inflate(R.layout.item_oftentext_layout, parent, false);
+            TextView textView = (TextView) view.findViewById(R.id.tv_oftenchoice);
+            textView.setText(oftens.get(position));
+            return view;
+        }
     }
 }

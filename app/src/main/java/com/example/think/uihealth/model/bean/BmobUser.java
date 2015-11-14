@@ -1,9 +1,7 @@
 package com.example.think.uihealth.model.bean;
 
 
-import android.graphics.Bitmap;
-
-import java.net.URL;
+import java.util.List;
 
 /**
  * Created by Zane on 2015/10/12.
@@ -15,7 +13,24 @@ public class BmobUser extends cn.bmob.v3.BmobUser {
     private String userPhoto;
     private int Followers;
     private int Following;
+    private String gender;
+    private List<String> often;
 
+    public List<String> getOften() {
+        return often;
+    }
+
+    public void setOften(List<String> often) {
+        this.often = often;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     public String getUserPhoto() {
         return userPhoto;

@@ -5,6 +5,4 @@ package com.example.think.uihealth.view.activity;
  */
 public class WriteTopicActivity {
 
-
-
 }
