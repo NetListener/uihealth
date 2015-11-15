@@ -38,6 +38,14 @@
             android:id="@+id/textview_fragment_nickname"
             android:layout_centerVertical="true"
             />
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/arrowsmall"
+            android:layout_toRightOf="@id/imageview_fragment_userPhoto"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="250dp"
+            />
 
     </RelativeLayout>
     <View

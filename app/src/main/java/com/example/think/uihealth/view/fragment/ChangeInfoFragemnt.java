@@ -85,11 +85,11 @@ public class ChangeInfoFragemnt extends Fragment {
     @Bind(R.id.imageview_changinfofragment_photo)
     ImageView imageviewChanginfofragmentPhoto;
     @Bind(R.id.layout_changeuserphoto)
-    LinearLayout layoutChangeuserphoto;
+    RelativeLayout layoutChangeuserphoto;
     @Bind(R.id.textview_changeinfofragment_username)
     TextView textviewChangeinfofragmentUsername;
     @Bind(R.id.layout_changeusernickename)
-    LinearLayout layoutChangeusernickename;
+    RelativeLayout layoutChangeusernickename;
     @Bind(R.id.progressbar_changinfofragment)
     ProgressBarCircularIndeterminate progressbarChanginfofragment;
     private boolean isFromCamera = false;
@@ -111,7 +111,6 @@ public class ChangeInfoFragemnt extends Fragment {
             switch (msg.what){
                 case 1:
                     imageviewChanginfofragmentPhoto.setImageBitmap((Bitmap) msg.obj);
-
                     break;
             }
         }
