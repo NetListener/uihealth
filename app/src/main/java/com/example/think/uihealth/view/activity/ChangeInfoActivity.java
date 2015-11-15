@@ -4,12 +4,9 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 
 import com.example.think.uihealth.R;
-import com.example.think.uihealth.util.ChangeWindowsAlpha;
 import com.example.think.uihealth.view.fragment.ChangeInfoFragemnt;
 import com.example.think.uihealth.view.fragment.ChangeNicknameFragment;
 import com.example.think.uihealth.view.fragment.MyUserInfoFragment;

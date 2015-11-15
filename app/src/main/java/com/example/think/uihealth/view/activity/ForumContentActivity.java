@@ -6,15 +6,19 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.think.uihealth.R;
-import com.example.think.uihealth.model.bean.Forum;
 import com.example.think.uihealth.model.bean.ForumContent;
 import com.example.think.uihealth.view.adapter.ForumContentAdapter;
-import com.example.think.uihealth.view.adapter.ForumRecyclerViewAdapter;
 import com.example.think.uihealth.view.fragment.WriteTopicFragment;
+import com.kermit.scrollpopupview.Position;
+import com.kermit.scrollpopupview.ScrollPopupHelper;
+import com.kermit.scrollpopupview.ScrollPopupView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +31,14 @@ import cn.bmob.v3.listener.FindListener;
 /**
  * Created by kermit on 15-11-11.
  */
-public class ForumContentActivity extends AppCompatActivity{
+public class ForumContentActivity extends AppCompatActivity {
 
     @Bind(R.id.recycler_activity_forumcontent)
     RecyclerView mRecyclerActivityForumcontent;
     @Bind(R.id.swipe_activity_forumcontent)
     SwipeRefreshLayout mSwipeActivityForumcontent;
+    @Bind(R.id.toolbar_forumcontent)
+    Toolbar mToolbar;
 
 
     private ForumContentAdapter mAdapter;
@@ -40,26 +46,42 @@ public class ForumContentActivity extends AppCompatActivity{
     private LinearLayoutManager mLayoutManager;
     private List<ForumContent> mContents;
 
+    private View mScrollPopupView;
+    private ScrollPopupHelper mScrollPopupHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forumcontent_layout);
         ButterKnife.bind(this);
 
+        mToolbar.setTitle("");
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
         initView();
-        initFragment();
         fetchData();
     }
 
-    private void initFragment() {
-    }
-
-
     private int lastVisibleItem = 0;
+
     private void initView() {
         mContents = new ArrayList<>();
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new ForumContentAdapter(this, mContents);
+
+        mScrollPopupHelper = new ScrollPopupHelper(this, Position.BOTTOM);
+        mScrollPopupView = mScrollPopupHelper.hasWrapper(true)
+                .createOnRecyclerView(mRecyclerActivityForumcontent, R.layout.custom_precomment_layout);
+
         mRecyclerActivityForumcontent.setLayoutManager(mLayoutManager);
         mRecyclerActivityForumcontent.setAdapter(mAdapter);
         mRecyclerActivityForumcontent.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -95,14 +117,14 @@ public class ForumContentActivity extends AppCompatActivity{
 
 
     // TODO: 15-11-11 加载更多
-    private void fetchData(){
+    private void fetchData() {
         new Handler().post(new Runnable() {
             @Override
             public void run() {
                 BmobQuery<ForumContent> query = new BmobQuery<>();
                 query.include("author");
-                query.setLimit(5);
-                query.setSkip((page - 1) * 5);
+                query.setLimit(8);
+                query.setSkip((page - 1) * 8);
                 query.order("-time");
                 query.findObjects(ForumContentActivity.this, new FindListener<ForumContent>() {
                     @Override
@@ -119,20 +141,4 @@ public class ForumContentActivity extends AppCompatActivity{
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()){
-
-        }
-
-        return true;
-    }
 }

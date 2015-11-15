@@ -67,6 +67,20 @@
 
         </activity>
         <activity android:name=".view.activity.ChangeInfoActivity"/>
+
+        <activity
+            android:name=".view.activity.ForumContentActivity"
+            android:theme="@style/ForumcontentActivityStyle"
+            >
+
+        </activity>
+
+        <activity
+            android:name=".view.activity.ForumOftenActivity"
+            android:theme="@style/ForumcontentActivityStyle"
+            >
+
+        </activity>
     </application>
 
 </manifest>

@@ -63,7 +63,7 @@ public class WriteTopicFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.mListener = (WriteTopicFragmentUploadListener) context;
+        this.mListener = (WriteTopicFragmentUploadListener) getActivity();
     }
 
     @Override

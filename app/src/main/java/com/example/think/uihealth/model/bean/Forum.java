@@ -13,9 +13,18 @@ public class Forum extends BmobObject{
     private String title;
     private String time;
     private String content;
+    private String tag;
     private List<Comment> mComment;
     private List<String> pic;
     private int commentCount;
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
 
     public int getCommentCount() {
         return commentCount;

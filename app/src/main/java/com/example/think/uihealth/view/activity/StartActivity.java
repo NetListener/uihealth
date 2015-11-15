@@ -21,7 +21,6 @@ import com.example.think.uihealth.util.GetHttpImageView;
 import com.example.think.uihealth.view.fragment.ForumFragment;
 import com.example.think.uihealth.view.fragment.HomePageFragment;
 import com.example.think.uihealth.view.fragment.MyUserInfoFragment;
-import com.example.think.uihealth.view.fragment.WriteTopicFragment;
 import com.kermit.exutils.utils.ActivityCollector;
 import com.kermit.exutils.utils.ExUtils;
 

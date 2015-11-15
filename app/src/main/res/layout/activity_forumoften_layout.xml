@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
     >
@@ -10,7 +10,7 @@
     <android.support.v7.widget.Toolbar
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:id="@+id/toolbar_forumcontent"
+        android:id="@+id/toolbar_forumoften"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:theme="@style/ResultToolbarTheme"
@@ -18,28 +18,22 @@
         >
 
         <TextView
+            android:id="@+id/tv_forumoften_toolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="@color/white"
-            android:text="常用版块"
             />
 
     </android.support.v7.widget.Toolbar>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_activity_forumcontent"
+    <FrameLayout
+        android:id="@+id/forumoften_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_activity_forumcontent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-        </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent">
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+
+    </FrameLayout>
 
 </LinearLayout>
