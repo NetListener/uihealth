@@ -4,11 +4,10 @@
               android:layout_height="match_parent"
               android:background="#EEEEEE">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@drawable/selector"
-        android:orientation="horizontal"
         android:layout_marginTop="8dp"
         android:id="@+id/layout_changeuserphoto"
         >
@@ -19,27 +18,37 @@
             android:textSize="18sp"
             android:textColor="@color/black"
             android:padding="8dp"
-            android:layout_gravity="center"
+            android:layout_centerVertical="true"
             android:text="修改头像"
+            android:id="@+id/text1"
             />
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:id="@+id/imageview_changinfofragment_photo"
-            android:layout_gravity="center"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/text1"
+
+            />
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/arrowsmall"
+            android:layout_toRightOf="@id/text1"
+            android:layout_marginLeft="250dp"
+            android:layout_centerVertical="true"
             />
 
-    </LinearLayout>
+    </RelativeLayout>
     <View
         android:layout_width="fill_parent"
         android:layout_height="1px"
         android:background="@android:color/darker_gray"  />
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@drawable/selector"
-        android:orientation="horizontal"
         android:layout_marginTop="8dp"
         android:id="@+id/layout_changeusernickename"
         >
@@ -50,21 +59,32 @@
             android:textSize="18sp"
             android:textColor="@color/black"
             android:padding="8dp"
-            android:layout_gravity="center"
+            android:layout_centerVertical="true"
             android:text="修改昵称"
+            android:id="@+id/text2"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#BDBDBD"
             android:id="@+id/textview_changeinfofragment_username"
-            android:layout_gravity="center"
+            android:layout_centerVertical="true"
             android:textSize="24sp"
             android:text="徐志"
             android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/text2"
+            />
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/arrowsmall"
+            android:layout_toRightOf="@id/text2"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="250dp"
+
             />
 
-    </LinearLayout>
+    </RelativeLayout>
     <View
         android:layout_width="fill_parent"
         android:layout_height="1px"

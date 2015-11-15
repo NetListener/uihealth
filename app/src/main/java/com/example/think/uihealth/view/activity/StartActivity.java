@@ -82,6 +82,9 @@ public class StartActivity extends MaterialNavigationDrawer{
         //获得USERNAME
         //userName = getIntent().getStringExtra(LoginActivity.LOGIN_USERNAME);
         initData();
+
+        setDrawerHeaderImage(getResources().getDrawable(R.drawable.background));
+
         setUserEmail(simpleDateFormat.format(new Date()));
 
         section_Home = newSection("我的首页", R.drawable.b, mHomePageFragment)
