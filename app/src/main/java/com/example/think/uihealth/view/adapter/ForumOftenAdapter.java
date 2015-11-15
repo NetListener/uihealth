@@ -1,6 +1,7 @@
 package com.example.think.uihealth.view.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -12,7 +13,7 @@ import android.widget.TextView;
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.model.bean.Forum;
-import com.example.think.uihealth.util.GetHttpImageView;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
@@ -25,13 +26,13 @@ import butterknife.ButterKnife;
 public class ForumOftenAdapter extends RecyclerView.Adapter<ForumOftenAdapter.ForumOftenViewHodler> {
 
     private Context mContext;
-
     private List<Forum> mForumList;
 
     public ForumOftenAdapter(Context context, List<Forum> forumList) {
         mContext = context;
         mForumList = forumList;
     }
+
 
     public boolean setData(List<Forum> forums) {
         if (forums != null) {
@@ -63,12 +64,15 @@ public class ForumOftenAdapter extends RecyclerView.Adapter<ForumOftenAdapter.Fo
         // TODO: 15-11-11 绑定数据
         holder.mTvItemForumoften.setText(mForumList.get(position).getTitle());
 
-        if (mForumList.get(position).getPic() != null && !TextUtils.isEmpty(mForumList.get(position).getPic().get(0))) {
-            holder.mImgItemForumoften.setImageBitmap(GetHttpImageView.getHttpBitmap(mForumList.get(position).getPic().get(0)));
+        if (mForumList.get(position).getPic() != null &&
+                mForumList.get(position).getPic().size() != 0 &&
+                !TextUtils.isEmpty(mForumList.get(position).getPic().get(0))) {
+            holder.mImgItemForumoften.setImageURI(Uri.parse(mForumList.get(position).getPic().get(0)));
         }
 
         BmobUser user = BmobUser.getCurrentUser(mContext, BmobUser.class);
-        holder.mImgItemForumoftenFace.setImageBitmap(GetHttpImageView.getHttpBitmap(user.getUserPhoto()));
+
+        holder.mImgItemForumoftenFace.setImageURI(Uri.parse(user.getUserPhoto()));
         holder.mTvItemForumoftenNickname.setText(user.getNickName());
 
         holder.mTvItemForumoftenTime.setText(mForumList.get(position).getTime());
@@ -87,9 +91,9 @@ public class ForumOftenAdapter extends RecyclerView.Adapter<ForumOftenAdapter.Fo
         @Bind(R.id.tv_item_forumoften)
         TextView mTvItemForumoften;
         @Bind(R.id.img_item_forumoften)
-        ImageView mImgItemForumoften;
+        SimpleDraweeView mImgItemForumoften;
         @Bind(R.id.img_item_forumoften_face)
-        ImageView mImgItemForumoftenFace;
+        SimpleDraweeView mImgItemForumoftenFace;
         @Bind(R.id.tv_item_forumoften_nickname)
         TextView mTvItemForumoftenNickname;
         @Bind(R.id.tv_item_forumoften_time)

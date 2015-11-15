@@ -16,6 +16,7 @@ import android.widget.ImageView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.think.uihealth.R;
+import com.example.think.uihealth.model.RemoteFileModel;
 import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.model.bean.Forum;
 import com.example.think.uihealth.util.ImageProvider;
@@ -79,6 +80,7 @@ public class WriteTopicFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_writetopic_layout, container, false);
+        pics = new ArrayList<>();
         ButterKnife.bind(this, view);
         return view;
     }
@@ -87,7 +89,7 @@ public class WriteTopicFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
-        mImageProvider = new ImageProvider(getActivity());
+        mImageProvider = new ImageProvider(this);
         mBtnWritetopicInsertimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,7 +105,10 @@ public class WriteTopicFragment extends Fragment {
                                         break;
                                     case 1:
                                         mBtnWritetopicInsertimg.setImageResource(R.drawable.insert_img);
-                                        if (pics.size() != 0) pics.remove(0);
+                                        if (pics.size() != 0) {
+                                            pics.remove(0);
+//                                            bmobFile = null;
+                                        }
                                         break;
                                 }
                             }
@@ -120,35 +125,36 @@ public class WriteTopicFragment extends Fragment {
                     ExUtils.Toast("输入不能为空哦");
                     return;
                 }
-                content = mEdWritetopic.getText().toString().trim();
-                title = mEdWritetopicContent.getText().toString().trim();
+                title = mEdWritetopic.getText().toString().trim();
+                content = mEdWritetopicContent.getText().toString().trim();
                 uploadData(title, content);
             }
         });
     }
+
 
     private Forum mForum;
     private void uploadData(String topic, String content){
         mForum = new Forum();
 
         mForum.setTime(ExUtils.getTime());
-        mForum.setAuthor((BmobUser) BmobUser.getCurrentUser(getActivity()));
-        mForum.setTitle(title);
+        mForum.setAuthor(BmobUser.getCurrentUser(getContext(), BmobUser.class));
+        mForum.setTitle(topic);
         mForum.setContent(content);
 
         showProgress("请稍候");
         if(bmobFile != null) {
-            bmobFile.uploadblock(getActivity(), new UploadFileListener() {
+            bmobFile.uploadblock(getContext(), new UploadFileListener() {
                 @Override
                 public void onSuccess() {
-                    img = bmobFile.getFileUrl(getActivity());
+                    dismissProgress();
+                    img = bmobFile.getFileUrl(getContext());
                     pics.add(img);
                     mForum.setPic(pics);
                     ExUtils.Toast("上传文件成功");
                     uploadForm();
                     mListener.UploadForumSuccess();
                 }
-
                 @Override
                 public void onFailure(int i, String s) {
                     ExUtils.Toast("上传文件失败");
@@ -209,7 +215,7 @@ public class WriteTopicFragment extends Fragment {
 
     private String img = "";
     private ImageProvider mImageProvider;
-    private List<String> pics = new ArrayList<>();
+    private List<String> pics;
     private BmobFile bmobFile;
     public void preImage(int style){
         ImageProvider.OnImageSelectListener onImageSelectListener = new ImageProvider.OnImageSelectListener() {
@@ -221,29 +227,11 @@ public class WriteTopicFragment extends Fragment {
             @Override
             public void onImageLoaded(Uri uri) {
                 dismissProgress();
-
-                mImageProvider.cropImage(uri, 300, 300, new ImageProvider.OnImageSelectListener() {
-                    @Override
-                    public void onImageSelect() {
-                        showProgress("修改中");
-                    }
-
-                    @Override
-                    public void onImageLoaded(Uri uri) {
-                        dismissProgress();
-                        if (uri != null) {
-                            ImageUtils.SaveBitmap(ImageUtils.readBitmapFromFile(uri.getPath(), 800, 400), uri.getPath());
-                            bmobFile = new BmobFile(new File(uri.getPath()));
-                            ExUtils.Toast(uri.getPath());
-                            mBtnWritetopicInsertimg.setImageURI(uri);
-                        }
-                    }
-
-                    @Override
-                    public void onError() {
-
-                    }
-                });
+                if (uri != null) {
+                    ImageUtils.SaveBitmap(ImageUtils.readBitmapFromFile(uri.getPath(), 800, 400), uri.getPath());
+                    bmobFile = new BmobFile(new File(uri.getPath()));
+                    mBtnWritetopicInsertimg.setImageURI(uri);
+                }
             }
 
             @Override
@@ -263,6 +251,7 @@ public class WriteTopicFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         mImageProvider.onActivityResult(requestCode, resultCode, data);
     }
 

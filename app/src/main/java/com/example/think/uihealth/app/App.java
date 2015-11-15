@@ -3,6 +3,7 @@ package com.example.think.uihealth.app;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.kermit.exutils.utils.ExUtils;
 import com.kermit.exutils.utils.LogUtils;
 
@@ -19,6 +20,8 @@ public class App extends Application {
         super.onCreate();
         instance = this;
         ExUtils.initialize(this);
+        Fresco.initialize(this);
+        LogUtils.DEBUG = true;
     }
 
 

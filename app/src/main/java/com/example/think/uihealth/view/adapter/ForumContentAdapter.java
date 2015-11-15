@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.think.uihealth.R;
-import com.example.think.uihealth.model.bean.ForumContent;
+import com.example.think.uihealth.model.bean.Forum;
 
 import java.util.List;
 
@@ -20,9 +20,9 @@ public class ForumContentAdapter extends RecyclerView.Adapter {
     private final static int COMMENT = 12581;
 
     private Context mContext;
-    private List<ForumContent> mContents;
+    private List<Forum> mContents;
 
-    public ForumContentAdapter(Context context, List<ForumContent> contents) {
+    public ForumContentAdapter(Context context, List<Forum> contents) {
         mContext = context;
         mContents = contents;
     }
@@ -32,7 +32,7 @@ public class ForumContentAdapter extends RecyclerView.Adapter {
      * @param contents
      * @return
      */
-    public boolean setData(List<ForumContent> contents){
+    public boolean setData(List<Forum> contents){
         if (contents != null) {
             mContents = contents;
             return true;
@@ -40,7 +40,7 @@ public class ForumContentAdapter extends RecyclerView.Adapter {
         return false;
     }
 
-    public boolean addData(List<ForumContent> contents){
+    public boolean addData(List<Forum> contents){
         if(contents != null){
             mContents.addAll(contents);
             return true;

@@ -100,6 +100,7 @@ public class ChangeInfoFragemnt extends Fragment {
         public void run() {
             Message message = new Message();
             message.what = 1;
+            // TODO: 15-11-15 siubao
             message.obj = GetHttpImageView.getHttpBitmap(finalUrl);
             handle.sendMessage(message);
         }
@@ -223,7 +224,8 @@ public class ChangeInfoFragemnt extends Fragment {
                     textviewChangeinfofragmentUsername.setText(list.get(0).getNickName());
                     imageUrl_change = list.get(0).getUserPhoto();
                     if(imageUrl_change != finalUrl){
-                        //imageviewChanginfofragmentPhoto.setImageBitmap(GetHttpImageView.getHttpBitmap(imageUrl_change));
+                        // TODO: 15-11-15 change
+                        //GetHttpImageView.getHttpBitmap(imageUrl_change, imageviewChanginfofragmentPhoto);
                         finalUrl = imageUrl_change;
                         new Thread(runnable).start();
                     }else {
@@ -247,7 +249,7 @@ public class ChangeInfoFragemnt extends Fragment {
         mUser = BmobUser.getCurrentUser(getActivity(), BmobUser.class);
         query = new BmobQuery<BmobUser>();
         if(imageUrl != ""){
-            //imageviewChanginfofragmentPhoto.setImageBitmap(GetHttpImageView.getHttpBitmap(imageUrl));
+            //imageviewChanginfofragmentPhoto.setImageBitmap(HttpImageViewUtils.getHttpBitmap(imageUrl));
             finalUrl = imageUrl;
             new Thread(runnable).start();
         }

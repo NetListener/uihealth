@@ -35,7 +35,8 @@ import butterknife.ButterKnife;
 /**
  * Created by kermit on 15-11-13.
  */
-public class ForumOftenFragment extends Fragment implements ChoiceFragment.ChoiceCallback {
+public class ForumOftenFragment extends Fragment implements
+        ChoiceFragment.ChoiceCallback {
 
     @Bind(R.id.gridview_addchoice)
     GridView mGridviewAddchoice;
@@ -86,7 +87,6 @@ public class ForumOftenFragment extends Fragment implements ChoiceFragment.Choic
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (finalOftens.get(position).equals("添加")) {
                     mChoiceFragment.show(getFragmentManager(), "choice");
-                    upLoadData();
                 } else {
                     String tag = finalOftens.get(position);
                     Intent intent = new Intent(getContext(), ForumOftenActivity.class);
@@ -133,6 +133,7 @@ public class ForumOftenFragment extends Fragment implements ChoiceFragment.Choic
                 removeSame(oftens);
                 oftens.add("添加");
                 mAdapter.notifyDataSetChanged();
+                upLoadData();
             }
         });
     }

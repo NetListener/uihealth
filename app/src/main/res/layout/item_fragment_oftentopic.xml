@@ -22,11 +22,12 @@
             style="@style/Forum_Text"
             />
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/img_item_forumoften"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_toRightOf="@id/tv_item_forumoften"
+            android:scaleType="fitXY"
             />
 
         <RelativeLayout
@@ -36,11 +37,12 @@
             android:layout_alignParentBottom="true"
             >
 
-            <ImageView
+            <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/img_item_forumoften_face"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:gravity="center"
+                android:scaleType="fitXY"
                 />
 
             <TextView

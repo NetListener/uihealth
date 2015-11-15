@@ -1,5 +1,6 @@
 package com.example.think.uihealth.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -68,6 +69,7 @@ public class ForumOftenActivity extends AppCompatActivity
         super.onResume();
         isInActivity = true;
     }
+
 
     @Override
     protected void onDestroy() {
