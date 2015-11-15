@@ -3,25 +3,36 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    >
 
-    <ImageView
+    <TextView
         android:id="@+id/good"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="50dp"
+        android:text="赞"
+        android:textColor="@color/black"
+        android:gravity="center"
         />
-    <ImageView
+    <TextView
         android:id="@+id/bad"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="50dp"
+        android:text="踩"
+        android:textColor="@color/black"
+        android:gravity="center"
         />
-    <ImageView
+    <TextView
         android:id="@+id/comment"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="50dp"
+        android:text="评论"
+        android:textColor="@color/black"
+        android:gravity="center"
         />
 
 </LinearLayout>

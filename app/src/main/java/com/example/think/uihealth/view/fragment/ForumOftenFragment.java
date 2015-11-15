@@ -21,6 +21,7 @@ import com.example.think.uihealth.R;
 import com.example.think.uihealth.config.OftenConstant;
 import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.view.activity.ForumContentActivity;
+import com.example.think.uihealth.view.activity.ForumOftenActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -85,14 +86,32 @@ public class ForumOftenFragment extends Fragment implements ChoiceFragment.Choic
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (finalOftens.get(position).equals("添加")) {
                     mChoiceFragment.show(getFragmentManager(), "choice");
+                    upLoadData();
                 } else {
                     String tag = finalOftens.get(position);
-                    Intent intent = new Intent(getContext(), ForumContentActivity.class);
+                    Intent intent = new Intent(getContext(), ForumOftenActivity.class);
                     intent.putExtra("tag", tag);
                     startActivity(intent);
                 }
             }
         });
+
+        mGridviewAddchoice.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                oftens.remove(oftens.get(position));
+                upLoadData();
+                mAdapter.notifyDataSetChanged();
+                return true;
+            }
+        });
+    }
+
+
+    private void upLoadData() {
+        BmobUser user = BmobUser.getCurrentUser(getContext(), BmobUser.class);
+        user.setOften(oftens);
+        user.update(getContext());
     }
 
 
@@ -125,7 +144,6 @@ public class ForumOftenFragment extends Fragment implements ChoiceFragment.Choic
     }
 
     class MyAdapter extends BaseAdapter{
-
 
         @Override
         public int getCount() {

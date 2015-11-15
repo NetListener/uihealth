@@ -74,6 +74,13 @@
             >
 
         </activity>
+
+        <activity
+            android:name=".view.activity.ForumOftenActivity"
+            android:theme="@style/ForumcontentActivityStyle"
+            >
+
+        </activity>
     </application>
 
 </manifest>
