@@ -48,6 +48,7 @@ public class WriteTopicFragment extends Fragment {
     Button mButtonTopicSend;
 
     private static WriteTopicFragment fragment;
+    private String tag;
 
     private WriteTopicFragmentUploadListener mListener;
     public interface WriteTopicFragmentUploadListener{
@@ -70,6 +71,7 @@ public class WriteTopicFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        tag = getArguments().getString("tag");
     }
 
 
@@ -80,7 +82,6 @@ public class WriteTopicFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_writetopic_layout, container, false);
-        pics = new ArrayList<>();
         ButterKnife.bind(this, view);
         return view;
     }
@@ -88,6 +89,8 @@ public class WriteTopicFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        final List<String> pics = new ArrayList<>();
 
         mImageProvider = new ImageProvider(this);
         mBtnWritetopicInsertimg.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +110,7 @@ public class WriteTopicFragment extends Fragment {
                                         mBtnWritetopicInsertimg.setImageResource(R.drawable.insert_img);
                                         if (pics.size() != 0) {
                                             pics.remove(0);
-//                                            bmobFile = null;
+                                            bmobFile = null;
                                         }
                                         break;
                                 }
@@ -127,20 +130,21 @@ public class WriteTopicFragment extends Fragment {
                 }
                 title = mEdWritetopic.getText().toString().trim();
                 content = mEdWritetopicContent.getText().toString().trim();
-                uploadData(title, content);
+                uploadData(title, content, pics);
             }
         });
     }
 
 
     private Forum mForum;
-    private void uploadData(String topic, String content){
+    private void uploadData(String topic, String content, final List<String> pics){
         mForum = new Forum();
 
         mForum.setTime(ExUtils.getTime());
         mForum.setAuthor(BmobUser.getCurrentUser(getContext(), BmobUser.class));
         mForum.setTitle(topic);
         mForum.setContent(content);
+        mForum.setTag(tag);
 
         showProgress("请稍候");
         if(bmobFile != null) {
@@ -153,6 +157,8 @@ public class WriteTopicFragment extends Fragment {
                     mForum.setPic(pics);
                     ExUtils.Toast("上传文件成功");
                     uploadForm();
+                    pics.remove(0);
+
                     mListener.UploadForumSuccess();
                 }
                 @Override
@@ -215,7 +221,6 @@ public class WriteTopicFragment extends Fragment {
 
     private String img = "";
     private ImageProvider mImageProvider;
-    private List<String> pics;
     private BmobFile bmobFile;
     public void preImage(int style){
         ImageProvider.OnImageSelectListener onImageSelectListener = new ImageProvider.OnImageSelectListener() {
@@ -258,6 +263,7 @@ public class WriteTopicFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        bmobFile = null;
         ButterKnife.unbind(this);
     }
 }

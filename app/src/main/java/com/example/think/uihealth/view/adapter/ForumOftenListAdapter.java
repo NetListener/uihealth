@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.think.uihealth.R;
@@ -23,14 +23,19 @@ import butterknife.ButterKnife;
 /**
  * Created by kermit on 15-11-15.
  */
-public class ForumOftenAdapter extends RecyclerView.Adapter<ForumOftenAdapter.ForumOftenViewHodler> {
+public class ForumOftenListAdapter extends RecyclerView.Adapter<ForumOftenListAdapter.ForumOftenViewHodler> {
 
     private Context mContext;
     private List<Forum> mForumList;
 
-    public ForumOftenAdapter(Context context, List<Forum> forumList) {
+
+    public ForumOftenListAdapter(Context context, List<Forum> forumList) {
         mContext = context;
         mForumList = forumList;
+    }
+
+    public ForumOftenListAdapter(Context context) {
+        mContext = context;
     }
 
 
@@ -62,34 +67,39 @@ public class ForumOftenAdapter extends RecyclerView.Adapter<ForumOftenAdapter.Fo
     @Override
     public void onBindViewHolder(ForumOftenViewHodler holder, int position) {
         // TODO: 15-11-11 绑定数据
-        holder.mTvItemForumoften.setText(mForumList.get(position).getTitle());
+        holder.mTvItemContentForumoften.setText(mForumList.get(position).getContent());
 
         if (mForumList.get(position).getPic() != null &&
-                mForumList.get(position).getPic().size() != 0 &&
                 !TextUtils.isEmpty(mForumList.get(position).getPic().get(0))) {
             holder.mImgItemForumoften.setImageURI(Uri.parse(mForumList.get(position).getPic().get(0)));
+        } else {
+            holder.mImgItemForumoften.setImageResource(R.mipmap.ic_launcher);
         }
 
         BmobUser user = BmobUser.getCurrentUser(mContext, BmobUser.class);
 
         holder.mImgItemForumoftenFace.setImageURI(Uri.parse(user.getUserPhoto()));
+
         holder.mTvItemForumoftenNickname.setText(user.getNickName());
 
         holder.mTvItemForumoftenTime.setText(mForumList.get(position).getTime());
-        holder.mTvItemForumoftenFeedback.setText(mForumList.get(position).getCommentCount() + "");
+        holder.mTvItemForumoftenFeedback.setText("回复 " + mForumList.get(position).getCommentCount());
+        holder.mTvItemTitleForumoften.setText(mForumList.get(position).getTitle());
     }
 
     @Override
     public int getItemCount() {
+        if (mForumList == null) return 0;
         return mForumList.size();
     }
 
 
     class ForumOftenViewHodler extends RecyclerView.ViewHolder {
 
-
-        @Bind(R.id.tv_item_forumoften)
-        TextView mTvItemForumoften;
+        @Bind(R.id.tv_item_title_forumoften)
+        TextView mTvItemTitleForumoften;
+        @Bind(R.id.tv_item_content_forumoften)
+        TextView mTvItemContentForumoften;
         @Bind(R.id.img_item_forumoften)
         SimpleDraweeView mImgItemForumoften;
         @Bind(R.id.img_item_forumoften_face)

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.model.bean.Forum;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.kermit.exutils.utils.ExUtils;
 
 import java.util.List;
 
@@ -50,6 +51,7 @@ public class ForumRecyclerViewAdapter extends RecyclerView.Adapter<ForumRecycler
             holder.mImgItemForum.setImageResource(R.mipmap.ic_launcher);
         }
 
+        // TODO: 15-11-16 数据获取为空
         if (!TextUtils.isEmpty(mForumList.get(position).getAuthor().getUserPhoto())){
             holder.mImgItemForumFace.setImageURI(Uri.parse(mForumList.get(position).getAuthor().getUserPhoto()));
         }

@@ -1,6 +1,5 @@
 package com.example.think.uihealth.view.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -53,6 +52,10 @@ public class ForumOftenActivity extends AppCompatActivity
         mWriteTopicFragment = WriteTopicFragment.newInstance();
         mForumOftenListFragment = ForumOftenListFragment.newInstance();
 
+        Bundle bundle = new Bundle();
+        bundle.putString("tag", tag);
+        mForumOftenListFragment.setArguments(bundle);
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.forumoften_container, mForumOftenListFragment)
@@ -90,6 +93,9 @@ public class ForumOftenActivity extends AppCompatActivity
         if (isInActivity) {
             switch (item.getItemId()) {
                 case R.id.menu_writetopic:
+                    Bundle bundle = new Bundle();
+                    bundle.putString("tag", tag);
+                    mWriteTopicFragment.setArguments(bundle);
                     getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.forumoften_container, mWriteTopicFragment)
