@@ -1,7 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="8dp"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
 
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <TextView
+            android:id="@+id/tv_forumcomment"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:padding="8dp"
+            style="@style/Forum_Text"
+            />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="8dp"
+            >
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/img_forumcomment_face"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:gravity="center"
+                fresco:retryImageScaleType="centerCrop"
+                fresco:actualImageScaleType="focusCrop"
+                />
+
+            <TextView
+                android:id="@+id/tv_forumcomment_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@id/img_forumcomment_face"
+                android:gravity="center"
+                style="@style/Forum_Text"
+                />
+
+            <TextView
+                android:id="@+id/tv_forumcomment_statictext"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="发布于"
+                android:textSize="14dp"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@+id/tv_forumcomment_nickname"
+                android:gravity="center"
+                style="@style/Forum_Text"
+                />
+
+            <TextView
+                android:id="@+id/tv_forumcomment_time"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@id/tv_forumcomment_statictext"
+                android:gravity="center"
+                android:textSize="14dp"
+                android:layout_marginLeft="16dp"
+                style="@style/Forum_Text"
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

@@ -1,13 +1,24 @@
 package com.example.think.uihealth.model.bean;
 
+import cn.bmob.v3.BmobObject;
+
 /**
  * Created by kermit on 15-11-11.
  */
-public class Comment {
+public class Comment extends BmobObject{
 
     private BmobUser author;
     private String content;
     private String time;
+    private String mForum;
+
+    public String getForumId() {
+        return mForum;
+    }
+
+    public void setForumId(String forum) {
+        mForum = forum;
+    }
 
     public BmobUser getAuthor() {
         return author;

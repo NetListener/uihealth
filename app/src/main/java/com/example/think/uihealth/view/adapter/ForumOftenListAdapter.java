@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.think.uihealth.R;
@@ -23,10 +22,23 @@ import butterknife.ButterKnife;
 /**
  * Created by kermit on 15-11-15.
  */
-public class ForumOftenListAdapter extends RecyclerView.Adapter<ForumOftenListAdapter.ForumOftenViewHodler> {
+public class ForumOftenListAdapter extends
+        RecyclerView.Adapter<ForumOftenListAdapter.ForumOftenViewHodler> implements
+        View.OnClickListener{
 
     private Context mContext;
     private List<Forum> mForumList;
+
+
+    private OnRecyclerViewItemClickListener mListener;
+
+
+    public interface OnRecyclerViewItemClickListener{
+        void onClick(View v, Object obj);
+    }
+    public void setOnItemClickListener(OnRecyclerViewItemClickListener listener){
+        this.mListener = listener;
+    }
 
 
     public ForumOftenListAdapter(Context context, List<Forum> forumList) {
@@ -61,11 +73,15 @@ public class ForumOftenListAdapter extends RecyclerView.Adapter<ForumOftenListAd
     public ForumOftenViewHodler onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_fragment_oftentopic, parent, false);
         ForumOftenViewHodler viewHodler = new ForumOftenViewHodler(view);
+
+        view.setOnClickListener(this);
+
         return viewHodler;
     }
 
     @Override
     public void onBindViewHolder(ForumOftenViewHodler holder, int position) {
+        holder.itemView.setTag(mForumList.get(position));
         // TODO: 15-11-11 绑定数据
         holder.mTvItemContentForumoften.setText(mForumList.get(position).getContent());
 
@@ -91,6 +107,14 @@ public class ForumOftenListAdapter extends RecyclerView.Adapter<ForumOftenListAd
     public int getItemCount() {
         if (mForumList == null) return 0;
         return mForumList.size();
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        if (mListener != null) {
+            mListener.onClick(v, v.getTag());
+        }
     }
 
 

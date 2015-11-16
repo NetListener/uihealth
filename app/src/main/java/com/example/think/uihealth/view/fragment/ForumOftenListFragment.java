@@ -1,6 +1,8 @@
 package com.example.think.uihealth.view.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,6 +15,7 @@ import android.widget.LinearLayout;
 
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.model.bean.Forum;
+import com.example.think.uihealth.view.activity.ForumContentActivity;
 import com.example.think.uihealth.view.adapter.ForumOftenListAdapter;
 import com.kermit.exutils.utils.ExUtils;
 
@@ -28,6 +31,7 @@ import cn.bmob.v3.listener.FindListener;
  */
 public class ForumOftenListFragment extends Fragment {
 
+    public static final String TAG = "ForumOftenListFragment";
 
     private static ForumOftenListFragment fragment;
     @Bind(R.id.recycler_fragment_forumoften)
@@ -76,6 +80,17 @@ public class ForumOftenListFragment extends Fragment {
             @Override
             public void onRefresh() {
                 fetchData();
+            }
+        });
+
+        mAdapter.setOnItemClickListener(new ForumOftenListAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onClick(View v, Object obj) {
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("forum", (Forum) obj);
+                Intent intent = new Intent(getContext(), ForumContentActivity.class);
+                intent.putExtra(TAG, bundle);
+                startActivity(intent);
             }
         });
     }

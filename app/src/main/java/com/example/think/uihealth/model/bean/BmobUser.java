@@ -1,13 +1,16 @@
 package com.example.think.uihealth.model.bean;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
  * Created by Zane on 2015/10/12.
  * Bmob的存储内容表
  */
-public class BmobUser extends cn.bmob.v3.BmobUser {
+public class BmobUser extends cn.bmob.v3.BmobUser implements Parcelable {
 
     private String nickName;
     private String userPhoto;
@@ -63,4 +66,41 @@ public class BmobUser extends cn.bmob.v3.BmobUser {
     public void setFollowing(int following) {
         Following = following;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.nickName);
+        dest.writeString(this.userPhoto);
+        dest.writeInt(this.Followers);
+        dest.writeInt(this.Following);
+        dest.writeString(this.gender);
+        dest.writeStringList(this.often);
+    }
+
+    public BmobUser() {
+    }
+
+    protected BmobUser(Parcel in) {
+        this.nickName = in.readString();
+        this.userPhoto = in.readString();
+        this.Followers = in.readInt();
+        this.Following = in.readInt();
+        this.gender = in.readString();
+        this.often = in.createStringArrayList();
+    }
+
+    public static final Parcelable.Creator<BmobUser> CREATOR = new Parcelable.Creator<BmobUser>() {
+        public BmobUser createFromParcel(Parcel source) {
+            return new BmobUser(source);
+        }
+
+        public BmobUser[] newArray(int size) {
+            return new BmobUser[size];
+        }
+    };
 }

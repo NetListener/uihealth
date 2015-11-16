@@ -7,24 +7,24 @@
     android:background="@color/white"
     >
 
-    <TextView
-        android:id="@+id/good"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="50dp"
-        android:text="赞"
-        android:textColor="@color/black"
-        android:gravity="center"
-        />
-    <TextView
-        android:id="@+id/bad"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="50dp"
-        android:text="踩"
-        android:textColor="@color/black"
-        android:gravity="center"
-        />
+    <!--<TextView-->
+        <!--android:id="@+id/good"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:text="赞"-->
+        <!--android:textColor="@color/black"-->
+        <!--android:gravity="center"-->
+        <!--/>-->
+    <!--<TextView-->
+        <!--android:id="@+id/bad"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:text="踩"-->
+        <!--android:textColor="@color/black"-->
+        <!--android:gravity="center"-->
+        <!--/>-->
     <TextView
         android:id="@+id/comment"
         android:layout_width="0dp"
