@@ -139,6 +139,12 @@ public class ForumContentActivity extends AppCompatActivity {
                 Comment comment = new Comment();
                 comment.setAuthor(BmobUser.getCurrentUser(ForumContentActivity.this, BmobUser.class));
                 comment.setForum(mForum);
+
+
+                int temp = mForum.getCommentCount()+1;
+                mForum.setCommentCount(temp);
+                mForum.update(ForumContentActivity.this);
+
                 comment.setTime(ExUtils.getTime());
                 comment.setContent(content);
                 comment.save(ForumContentActivity.this, new SaveListener() {
