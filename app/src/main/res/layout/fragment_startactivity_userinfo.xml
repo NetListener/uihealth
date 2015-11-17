@@ -132,12 +132,19 @@
         android:id="@+id/view2"
         android:layout_below="@id/layout1"/>
 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"
+        android:id="@+id/view4"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/layout1"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:id="@+id/layout_fragment_checkforum"
         android:background="@drawable/selector"
-        android:layout_below="@id/view2"
+        android:layout_below="@id/view4"
         >
         <ImageView
             android:layout_width="30dp"
