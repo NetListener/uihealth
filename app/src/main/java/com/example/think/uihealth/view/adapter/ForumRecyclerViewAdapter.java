@@ -22,10 +22,21 @@ import butterknife.ButterKnife;
 /**
  * Created by kermit on 15-11-11.
  */
-public class ForumRecyclerViewAdapter extends RecyclerView.Adapter<ForumRecyclerViewAdapter.ForumViewHoler> {
+public class ForumRecyclerViewAdapter extends RecyclerView.Adapter<ForumRecyclerViewAdapter.ForumViewHoler> implements
+        View.OnClickListener{
 
     private Context mContext;
     private List<Forum> mForumList;
+
+    private OnRecyclerViewItemClickListener mListener;
+
+    public interface OnRecyclerViewItemClickListener{
+        void onClick(View v, Object obj);
+    }
+
+    public void setOnItemClickListener(OnRecyclerViewItemClickListener onItemClickListener){
+        this.mListener = onItemClickListener;
+    }
 
 
     public ForumRecyclerViewAdapter(Context context, List<Forum> list) {
@@ -37,11 +48,17 @@ public class ForumRecyclerViewAdapter extends RecyclerView.Adapter<ForumRecycler
     public ForumViewHoler onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_fragment_topic, parent, false);
         ForumViewHoler viewHoler = new ForumViewHoler(view);
+
+        view.setOnClickListener(this);
+
         return viewHoler;
     }
 
     @Override
     public void onBindViewHolder(ForumViewHoler holder, int position) {
+
+        holder.itemView.setTag(mForumList.get(position));
+
         holder.mTvItemForum.setText(mForumList.get(position).getContent());
         holder.mTvItemForumTitle.setText(mForumList.get(position).getTitle());
 
@@ -106,6 +123,11 @@ public class ForumRecyclerViewAdapter extends RecyclerView.Adapter<ForumRecycler
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        mListener.onClick(v, v.getTag());
     }
 
 }

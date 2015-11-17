@@ -18,6 +18,7 @@ import com.example.think.uihealth.model.bean.Comment;
 import com.example.think.uihealth.model.bean.Forum;
 import com.example.think.uihealth.view.adapter.ForumContentAdapter;
 import com.example.think.uihealth.view.fragment.ForumOftenListFragment;
+import com.example.think.uihealth.view.fragment.ForumTopicFragment;
 import com.kermit.exutils.utils.ExUtils;
 
 import java.util.List;
@@ -25,6 +26,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BmobPointer;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 
@@ -63,10 +65,15 @@ public class ForumContentActivity extends AppCompatActivity {
         if (getIntent() != null) {
             Intent intent = getIntent();
             if (intent.getBundleExtra(ForumOftenListFragment.TAG) != null) {
-                mForum = intent.getBundleExtra(ForumOftenListFragment.TAG).getParcelable("forum");
-            } else if (intent.getExtras().get("") != null) {
-
+                mForum = (Forum) intent.getBundleExtra(ForumOftenListFragment.TAG).getSerializable("forum");
+            } else if (intent.getBundleExtra(ForumTopicFragment.TAG) != null) {
+                mForum = (Forum) intent.getBundleExtra(ForumTopicFragment.TAG).getSerializable("forum");
             }
+        }
+
+        if (mForum == null){
+            ExUtils.Toast("asdfasdf");
+            return;
         }
 
         mTvActivityTitle.setText(mForum.getTitle());
@@ -134,7 +141,7 @@ public class ForumContentActivity extends AppCompatActivity {
                 content = getComment();
                 Comment comment = new Comment();
                 comment.setAuthor(BmobUser.getCurrentUser(ForumContentActivity.this, BmobUser.class));
-                comment.setForumId(mForum.getObjectId());
+                comment.setForum(mForum);
                 comment.setTime(ExUtils.getTime());
                 comment.setContent(content);
                 comment.save(ForumContentActivity.this, new SaveListener() {
@@ -156,7 +163,31 @@ public class ForumContentActivity extends AppCompatActivity {
 
 
     private void LoadMore() {
-        fetchData();
+
+        BmobQuery<Comment> query = new BmobQuery<>();
+
+        query.addWhereEqualTo("mForum", new BmobPointer(mForum));
+        query.order("-time");
+
+        query.setLimit(3);
+        query.setSkip(page * 3);
+        query.include("commentAuthor");
+
+        query.findObjects(this, new FindListener<Comment>() {
+            @Override
+            public void onSuccess(List<Comment> list) {
+                if (mAdapter.addComments(list)) {
+                    mAdapter.notifyDataSetChanged();
+                }
+                mSwipeActivityForumcontent.setRefreshing(false);
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                mSwipeActivityForumcontent.setRefreshing(false);
+            }
+        });
+
         page++;
     }
 
@@ -164,11 +195,10 @@ public class ForumContentActivity extends AppCompatActivity {
     // TODO: 15-11-11 加载更多
     private void fetchData() {
         BmobQuery<Comment> query = new BmobQuery<>();
-        query.addWhereEqualTo("mForum", mForum.getObjectId());
 
-        query.setLimit(10);
-        query.setSkip((page - 1) * 10);
+        query.addWhereEqualTo("mForum", new BmobPointer(mForum));
         query.order("-time");
+        query.include("commentAuthor");
 
         query.findObjects(this, new FindListener<Comment>() {
             @Override
