@@ -21,7 +21,6 @@ import com.example.think.uihealth.R;
 import com.example.think.uihealth.app.App;
 import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.util.GetHttpImageView;
-import com.example.think.uihealth.moduel.forum.userinfo.ChangeInfoActivity;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.kermit.exutils.utils.ExUtils;
 
@@ -45,6 +44,16 @@ public class MyUserInfoFragment extends Fragment {
     RelativeLayout layoutChangeuserInfo;
     @Bind(R.id.progressbar_userinfofragment)
     ProgressBarCircularIndeterminate progressbarUserinfofragment;
+    @Bind(R.id.textview_fragment_followingnumber)
+    TextView mFollowingnumber;
+    @Bind(R.id.layout_fragment_checkfollowing)
+    RelativeLayout layoutFragmentCheckfollowing;
+    @Bind(R.id.textview_fragment_followernumber)
+    TextView textviewFragmentFollowernumber;
+    @Bind(R.id.layout_fragment_checkfollower)
+    RelativeLayout layoutFragmentCheckfollower;
+    @Bind(R.id.layout_fragment_checkforum)
+    RelativeLayout layoutFragmentCheckforum;
 
     private String nickName;
     private String imageUrl;
@@ -57,11 +66,11 @@ public class MyUserInfoFragment extends Fragment {
     public static final String NICKNAME = "NICKNAME";
     public static final String IMAGEURL = "IMAGEURL";
 
-    Handler handler = new Handler(){
+    Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case 1:
                     mImageviewFragmentUserPhoto.setImageBitmap(changeBitmap);
             }
@@ -88,6 +97,7 @@ public class MyUserInfoFragment extends Fragment {
                 if (!list.equals(null)) {
                     nickName = list.get(0).getNickName();
                     imageUrl = list.get(0).getUserPhoto();
+
                     mTextviewFragmentNickname.setText(nickName);
                     if (imageUrl != null) {
                         new Thread(new Runnable() {
@@ -163,6 +173,7 @@ public class MyUserInfoFragment extends Fragment {
                 }
                 progressbarUserinfofragment.setVisibility(View.INVISIBLE);
             }
+
             @Override
             public void onError(int i, String s) {
                 ExUtils.ToastLong(s);
