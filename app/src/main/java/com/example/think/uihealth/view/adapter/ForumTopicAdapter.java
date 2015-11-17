@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.model.bean.Forum;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.kermit.exutils.utils.ExUtils;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ import butterknife.ButterKnife;
 /**
  * Created by kermit on 15-11-11.
  */
-public class ForumRecyclerViewAdapter extends RecyclerView.Adapter<ForumRecyclerViewAdapter.ForumViewHoler> implements
+public class ForumTopicAdapter extends RecyclerView.Adapter<ForumTopicAdapter.ForumViewHoler> implements
         View.OnClickListener{
 
     private Context mContext;
@@ -39,7 +38,7 @@ public class ForumRecyclerViewAdapter extends RecyclerView.Adapter<ForumRecycler
     }
 
 
-    public ForumRecyclerViewAdapter(Context context, List<Forum> list) {
+    public ForumTopicAdapter(Context context, List<Forum> list) {
         this.mContext = context;
         mForumList = list;
     }

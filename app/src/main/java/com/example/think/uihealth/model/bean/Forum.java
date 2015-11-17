@@ -18,6 +18,10 @@ public class Forum extends BmobObject implements Serializable {
     private List<String> pic;
     private int commentCount;
 
+    public Forum(){
+        commentCount = 0;
+    }
+
     public String getTag() {
         return tag;
     }

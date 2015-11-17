@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.think.uihealth.R;
-import com.example.think.uihealth.model.bean.Forum;
+import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -25,8 +25,9 @@ public class ForumFragment extends Fragment {
     TextView mBtnForumTooften;
 
     private static ForumFragment fragment;
-    public static ForumFragment newInstance(){
-        if (fragment == null){
+
+    public static ForumFragment newInstance() {
+        if (fragment == null) {
             fragment = new ForumFragment();
         }
         return fragment;
@@ -66,6 +67,7 @@ public class ForumFragment extends Fragment {
                         .commit();
             }
         });
+
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.forum_container, ForumTopicFragment.newInstance())

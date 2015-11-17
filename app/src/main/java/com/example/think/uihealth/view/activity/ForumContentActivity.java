@@ -19,6 +19,8 @@ import com.example.think.uihealth.model.bean.Forum;
 import com.example.think.uihealth.view.adapter.ForumContentAdapter;
 import com.example.think.uihealth.view.fragment.ForumOftenListFragment;
 import com.example.think.uihealth.view.fragment.ForumTopicFragment;
+import com.example.think.uihealth.widget.DividerItemDecoration;
+import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.kermit.exutils.utils.ExUtils;
 
 import java.util.List;
@@ -29,6 +31,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobPointer;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 /**
  * Created by kermit on 15-11-11.
@@ -71,7 +74,7 @@ public class ForumContentActivity extends AppCompatActivity {
             }
         }
 
-        if (mForum == null){
+        if (mForum == null) {
             ExUtils.Toast("asdfasdf");
             return;
         }
@@ -93,7 +96,7 @@ public class ForumContentActivity extends AppCompatActivity {
         fetchData();
     }
 
-    private String getComment(){
+    private String getComment() {
         return mEdActivityWritecoment.getText().toString().trim();
     }
 
@@ -106,6 +109,7 @@ public class ForumContentActivity extends AppCompatActivity {
         mRecyclerActivityForumcontent.setHasFixedSize(true);
         mRecyclerActivityForumcontent.setLayoutManager(mLayoutManager);
         mRecyclerActivityForumcontent.setAdapter(mAdapter);
+        mRecyclerActivityForumcontent.addItemDecoration(new DividerItemDecoration(ForumContentActivity.this, DividerItemDecoration.VERTICAL_LIST));
 
 
         mRecyclerActivityForumcontent.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -144,6 +148,11 @@ public class ForumContentActivity extends AppCompatActivity {
                 comment.setForum(mForum);
                 comment.setTime(ExUtils.getTime());
                 comment.setContent(content);
+
+                int temp = mForum.getCommentCount()+1;
+                mForum.setCommentCount(temp);
+                mForum.update(ForumContentActivity.this);
+
                 comment.save(ForumContentActivity.this, new SaveListener() {
                     @Override
                     public void onSuccess() {

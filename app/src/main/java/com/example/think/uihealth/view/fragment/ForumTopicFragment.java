@@ -14,7 +14,8 @@ import android.view.ViewGroup;
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.model.bean.Forum;
 import com.example.think.uihealth.view.activity.ForumContentActivity;
-import com.example.think.uihealth.view.adapter.ForumRecyclerViewAdapter;
+import com.example.think.uihealth.view.adapter.ForumTopicAdapter;
+import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ import cn.bmob.v3.listener.FindListener;
 /**
  * Created by kermit on 15-11-13.
  */
-public class ForumTopicFragment extends Fragment{
+public class ForumTopicFragment extends Fragment {
 
     public static final String TAG = "ForumTopicFragment";
 
@@ -35,13 +36,15 @@ public class ForumTopicFragment extends Fragment{
     RecyclerView mRecyclerFragmentForum;
     @Bind(R.id.swipe_fragment_forumtopic)
     SwipeRefreshLayout mSwipeFragmentForum;
+    @Bind(R.id.progressbar_forumtopic)
+    ProgressBarCircularIndeterminate mProgressbarChanginfofragment;
 
     private List<Forum> mForumList;
-    private ForumRecyclerViewAdapter mAdapter;
+    private ForumTopicAdapter mAdapter;
     private static ForumTopicFragment fragment;
 
-    public static ForumTopicFragment newInstance(){
-        if (fragment == null){
+    public static ForumTopicFragment newInstance() {
+        if (fragment == null) {
             fragment = new ForumTopicFragment();
         }
         return fragment;
@@ -65,15 +68,15 @@ public class ForumTopicFragment extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mForumList = new ArrayList<>();
-        mAdapter = new ForumRecyclerViewAdapter(getActivity(), mForumList);
+        mAdapter = new ForumTopicAdapter(getActivity(), mForumList);
         mRecyclerFragmentForum.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerFragmentForum.setAdapter(mAdapter);
 
-        mAdapter.setOnItemClickListener(new ForumRecyclerViewAdapter.OnRecyclerViewItemClickListener() {
+        mAdapter.setOnItemClickListener(new ForumTopicAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onClick(View v, Object obj) {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("forum", (Forum)obj);
+                bundle.putSerializable("forum", (Forum) obj);
                 Intent intent = new Intent(getContext(), ForumContentActivity.class);
                 intent.putExtra(TAG, bundle);
                 startActivity(intent);
@@ -92,12 +95,14 @@ public class ForumTopicFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
+        mProgressbarChanginfofragment.setVisibility(View.VISIBLE);
         fetchData();
         page = 1;
     }
 
     private static int page;
-    private void fetchData(){
+
+    private void fetchData() {
         // TODO: 15-11-11 get forum data
         BmobQuery<Forum> query = new BmobQuery<>();
         query.setLimit(10);
@@ -111,10 +116,12 @@ public class ForumTopicFragment extends Fragment{
                     mAdapter.notifyDataSetChanged();
                 }
                 mSwipeFragmentForum.setRefreshing(false);
+                mProgressbarChanginfofragment.setVisibility(View.INVISIBLE);
             }
+
             @Override
             public void onError(int i, String s) {
-
+                mProgressbarChanginfofragment.setVisibility(View.INVISIBLE);
             }
         });
     }
