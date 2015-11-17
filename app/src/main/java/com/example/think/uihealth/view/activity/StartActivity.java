@@ -237,6 +237,6 @@ public class StartActivity extends MaterialNavigationDrawer{
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ActivityCollector.getInstance().popActivity(this);
+//        ActivityCollector.getInstance().popActivity(this);
     }
 }

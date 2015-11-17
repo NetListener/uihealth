@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.think.uihealth" >
+          package="com.example.think.uihealth" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
@@ -43,27 +43,31 @@
         </activity>
 
         <activity android:name="com.tencent.connect.common.AssistActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:theme="@android:style/Theme.Translucent.NoTitleBar"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
             />
 
         <activity android:name=".view.activity.MoreBeforeDataActivity"
-            android:label="@string/app_name"/>
+                  android:label="@string/app_name"/>
         <activity android:name=".view.activity.BeforeDataActivity"
-            android:label="@string/app_name"/>
+                  android:label="@string/app_name"/>
         <activity android:name=".view.activity.RegisterActivity"
-            android:label="@string/app_name"/>
+                  android:label="@string/app_name"/>
 
-        <activity android:name=".view.activity.StartActivity"
-            android:label="@string/app_name" android:theme="@style/MyNavigationDrawerTheme">
+        <activity
+            android:name=".view.activity.StartActivity"
+            android:label="@string/app_name"
+            android:theme="@style/MyNavigationDrawerTheme"
+            android:screenOrientation="portrait"
+            >
 
         </activity>
         <activity android:name=".view.activity.ResultActivity"
-            android:label="@string/app_name" >
+                  android:label="@string/app_name" >
 
         </activity>
         <activity android:name=".view.activity.MainActivity"
-            android:label="@string/app_name" >
+                  android:label="@string/app_name" >
 
         </activity>
         <activity android:name=".view.activity.ChangeInfoActivity"/>
@@ -71,6 +75,7 @@
         <activity
             android:name=".view.activity.ForumContentActivity"
             android:theme="@style/ForumcontentActivityStyle"
+            android:screenOrientation="portrait"
             >
 
         </activity>
@@ -78,6 +83,7 @@
         <activity
             android:name=".view.activity.ForumOftenActivity"
             android:theme="@style/ForumcontentActivityStyle"
+            android:screenOrientation="portrait"
             >
 
         </activity>

@@ -52,6 +52,10 @@ public class ForumOftenActivity extends AppCompatActivity
         mWriteTopicFragment = WriteTopicFragment.newInstance();
         mForumOftenListFragment = ForumOftenListFragment.newInstance();
 
+        Bundle bundle = new Bundle();
+        bundle.putString("tag", tag);
+        mForumOftenListFragment.setArguments(bundle);
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.forumoften_container, mForumOftenListFragment)
@@ -68,6 +72,7 @@ public class ForumOftenActivity extends AppCompatActivity
         super.onResume();
         isInActivity = true;
     }
+
 
     @Override
     protected void onDestroy() {
@@ -88,6 +93,9 @@ public class ForumOftenActivity extends AppCompatActivity
         if (isInActivity) {
             switch (item.getItemId()) {
                 case R.id.menu_writetopic:
+                    Bundle bundle = new Bundle();
+                    bundle.putString("tag", tag);
+                    mWriteTopicFragment.setArguments(bundle);
                     getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.forumoften_container, mWriteTopicFragment)

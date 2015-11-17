@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images.Media;
+import android.support.v4.app.Fragment;
 
 import com.kermit.exutils.utils.ExUtils;
 
@@ -24,6 +25,7 @@ public class ImageProvider {
     private static final int REQUEST_CORP = 24;
 
     private Activity mActivity;
+    private Fragment mFragment;
     private File dir;
     private File tempImage;
     private OnImageSelectListener mListener;
@@ -40,11 +42,21 @@ public class ImageProvider {
         this.dir.mkdir();
     }
 
+    public ImageProvider(Fragment fragment){
+        this.mFragment = fragment;
+        this.dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        this.dir.mkdir();
+    }
+
     public void getImageFromAlbum(OnImageSelectListener listener){
         this.mListener = listener;
         Intent intent = new Intent("android.intent.action.PICK");
         intent.setDataAndType(Media.EXTERNAL_CONTENT_URI, "image/*");
-        this.mActivity.startActivityForResult(intent, REQUEST_ALBUM);
+        if (this.mActivity == null){
+            this.mFragment.startActivityForResult(intent, REQUEST_ALBUM);
+        }else {
+            this.mActivity.startActivityForResult(intent, REQUEST_ALBUM);
+        }
     }
 
     public void getImageFromCamera(OnImageSelectListener listener){
@@ -52,7 +64,11 @@ public class ImageProvider {
         this.tempImage = this.createTempImageFile();
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
         intent.putExtra("output", Uri.fromFile(this.tempImage));
-        this.mActivity.startActivityForResult(intent, REQUEST_CAMERA);
+        if (this.mActivity == null){
+            this.mFragment.startActivityForResult(intent, REQUEST_CAMERA);
+        }else {
+            this.mActivity.startActivityForResult(intent, REQUEST_CAMERA);
+        }
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data){
