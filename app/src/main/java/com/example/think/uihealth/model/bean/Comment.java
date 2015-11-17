@@ -1,31 +1,34 @@
 package com.example.think.uihealth.model.bean;
 
+
+import java.io.Serializable;
+
 import cn.bmob.v3.BmobObject;
 
 /**
  * Created by kermit on 15-11-11.
  */
-public class Comment extends BmobObject{
+public class Comment extends BmobObject implements Serializable {
 
-    private BmobUser author;
+    private BmobUser commentAuthor;
     private String content;
     private String time;
-    private String mForum;
+    private Forum mForum;
 
-    public String getForumId() {
+    public Forum getForum() {
         return mForum;
     }
 
-    public void setForumId(String forum) {
+    public void setForum(Forum forum) {
         mForum = forum;
     }
 
     public BmobUser getAuthor() {
-        return author;
+        return commentAuthor;
     }
 
     public void setAuthor(BmobUser author) {
-        this.author = author;
+        this.commentAuthor = author;
     }
 
     public String getContent() {
@@ -43,4 +46,5 @@ public class Comment extends BmobObject{
     public void setTime(String time) {
         this.time = time;
     }
+
 }

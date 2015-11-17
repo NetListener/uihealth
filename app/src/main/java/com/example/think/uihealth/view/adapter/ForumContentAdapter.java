@@ -15,6 +15,7 @@ import com.example.think.uihealth.model.bean.Forum;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.kermit.exutils.utils.ExUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -55,6 +56,14 @@ public class ForumContentAdapter extends RecyclerView.Adapter {
     public boolean setComments(List<Comment> commentList) {
         if (commentList != null) {
             this.commentList = commentList;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean addComments(List<Comment> commentList){
+        if(commentList != null){
+            this.commentList.addAll(commentList);
             return true;
         }
         return false;

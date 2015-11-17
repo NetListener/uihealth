@@ -87,7 +87,7 @@ public class ForumOftenListFragment extends Fragment {
             @Override
             public void onClick(View v, Object obj) {
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("forum", (Forum) obj);
+                bundle.putSerializable("forum", (Forum) obj);
                 Intent intent = new Intent(getContext(), ForumContentActivity.class);
                 intent.putExtra(TAG, bundle);
                 startActivity(intent);
