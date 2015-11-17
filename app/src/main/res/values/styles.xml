@@ -76,6 +76,7 @@
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">#33BB77</item>
         <item name="drawerArrowStyle">@style/AppTheme.DrawerArrowToggle</item>
+        <item name="android:listDivider">@drawable/item_divider</item>
     </style>
 
 </resources>

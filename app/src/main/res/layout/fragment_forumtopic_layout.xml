@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
-    android:id="@+id/swipe_fragment_forumtopic"
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_fragment_forumtopic"
+    android:background="#EEEEEE"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_fragment_forumtopic"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-    </android.support.v7.widget.RecyclerView>
 
-</android.support.v4.widget.SwipeRefreshLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_fragment_forumtopic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <com.gc.materialdesign.views.ProgressBarCircularIndeterminate
+        android:id="@+id/progressbar_forumtopic"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="#1E88E5"
+        android:visibility="invisible"
+        android:layout_centerInParent="true"
+        />
+
+</RelativeLayout>
