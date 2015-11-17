@@ -70,7 +70,6 @@
             android:id="@+id/textview_changeinfofragment_username"
             android:layout_centerVertical="true"
             android:textSize="24sp"
-            android:text="徐志"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/text2"
             />

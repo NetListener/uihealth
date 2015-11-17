@@ -1,11 +1,11 @@
-package com.example.think.uihealth.view.activity;
+package com.example.think.uihealth.moduel.forum.homepage;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import com.example.think.uihealth.R;
+import com.example.think.uihealth.moduel.forum.homepage.BeforeDataActivity;
 import com.example.think.uihealth.widget.CombineTextImageviewView;
 import com.kermit.exutils.utils.ActivityCollector;
 

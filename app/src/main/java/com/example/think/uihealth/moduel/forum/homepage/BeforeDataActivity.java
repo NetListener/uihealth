@@ -1,4 +1,4 @@
-package com.example.think.uihealth.view.activity;
+package com.example.think.uihealth.moduel.forum.homepage;
 
 import android.content.Intent;
 import android.os.Bundle;

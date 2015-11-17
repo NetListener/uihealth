@@ -1,4 +1,4 @@
-package com.example.think.uihealth.view.activity;
+package com.example.think.uihealth.moduel.forum.homepage;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -18,9 +18,9 @@ import com.example.think.uihealth.R;
 import com.example.think.uihealth.app.App;
 import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.util.GetHttpImageView;
-import com.example.think.uihealth.view.fragment.ForumFragment;
-import com.example.think.uihealth.view.fragment.HomePageFragment;
-import com.example.think.uihealth.view.fragment.MyUserInfoFragment;
+import com.example.think.uihealth.moduel.forum.ForumFragment;
+import com.example.think.uihealth.view.activity.LoginActivity;
+import com.example.think.uihealth.moduel.forum.userinfo.MyUserInfoFragment;
 import com.kermit.exutils.utils.ActivityCollector;
 import com.kermit.exutils.utils.ExUtils;
 

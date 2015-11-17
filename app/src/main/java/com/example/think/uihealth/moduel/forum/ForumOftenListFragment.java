@@ -1,4 +1,4 @@
-package com.example.think.uihealth.view.fragment;
+package com.example.think.uihealth.moduel.forum;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.model.bean.Forum;
-import com.example.think.uihealth.view.activity.ForumContentActivity;
-import com.example.think.uihealth.view.adapter.ForumRecyclerViewAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -25,24 +22,25 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 
 /**
- * Created by kermit on 15-11-13.
+ * Created by kermit on 15-11-15.
  */
-public class ForumTopicFragment extends Fragment{
+public class ForumOftenListFragment extends Fragment {
 
-    public static final String TAG = "ForumTopicFragment";
+    public static final String TAG = "ForumOftenListFragment";
 
-    @Bind(R.id.recycler_fragment_forumtopic)
-    RecyclerView mRecyclerFragmentForum;
-    @Bind(R.id.swipe_fragment_forumtopic)
-    SwipeRefreshLayout mSwipeFragmentForum;
+    private static ForumOftenListFragment fragment;
+    @Bind(R.id.recycler_fragment_forumoften)
+    RecyclerView mRecyclerFragmentForumoften;
+    @Bind(R.id.swipe_fragment_forumoften)
+    SwipeRefreshLayout mSwipeFragmentForumoften;
 
-    private List<Forum> mForumList;
-    private ForumRecyclerViewAdapter mAdapter;
-    private static ForumTopicFragment fragment;
+    private LinearLayoutManager mLinearLayoutManager;
+    private ForumOftenListAdapter mAdapter;
+    private String tag;
 
-    public static ForumTopicFragment newInstance(){
-        if (fragment == null){
-            fragment = new ForumTopicFragment();
+    public static ForumOftenListFragment newInstance() {
+        if (fragment == null) {
+            fragment = new ForumOftenListFragment();
         }
         return fragment;
     }
@@ -50,67 +48,62 @@ public class ForumTopicFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mLinearLayoutManager = new LinearLayoutManager(getContext());
+        mAdapter = new ForumOftenListAdapter(getContext());
+        tag = getArguments().getString("tag");
     }
-
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_forumtopic_layout, container, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_forumoftenlist_layout, container, false);
         ButterKnife.bind(this, view);
         return view;
-    }
-
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        mForumList = new ArrayList<>();
-        mAdapter = new ForumRecyclerViewAdapter(getActivity(), mForumList);
-        mRecyclerFragmentForum.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecyclerFragmentForum.setAdapter(mAdapter);
-
-        mAdapter.setOnItemClickListener(new ForumRecyclerViewAdapter.OnRecyclerViewItemClickListener() {
-            @Override
-            public void onClick(View v, Object obj) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("forum", (Forum)obj);
-                Intent intent = new Intent(getContext(), ForumContentActivity.class);
-                intent.putExtra(TAG, bundle);
-                startActivity(intent);
-            }
-        });
-
-        mSwipeFragmentForum.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                fetchData();
-                page = 1;
-            }
-        });
     }
 
     @Override
     public void onResume() {
         super.onResume();
         fetchData();
-        page = 1;
     }
 
-    private static int page;
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        mRecyclerFragmentForumoften.setLayoutManager(mLinearLayoutManager);
+        mRecyclerFragmentForumoften.setAdapter(mAdapter);
+        mSwipeFragmentForumoften.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchData();
+            }
+        });
+
+        mAdapter.setOnItemClickListener(new ForumOftenListAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onClick(View v, Object obj) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("forum", (Forum) obj);
+                Intent intent = new Intent(getContext(), ForumContentActivity.class);
+                intent.putExtra(TAG, bundle);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private int page = 1;
     private void fetchData(){
-        // TODO: 15-11-11 get forum data
         BmobQuery<Forum> query = new BmobQuery<>();
         query.setLimit(10);
         query.setSkip((page - 1) * 10);
+        query.addWhereEqualTo("tag", tag);
         query.order("-time");
-        query.include("author");
         query.findObjects(getContext(), new FindListener<Forum>() {
             @Override
             public void onSuccess(List<Forum> list) {
                 if (mAdapter.setData(list)) {
                     mAdapter.notifyDataSetChanged();
                 }
-                mSwipeFragmentForum.setRefreshing(false);
+                mSwipeFragmentForumoften.setRefreshing(false);
             }
             @Override
             public void onError(int i, String s) {

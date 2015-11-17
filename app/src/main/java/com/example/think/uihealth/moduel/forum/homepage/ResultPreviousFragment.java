@@ -1,4 +1,4 @@
-package com.example.think.uihealth.view.fragment;
+package com.example.think.uihealth.moduel.forum.homepage;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import com.example.think.uihealth.R;
 import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.model.bean.BmobUserData;
 import com.example.think.uihealth.model.bean.Human;
+import com.example.think.uihealth.moduel.forum.homepage.ResultCompareFragment;
 import com.example.think.uihealth.strategy.Strategy;
 import com.example.think.uihealth.strategy.impl.CalculateCHDStrategy;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;

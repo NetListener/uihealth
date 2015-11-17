@@ -1,4 +1,4 @@
-package com.example.think.uihealth.view.fragment;
+package com.example.think.uihealth.moduel.forum;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +16,6 @@ import android.widget.ImageView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.think.uihealth.R;
-import com.example.think.uihealth.model.RemoteFileModel;
 import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.model.bean.Forum;
 import com.example.think.uihealth.util.ImageProvider;

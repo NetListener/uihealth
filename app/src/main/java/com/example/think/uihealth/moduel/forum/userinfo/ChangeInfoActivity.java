@@ -1,4 +1,4 @@
-package com.example.think.uihealth.view.activity;
+package com.example.think.uihealth.moduel.forum.userinfo;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -7,9 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.example.think.uihealth.R;
-import com.example.think.uihealth.view.fragment.ChangeInfoFragemnt;
-import com.example.think.uihealth.view.fragment.ChangeNicknameFragment;
-import com.example.think.uihealth.view.fragment.MyUserInfoFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

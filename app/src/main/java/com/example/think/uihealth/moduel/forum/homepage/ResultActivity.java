@@ -1,8 +1,6 @@
-package com.example.think.uihealth.view.activity;
+package com.example.think.uihealth.moduel.forum.homepage;
 
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -18,8 +16,7 @@ import android.view.View;
 
 import com.example.think.uihealth.R;
 
-import com.example.think.uihealth.view.fragment.ResultCompareFragment;
-import com.example.think.uihealth.view.fragment.ResultPreviousFragment;
+import com.example.think.uihealth.view.activity.LoginActivity;
 
 import com.kermit.exutils.utils.ActivityCollector;
 

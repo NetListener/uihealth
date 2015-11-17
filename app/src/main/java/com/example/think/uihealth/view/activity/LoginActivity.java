@@ -19,6 +19,7 @@ import com.example.think.uihealth.R;
 import com.example.think.uihealth.app.App;
 import com.example.think.uihealth.config.QQConstant;
 import com.example.think.uihealth.model.bean.BmobUser;
+import com.example.think.uihealth.moduel.forum.homepage.StartActivity;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.kermit.exutils.utils.ActivityCollector;

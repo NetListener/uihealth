@@ -51,7 +51,126 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1px"
-        android:background="@android:color/darker_gray"  />
+        android:background="@android:color/darker_gray"
+        android:id="@+id/view1"
+        android:layout_below="@id/layout_changeuserInfo"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:layout_below="@id/view1"
+        android:id="@+id/layout1"
+        >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector"
+            android:id="@+id/layout_fragment_checkfollowing"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关注数"
+                android:layout_centerHorizontal="true"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:layout_marginTop="20dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textview_fragment_followingnumber"
+                android:layout_centerHorizontal="true"
+                android:textSize="15dp"
+                android:text="15"
+                android:textColor="@color/black"
+                android:layout_marginTop="45dp"
+                />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector"
+            android:id="@+id/layout_fragment_checkfollower"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="粉丝数"
+                android:layout_centerHorizontal="true"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:layout_marginTop="20dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textview_fragment_followernumber"
+                android:layout_centerHorizontal="true"
+                android:textSize="15dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:layout_marginTop="45dp"
+                />
+
+        </RelativeLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"
+        android:id="@+id/view2"
+        android:layout_below="@id/layout1"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/layout_fragment_checkforum"
+        android:background="@drawable/selector"
+        android:layout_below="@id/view2"
+        >
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/forum"
+            android:id="@+id/image_forum"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的博客"
+            android:textColor="@color/black"
+            android:layout_toRightOf="@id/image_forum"
+            android:layout_centerVertical="true"
+            android:id="@+id/text_forum"
+            />
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/arrowsmall"
+            android:layout_toRightOf="@id/text_forum"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="250dp"
+            />
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"
+        android:id="@+id/view3"
+        android:layout_below="@id/layout_fragment_checkforum"/>
 
     <com.gc.materialdesign.views.ProgressBarCircularIndeterminate
         android:id="@+id/progressbar_userinfofragment"

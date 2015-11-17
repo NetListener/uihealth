@@ -1,4 +1,4 @@
-package com.example.think.uihealth.view.fragment;
+package com.example.think.uihealth.moduel.forum;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

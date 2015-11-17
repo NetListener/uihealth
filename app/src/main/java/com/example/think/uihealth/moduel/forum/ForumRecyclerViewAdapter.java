@@ -1,4 +1,4 @@
-package com.example.think.uihealth.view.adapter;
+package com.example.think.uihealth.moduel.forum;
 
 import android.content.Context;
 import android.net.Uri;
@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.model.bean.Forum;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.kermit.exutils.utils.ExUtils;
 
 import java.util.List;
 

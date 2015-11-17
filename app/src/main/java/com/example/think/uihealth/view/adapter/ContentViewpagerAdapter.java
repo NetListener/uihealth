@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.think.uihealth.view.fragment.ContentItemFragment;
+import com.example.think.uihealth.moduel.forum.homepage.ContentItemFragment;
 
 import java.util.List;
 

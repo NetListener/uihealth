@@ -43,4 +43,5 @@ dependencies {
     compile files('libs/android-support-v4.jar')
     compile files('libs/mta-sdk-1.6.2.jar')
     compile files('libs/open_sdk_r5276_lite.jar')
+    compile 'com.facebook.fresco:fresco:0.8.0+'
 }

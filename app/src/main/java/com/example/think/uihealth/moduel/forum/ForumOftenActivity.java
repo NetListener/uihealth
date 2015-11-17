@@ -1,4 +1,4 @@
-package com.example.think.uihealth.view.activity;
+package com.example.think.uihealth.moduel.forum;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.think.uihealth.R;
-import com.example.think.uihealth.view.fragment.ForumOftenListFragment;
-import com.example.think.uihealth.view.fragment.WriteTopicFragment;
+import com.example.think.uihealth.moduel.forum.ForumOftenListFragment;
+import com.example.think.uihealth.moduel.forum.WriteTopicFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

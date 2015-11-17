@@ -1,4 +1,4 @@
-package com.example.think.uihealth.view.fragment;
+package com.example.think.uihealth.moduel.forum.homepage;
 
 import android.content.Context;
 import android.os.Bundle;

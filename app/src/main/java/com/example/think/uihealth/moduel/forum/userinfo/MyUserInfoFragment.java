@@ -1,4 +1,4 @@
-package com.example.think.uihealth.view.fragment;
+package com.example.think.uihealth.moduel.forum.userinfo;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +21,7 @@ import com.example.think.uihealth.R;
 import com.example.think.uihealth.app.App;
 import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.util.GetHttpImageView;
-import com.example.think.uihealth.view.activity.ChangeInfoActivity;
+import com.example.think.uihealth.moduel.forum.userinfo.ChangeInfoActivity;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.kermit.exutils.utils.ExUtils;
 

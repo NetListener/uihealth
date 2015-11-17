@@ -1,4 +1,4 @@
-package com.example.think.uihealth.view.fragment;
+package com.example.think.uihealth.moduel.forum.homepage;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,9 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.think.uihealth.R;
-import com.example.think.uihealth.view.activity.BeforeDataActivity;
 import com.example.think.uihealth.view.activity.LoginActivity;
-import com.example.think.uihealth.view.activity.MainActivity;
 import com.gc.materialdesign.views.ButtonFlat;
 
 import butterknife.Bind;

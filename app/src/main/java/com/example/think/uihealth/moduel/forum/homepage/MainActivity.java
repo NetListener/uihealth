@@ -1,23 +1,17 @@
-package com.example.think.uihealth.view.activity;
+package com.example.think.uihealth.moduel.forum.homepage;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.example.think.uihealth.R;
-import com.example.think.uihealth.strategy.impl.CalculateCHDStrategy;
-import com.example.think.uihealth.view.fragment.ContentFragment;
+import com.example.think.uihealth.view.activity.LoginActivity;
 import com.kermit.exutils.utils.ActivityCollector;
-import com.kermit.exutils.utils.ExUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

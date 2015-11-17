@@ -1,4 +1,4 @@
-package com.example.think.uihealth.view.adapter;
+package com.example.think.uihealth.moduel.forum;
 
 import android.content.Context;
 import android.net.Uri;

@@ -1,4 +1,4 @@
-package com.example.think.uihealth.view.fragment;
+package com.example.think.uihealth.moduel.forum;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.think.uihealth.R;
-import com.example.think.uihealth.model.bean.Forum;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

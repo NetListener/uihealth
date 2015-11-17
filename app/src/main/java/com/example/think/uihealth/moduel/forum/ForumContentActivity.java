@@ -1,4 +1,4 @@
-package com.example.think.uihealth.view.activity;
+package com.example.think.uihealth.moduel.forum;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,9 +16,6 @@ import com.example.think.uihealth.R;
 import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.model.bean.Comment;
 import com.example.think.uihealth.model.bean.Forum;
-import com.example.think.uihealth.view.adapter.ForumContentAdapter;
-import com.example.think.uihealth.view.fragment.ForumOftenListFragment;
-import com.example.think.uihealth.view.fragment.ForumTopicFragment;
 import com.kermit.exutils.utils.ExUtils;
 
 import java.util.List;
