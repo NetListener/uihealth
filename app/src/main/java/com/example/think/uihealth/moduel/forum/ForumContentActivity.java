@@ -16,6 +16,7 @@ import com.example.think.uihealth.R;
 import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.model.bean.Comment;
 import com.example.think.uihealth.model.bean.Forum;
+import com.example.think.uihealth.widget.DividerItemDecoration;
 import com.kermit.exutils.utils.ExUtils;
 
 import java.util.List;
@@ -103,6 +104,7 @@ public class ForumContentActivity extends AppCompatActivity {
         mRecyclerActivityForumcontent.setHasFixedSize(true);
         mRecyclerActivityForumcontent.setLayoutManager(mLayoutManager);
         mRecyclerActivityForumcontent.setAdapter(mAdapter);
+        mRecyclerActivityForumcontent.addItemDecoration(new DividerItemDecoration(ForumContentActivity.this, DividerItemDecoration.VERTICAL_LIST));
 
 
         mRecyclerActivityForumcontent.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -139,6 +141,12 @@ public class ForumContentActivity extends AppCompatActivity {
                 Comment comment = new Comment();
                 comment.setAuthor(BmobUser.getCurrentUser(ForumContentActivity.this, BmobUser.class));
                 comment.setForum(mForum);
+
+
+                int temp = mForum.getCommentCount()+1;
+                mForum.setCommentCount(temp);
+                mForum.update(ForumContentActivity.this);
+
                 comment.setTime(ExUtils.getTime());
                 comment.setContent(content);
                 comment.save(ForumContentActivity.this, new SaveListener() {
