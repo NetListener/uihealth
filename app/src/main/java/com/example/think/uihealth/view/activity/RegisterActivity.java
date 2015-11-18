@@ -13,7 +13,7 @@ import com.example.think.uihealth.R;
 
 import com.example.think.uihealth.model.bean.BmobUser;
 
-import com.example.think.uihealth.moduel.forum.homepage.StartActivity;
+import com.example.think.uihealth.moduel.forum.homepage.activity.StartActivity;
 
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
@@ -108,6 +108,8 @@ public class RegisterActivity extends AppCompatActivity{
                     mBmobUser.setUserPhoto("");
                     mBmobUser.setFollowers(0);
                     mBmobUser.setFollowing(0);
+                    mBmobUser.setUserFollowers(null);
+                    mBmobUser.setUserFollowings(null);
 
                     //添加注册的监听回调
                     mBmobUser.signUp(RegisterActivity.this, new SaveListener() {

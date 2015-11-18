@@ -47,33 +47,35 @@
                   android:configChanges="orientation|keyboardHidden|screenSize"
             />
 
-        <activity android:name=".moduel.forum.homepage.MoreBeforeDataActivity"
+        <activity android:name=".moduel.forum.homepage.activity.MoreBeforeDataActivity"
                   android:label="@string/app_name"/>
-        <activity android:name=".moduel.forum.homepage.BeforeDataActivity"
+        <activity android:name=".moduel.forum.homepage.activity.BeforeDataActivity"
                   android:label="@string/app_name"/>
         <activity android:name=".view.activity.RegisterActivity"
                   android:label="@string/app_name"/>
 
         <activity
-            android:name=".moduel.forum.homepage.StartActivity"
+            android:name=".moduel.forum.homepage.activity.StartActivity"
             android:label="@string/app_name"
             android:theme="@style/MyNavigationDrawerTheme"
             android:screenOrientation="portrait"
             >
 
         </activity>
-        <activity android:name=".moduel.forum.homepage.ResultActivity"
+        <activity android:name=".moduel.forum.homepage.activity.ResultActivity"
+                  android:label="@string/app_name"
+            android:theme="@style/AppTheme"
+            >
+
+        </activity>
+        <activity android:name=".moduel.forum.homepage.activity.MainActivity"
                   android:label="@string/app_name" >
 
         </activity>
-        <activity android:name=".moduel.forum.homepage.MainActivity"
-                  android:label="@string/app_name" >
-
-        </activity>
-        <activity android:name=".moduel.forum.userinfo.ChangeInfoActivity"/>
+        <activity android:name=".moduel.forum.userinfo.activity.ChangeInfoActivity"/>
 
         <activity
-            android:name=".moduel.forum.ForumContentActivity"
+            android:name=".moduel.forum.forum.activity.ForumContentActivity"
             android:theme="@style/ForumcontentActivityStyle"
             android:screenOrientation="portrait"
             >
@@ -81,9 +83,16 @@
         </activity>
 
         <activity
-            android:name=".moduel.forum.ForumOftenActivity"
+            android:name=".moduel.forum.forum.activity.ForumOftenActivity"
             android:theme="@style/ForumcontentActivityStyle"
             android:screenOrientation="portrait"
+            >
+
+        </activity>
+        <activity
+            android:name=".moduel.forum.userinfo.activity.FollowNumbersActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ForumcontentActivityStyle"
             >
 
         </activity>

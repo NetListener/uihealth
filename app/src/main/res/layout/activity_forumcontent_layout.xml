@@ -29,11 +29,13 @@
 
     </android.support.v7.widget.Toolbar>
 
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_activity_forumcontent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginBottom="40dp"
         >
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_activity_forumcontent"
@@ -75,5 +77,6 @@
             android:layout_gravity="center"
             />
     </LinearLayout>
+
 
 </RelativeLayout>
