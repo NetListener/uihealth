@@ -156,7 +156,7 @@ public class ForumContentActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess() {
                         ExUtils.Toast("评论成功！");
-                        finish();
+                        fetchData();
                     }
 
                     @Override
