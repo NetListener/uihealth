@@ -20,6 +20,8 @@ import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.kermit.exutils.utils.ActivityCollector;
 import com.kermit.exutils.utils.ExUtils;
 
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.bmob.v3.listener.SaveListener;
@@ -108,8 +110,8 @@ public class RegisterActivity extends AppCompatActivity{
                     mBmobUser.setUserPhoto("");
                     mBmobUser.setFollowers(0);
                     mBmobUser.setFollowing(0);
-                    mBmobUser.setUserFollowers(null);
-                    mBmobUser.setUserFollowings(null);
+                    mBmobUser.setUserFollowers(new ArrayList<BmobUser>());
+                    mBmobUser.setUserFollowings(new ArrayList<BmobUser>());
 
                     //添加注册的监听回调
                     mBmobUser.signUp(RegisterActivity.this, new SaveListener() {

@@ -19,9 +19,11 @@ import com.example.think.uihealth.model.bean.Forum;
 import com.example.think.uihealth.moduel.forum.forum.activity.fragment.ForumOftenListFragment;
 import com.example.think.uihealth.moduel.forum.forum.activity.fragment.ForumTopicFragment;
 import com.example.think.uihealth.moduel.forum.forum.activity.adapter.ForumContentAdapter;
+import com.example.think.uihealth.moduel.forum.otheruserinfo.OtherUserInfoActivity;
 import com.example.think.uihealth.widget.DividerItemDecoration;
 import com.kermit.exutils.utils.ExUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -52,6 +54,8 @@ public class ForumContentActivity extends AppCompatActivity {
     private ForumContentAdapter mAdapter;
     private int page = 1;
     private LinearLayoutManager mLayoutManager;
+    public static final String FROUMAUTHOR = "FORUMAUTHOR";
+    public static final String COMMENTAUTHOR = "COMMENTAUTHOR";
 
     private Forum mForum;
 
@@ -73,7 +77,7 @@ public class ForumContentActivity extends AppCompatActivity {
         }
 
         if (mForum == null){
-            ExUtils.Toast("asdfasdf");
+
             return;
         }
 
@@ -103,6 +107,15 @@ public class ForumContentActivity extends AppCompatActivity {
     private void initView() {
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new ForumContentAdapter(this, mForum);
+        // TODO: 15/11/18 把帖子用户的ID传到OTHERACTIVITY
+        mAdapter.setOnForumAuthorClickListener(new ForumContentAdapter.OnForumAuthorClickListener() {
+            @Override
+            public void OnForumAuthorClick() {
+                Intent intent = new Intent(ForumContentActivity.this, OtherUserInfoActivity.class);
+                intent.putExtra(FROUMAUTHOR, mForum.getAuthor().getObjectId());
+                startActivity(intent);
+            }
+        });
 
         mRecyclerActivityForumcontent.setHasFixedSize(true);
         mRecyclerActivityForumcontent.setLayoutManager(mLayoutManager);
@@ -183,9 +196,18 @@ public class ForumContentActivity extends AppCompatActivity {
 
         query.findObjects(this, new FindListener<Comment>() {
             @Override
-            public void onSuccess(List<Comment> list) {
+            public void onSuccess(final List<Comment> list) {
                 if (mAdapter.addComments(list)) {
                     mAdapter.notifyDataSetChanged();
+                    // TODO: 15/11/18 把用户的ID传到OTHERACTIVITY
+                    mAdapter.setOnCommentAuthorClickListener(new ForumContentAdapter.OnCommentAuthorClickListener() {
+                        @Override
+                        public void OnCommentAuthorClick(int position) {
+                            Intent intent = new Intent(ForumContentActivity.this, OtherUserInfoActivity.class);
+                            intent.putExtra(COMMENTAUTHOR, list.get(position).getAuthor().getObjectId());
+                            startActivity(intent);
+                        }
+                    });
                 }
                 mSwipeActivityForumcontent.setRefreshing(false);
             }
@@ -210,9 +232,19 @@ public class ForumContentActivity extends AppCompatActivity {
 
         query.findObjects(this, new FindListener<Comment>() {
             @Override
-            public void onSuccess(List<Comment> list) {
+            public void onSuccess(final List<Comment> list) {
                 if (mAdapter.setComments(list)) {
                     mAdapter.notifyDataSetChanged();
+                    // TODO: 15/11/18 把用户的ID传到OTHERACTIVITY
+
+                    mAdapter.setOnCommentAuthorClickListener(new ForumContentAdapter.OnCommentAuthorClickListener() {
+                        @Override
+                        public void OnCommentAuthorClick(int position) {
+                            Intent intent = new Intent(ForumContentActivity.this, OtherUserInfoActivity.class);
+                            intent.putExtra(COMMENTAUTHOR, list.get(position).getAuthor().getObjectId());
+                            startActivity(intent);
+                        }
+                    });
                 }
                 mSwipeActivityForumcontent.setRefreshing(false);
             }

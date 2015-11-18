@@ -23,6 +23,8 @@ import butterknife.ButterKnife;
 
 /**
  * Created by kermit on 15-11-11.
+ *
+ * modify by Zane on 15-11-18
  */
 public class ForumContentAdapter extends RecyclerView.Adapter {
 
@@ -33,6 +35,21 @@ public class ForumContentAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private Forum mForum;
     private List<Comment> commentList;
+    private OnForumAuthorClickListener onForumAuthorClickListener;
+    private OnCommentAuthorClickListener onCommentAuthorClickListener;
+
+    public void setOnForumAuthorClickListener(OnForumAuthorClickListener onForumAuthorClickListener){
+        this.onForumAuthorClickListener = onForumAuthorClickListener;
+    }
+    public interface OnForumAuthorClickListener{
+        void OnForumAuthorClick();
+    }
+    public void setOnCommentAuthorClickListener(OnCommentAuthorClickListener onCommentAuthorClickListener){
+        this.onCommentAuthorClickListener = onCommentAuthorClickListener;
+    }
+    public interface OnCommentAuthorClickListener{
+        void OnCommentAuthorClick(int position);
+    }
 
     public ForumContentAdapter(Context context, Forum contents) {
         mContext = context;
@@ -96,10 +113,18 @@ public class ForumContentAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         // TODO: 15-11-11  viewholer数据绑定
         if (position == 0) {
             ForumTopicViewHolder contentViewHolder = (ForumTopicViewHolder) holder;
+
+            contentViewHolder.mImgItemForumcontentFace.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onForumAuthorClickListener.OnForumAuthorClick();
+                }
+            });
+
             contentViewHolder.mTvItemForumcontent.setText(mForum.getContent());
             contentViewHolder.mTvItemTitleForumcontent.setText(mForum.getTitle());
 
@@ -119,6 +144,14 @@ public class ForumContentAdapter extends RecyclerView.Adapter {
             contentViewHolder.mTvItemForumcontentFeedback.setText("回复 " + mForum.getCommentCount());
         } else {
             ForumCommentViewHolder commentViewHolder = (ForumCommentViewHolder) holder;
+
+            commentViewHolder.mImgForumcommentFace.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onCommentAuthorClickListener.OnCommentAuthorClick(position);
+                }
+            });
+
             if (!TextUtils.isEmpty(commentList.get(position - 1).getAuthor().getUserPhoto())) {
                 commentViewHolder.mImgForumcommentFace.setImageURI(Uri.parse(commentList.get(position - 1).getAuthor().getUserPhoto()));
             }else{
