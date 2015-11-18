@@ -23,14 +23,69 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
-            <TextView
-                android:id="@+id/tv_item_title_forumcontent"
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:padding="4dp"
-                android:gravity="center"
-                style="@style/Forum_Text"
-                />
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="8dp"
+                >
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/img_item_forumcontent_face"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    fresco:retryImageScaleType="centerCrop"
+                    fresco:actualImageScaleType="focusCrop"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_item_forumcontent_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_toRightOf="@id/img_item_forumcontent_face"
+                    android:gravity="center"
+                    style="@style/Forum_Text"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_item_forumcontent_statictext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="发布于"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toRightOf="@+id/tv_item_forumcontent_nickname"
+                    android:gravity="center"
+                    style="@style/Forum_Text"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_item_forumcontent_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_toRightOf="@id/tv_item_forumcontent_statictext"
+                    android:gravity="center"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="16dp"
+                    style="@style/Forum_Text"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_item_forumcontent_feedback"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="回复 0"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:paddingRight="4dp"
+                    style="@style/Forum_Text"
+                    />
+
+            </RelativeLayout>
+
 
             <TextView
                 android:id="@+id/tv_item_forumcontent"
@@ -52,67 +107,6 @@
             android:layout_toRightOf="@id/ll_item_forumcontent"
             />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="8dp"
-            >
-
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/img_item_forumcontent_face"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:gravity="center"
-                fresco:retryImageScaleType="centerCrop"
-                fresco:actualImageScaleType="focusCrop"
-                />
-
-            <TextView
-                android:id="@+id/tv_item_forumcontent_nickname"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_toRightOf="@id/img_item_forumcontent_face"
-                android:gravity="center"
-                style="@style/Forum_Text"
-                />
-
-            <TextView
-                android:id="@+id/tv_item_forumcontent_statictext"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="发布于"
-                android:textSize="14dp"
-                android:layout_marginLeft="16dp"
-                android:layout_toRightOf="@+id/tv_item_forumcontent_nickname"
-                android:gravity="center"
-                style="@style/Forum_Text"
-                />
-
-            <TextView
-                android:id="@+id/tv_item_forumcontent_time"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_toRightOf="@id/tv_item_forumcontent_statictext"
-                android:gravity="center"
-                android:textSize="14dp"
-                android:layout_marginLeft="16dp"
-                style="@style/Forum_Text"
-                />
-
-            <TextView
-                android:id="@+id/tv_item_forumcontent_feedback"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="回复 0"
-                android:layout_alignParentRight="true"
-                android:gravity="center"
-                android:paddingRight="4dp"
-                style="@style/Forum_Text"
-                />
-
-        </RelativeLayout>
 
     </LinearLayout>
 </LinearLayout>

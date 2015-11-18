@@ -126,7 +126,6 @@ public class ForumContentAdapter extends RecyclerView.Adapter {
             });
 
             contentViewHolder.mTvItemForumcontent.setText(mForum.getContent());
-            contentViewHolder.mTvItemTitleForumcontent.setText(mForum.getTitle());
 
             if (mForum.getPic() != null && !TextUtils.isEmpty(mForum.getPic().get(0))) {
                 contentViewHolder.mImgItemForumcontent.setImageURI(Uri.parse(mForum.getPic().get(0)));
@@ -173,8 +172,6 @@ public class ForumContentAdapter extends RecyclerView.Adapter {
 
     class ForumTopicViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_item_title_forumcontent)
-        TextView mTvItemTitleForumcontent;
         @Bind(R.id.tv_item_forumcontent)
         TextView mTvItemForumcontent;
         @Bind(R.id.img_item_forumcontent)
