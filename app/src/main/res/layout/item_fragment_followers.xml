@@ -5,6 +5,7 @@
     android:layout_width="match_parent" 
     android:layout_height="match_parent"
     android:background="@drawable/selector"
+    android:orientation="vertical"
     >
 
     <View
@@ -13,7 +14,8 @@
         android:background="@android:color/darker_gray"  />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/selector">
         
         <com.facebook.drawee.view.SimpleDraweeView
             android:layout_width="45dp"

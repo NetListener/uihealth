@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.example.think.uihealth.R;
+import com.example.think.uihealth.app.App;
+import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.moduel.forum.userinfo.fragment.FollowersFragment;
 import com.example.think.uihealth.moduel.forum.userinfo.fragment.FollowingsFragment;
 import com.kermit.exutils.utils.ActivityCollector;
@@ -32,6 +35,7 @@ public class FollowNumbersActivity extends AppCompatActivity {
 
     private FollowersFragment followersFragment;
     private FollowingsFragment followingsFragment;
+    private BmobUser mUser;
 
 
     @Override
@@ -55,7 +59,6 @@ public class FollowNumbersActivity extends AppCompatActivity {
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.framelayout_fragment_changefollownumber, followersFragment);
-        transaction.addToBackStack(null);
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.commit();
 
@@ -63,11 +66,10 @@ public class FollowNumbersActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.framelayout_fragment_changefollownumber, followingsFragment);
-                transaction.addToBackStack(null);
+                transaction.replace(R.id.framelayout_fragment_changefollownumber, followersFragment);
                 transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 transaction.commit();
-                ExUtils.Toast("1");
+                ExUtils.Toast("follower");
             }
         });
         layoutFragmentMorefollowing.setOnClickListener(new View.OnClickListener() {
@@ -75,18 +77,19 @@ public class FollowNumbersActivity extends AppCompatActivity {
             public void onClick(View v) {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.framelayout_fragment_changefollownumber, followingsFragment);
-                transaction.addToBackStack(null);
                 transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 transaction.commit();
-                ExUtils.Toast("2");
+                ExUtils.Toast("following");
             }
         });
 
     }
 
     private void initData(){
-        followersFragment = new FollowersFragment();
-        followingsFragment = new FollowingsFragment();
+        mUser = BmobUser.getCurrentUser(App.getInstance(), BmobUser.class);
+        followersFragment = FollowersFragment.newInstance(mUser.getObjectId());
+        followingsFragment = FollowingsFragment.newInstance(mUser.getObjectId());
+        Log.i(TAG, mUser.getObjectId());
     }
 
     @Override

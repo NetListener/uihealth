@@ -18,22 +18,23 @@ public class BmobUser extends cn.bmob.v3.BmobUser implements Parcelable {
     private int Following;
     private String gender;
     private List<String> often;
-    private List<BmobUser> userFollowers;
-    private List<BmobUser> userFollowings;
+    private List<String> userFollowers;
 
-    public List<BmobUser> getUserFollowers() {
+    private List<String> userFollowings;
+
+    public List<String> getUserFollowers() {
         return userFollowers;
     }
 
-    public void setUserFollowers(List<BmobUser> userFollowers) {
+    public void setUserFollowers(List<String> userFollowers) {
         this.userFollowers = userFollowers;
     }
 
-    public List<BmobUser> getUserFollowings() {
+    public List<String> getUserFollowings() {
         return userFollowings;
     }
 
-    public void setUserFollowings(List<BmobUser> userFollowings) {
+    public void setUserFollowings(List<String> userFollowings) {
         this.userFollowings = userFollowings;
     }
 

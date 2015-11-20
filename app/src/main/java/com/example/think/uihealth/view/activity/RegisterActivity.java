@@ -110,8 +110,8 @@ public class RegisterActivity extends AppCompatActivity{
                     mBmobUser.setUserPhoto("");
                     mBmobUser.setFollowers(0);
                     mBmobUser.setFollowing(0);
-                    mBmobUser.setUserFollowers(new ArrayList<BmobUser>());
-                    mBmobUser.setUserFollowings(new ArrayList<BmobUser>());
+                    mBmobUser.setUserFollowers(new ArrayList<String>());
+                    mBmobUser.setUserFollowings(new ArrayList<String>());
 
                     //添加注册的监听回调
                     mBmobUser.signUp(RegisterActivity.this, new SaveListener() {

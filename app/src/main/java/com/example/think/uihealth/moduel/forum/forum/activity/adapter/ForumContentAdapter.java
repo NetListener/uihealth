@@ -130,7 +130,7 @@ public class ForumContentAdapter extends RecyclerView.Adapter {
             if (mForum.getPic() != null && !TextUtils.isEmpty(mForum.getPic().get(0))) {
                 contentViewHolder.mImgItemForumcontent.setImageURI(Uri.parse(mForum.getPic().get(0)));
             } else {
-                contentViewHolder.mImgItemForumcontent.setImageResource(R.mipmap.ic_launcher);
+                contentViewHolder.mImgItemForumcontent.setImageResource(R.drawable.defaultphoto);
             }
 
             // TODO: 15-11-16 数据获取为空
@@ -154,7 +154,7 @@ public class ForumContentAdapter extends RecyclerView.Adapter {
             if (!TextUtils.isEmpty(commentList.get(position - 1).getAuthor().getUserPhoto())) {
                 commentViewHolder.mImgForumcommentFace.setImageURI(Uri.parse(commentList.get(position - 1).getAuthor().getUserPhoto()));
             }else{
-                commentViewHolder.mImgForumcommentFace.setImageResource(R.mipmap.ic_launcher);
+                commentViewHolder.mImgForumcommentFace.setImageResource(R.drawable.defaultphoto);
             }
             commentViewHolder.mTvForumcomment.setText(commentList.get(position - 1).getContent());
             commentViewHolder.mTvForumcommentNickname.setText(commentList.get(position - 1).getAuthor().getNickName());

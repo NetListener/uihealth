@@ -200,14 +200,14 @@ public class ForumContentActivity extends AppCompatActivity {
                 if (mAdapter.addComments(list)) {
                     mAdapter.notifyDataSetChanged();
                     // TODO: 15/11/18 把用户的ID传到OTHERACTIVITY
-                    mAdapter.setOnCommentAuthorClickListener(new ForumContentAdapter.OnCommentAuthorClickListener() {
-                        @Override
-                        public void OnCommentAuthorClick(int position) {
-                            Intent intent = new Intent(ForumContentActivity.this, OtherUserInfoActivity.class);
-                            intent.putExtra(COMMENTAUTHOR, list.get(position).getAuthor().getObjectId());
-                            startActivity(intent);
-                        }
-                    });
+//                    mAdapter.setOnCommentAuthorClickListener(new ForumContentAdapter.OnCommentAuthorClickListener() {
+//                        @Override
+//                        public void OnCommentAuthorClick(int position) {
+//                            Intent intent = new Intent(ForumContentActivity.this, OtherUserInfoActivity.class);
+//                            intent.putExtra(COMMENTAUTHOR, list.get(position).getAuthor().getObjectId());
+//                            startActivity(intent);
+//                        }
+//                    });
                 }
                 mSwipeActivityForumcontent.setRefreshing(false);
             }
@@ -241,7 +241,7 @@ public class ForumContentActivity extends AppCompatActivity {
                         @Override
                         public void OnCommentAuthorClick(int position) {
                             Intent intent = new Intent(ForumContentActivity.this, OtherUserInfoActivity.class);
-                            intent.putExtra(COMMENTAUTHOR, list.get(position).getAuthor().getObjectId());
+                            intent.putExtra(COMMENTAUTHOR, list.get(position-1).getAuthor().getObjectId());
                             startActivity(intent);
                         }
                     });
