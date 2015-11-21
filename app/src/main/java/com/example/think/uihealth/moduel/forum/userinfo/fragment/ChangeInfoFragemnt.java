@@ -225,9 +225,7 @@ public class ChangeInfoFragemnt extends Fragment {
                         finalUrl = imageUrl_change;
                         new Thread(runnable).start();
                     }else {
-                        if(imageUrl_change == "") {
-                            imageviewChanginfofragmentPhoto.setImageResource(R.drawable.defaultphoto);
-                        }
+                        imageviewChanginfofragmentPhoto.setImageResource(R.drawable.defaultphoto);
                     }
                 } else {
                     ExUtils.ToastLong("用户查询失败");

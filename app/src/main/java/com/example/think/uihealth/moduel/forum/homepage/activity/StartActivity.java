@@ -106,36 +106,37 @@ public class StartActivity extends MaterialNavigationDrawer{
     protected void onResume() {
         super.onResume();
         closeDrawer();
-        String userId = mBmobUser.getObjectId();
-        query.addWhereEqualTo("objectId", userId);
-        query.findObjects(App.getInstance(), new FindListener<BmobUser>() {
-            @Override
-            public void onSuccess(List<BmobUser> list) {
-                userName = list.get(0).getNickName();
-                setUsername(userName + ", 欢迎您!");
-                final String url = list.get(0).getUserPhoto();
-                if(imageUrl != url){
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Message message = new Message();
-                            message.what = 1;
-                            changeBitmap = GetHttpImageView.getHttpBitmap(url);
-                            changeAvatar = new BitmapDrawable(getResources(), changeBitmap);
-                            handler.sendMessage(message);
-                        }
-                    }).start();
-                }else {
-                    if(url == "") {
-                        changeAvatar = (BitmapDrawable) getResources().getDrawable(R.drawable.defaultphoto);
-                    }
-                }
-            }
-            @Override
-            public void onError(int i, String s) {
-                ExUtils.ToastLong(s);
-            }
-        });
+        fetchData();
+//        String userId = mBmobUser.getObjectId();
+//        query.addWhereEqualTo("objectId", userId);
+//        query.findObjects(App.getInstance(), new FindListener<BmobUser>() {
+//            @Override
+//            public void onSuccess(List<BmobUser> list) {
+//                userName = list.get(0).getNickName();
+//                setUsername(userName + ", 欢迎您!");
+//                final String url = list.get(0).getUserPhoto();
+//                if(imageUrl != url){
+//                    new Thread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Message message = new Message();
+//                            message.what = 1;
+//                            changeBitmap = GetHttpImageView.getHttpBitmap(url);
+//                            changeAvatar = new BitmapDrawable(getResources(), changeBitmap);
+//                            handler.sendMessage(message);
+//                        }
+//                    }).start();
+//                }else {
+//                    if(url == "") {
+//                        changeAvatar = (BitmapDrawable) getResources().getDrawable(R.drawable.defaultphoto);
+//                    }
+//                }
+//            }
+//            @Override
+//            public void onError(int i, String s) {
+//                ExUtils.ToastLong(s);
+//            }
+//        });
     }
 
     public void initData(){
@@ -143,9 +144,9 @@ public class StartActivity extends MaterialNavigationDrawer{
         initOtherFragment();
         simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
         mBmobUser = BmobUser.getCurrentUser(App.getInstance(), BmobUser.class);
+    }
+    public void fetchData(){
         String userId = mBmobUser.getObjectId();
-
-
         query = new BmobQuery<>();
         query.addWhereEqualTo("objectId", userId);
         query.findObjects(App.getInstance(), new FindListener<BmobUser>() {
@@ -167,6 +168,7 @@ public class StartActivity extends MaterialNavigationDrawer{
                     }).start();
                 }else {
                     changeAvatar = (BitmapDrawable) getResources().getDrawable(R.drawable.defaultphoto);
+                    setFirstAccountPhoto(changeAvatar);
                 }
             }
 

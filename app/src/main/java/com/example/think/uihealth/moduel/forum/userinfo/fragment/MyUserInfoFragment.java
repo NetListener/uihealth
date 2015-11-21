@@ -125,7 +125,7 @@ public class MyUserInfoFragment extends Fragment {
 
                     ExUtils.ToastLong(String.valueOf(list.get(0).getFollowing()));
                     mTextviewFragmentNickname.setText(nickName);
-                    if (imageUrl != null) {
+                    if (imageUrl != "") {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
