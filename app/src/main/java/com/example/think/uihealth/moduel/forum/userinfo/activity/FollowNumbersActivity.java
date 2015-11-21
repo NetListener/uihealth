@@ -25,6 +25,7 @@ import butterknife.ButterKnife;
 public class FollowNumbersActivity extends AppCompatActivity {
 
     public static final String TAG = "FollowNumbersActivity";
+    private String checkWhich;
 
     @Bind(R.id.toolbar_follow)
     Toolbar mToolbar;
@@ -35,7 +36,11 @@ public class FollowNumbersActivity extends AppCompatActivity {
 
     private FollowersFragment followersFragment;
     private FollowingsFragment followingsFragment;
-    private BmobUser mUser;
+    private String userId;
+    private String USERID = "USERID";
+    private String CHECKFOLLOWERS = "CHECKFOLLOWERS";
+    private String CHECKFOLLOWINGS = "CHECKFOLLOWINGS";
+    private String CHECKFOLLOW = "CHECKFOLLOW";
 
 
     @Override
@@ -57,10 +62,17 @@ public class FollowNumbersActivity extends AppCompatActivity {
             }
         });
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.framelayout_fragment_changefollownumber, followersFragment);
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        transaction.commit();
+        if (checkWhich.equals(CHECKFOLLOWERS)) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.framelayout_fragment_changefollownumber, followersFragment);
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+            transaction.commit();
+        }else {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.framelayout_fragment_changefollownumber, followingsFragment);
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+            transaction.commit();
+        }
 
         layoutFragmentMorefollowers.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,10 +98,12 @@ public class FollowNumbersActivity extends AppCompatActivity {
     }
 
     private void initData(){
-        mUser = BmobUser.getCurrentUser(App.getInstance(), BmobUser.class);
-        followersFragment = FollowersFragment.newInstance(mUser.getObjectId());
-        followingsFragment = FollowingsFragment.newInstance(mUser.getObjectId());
-        Log.i(TAG, mUser.getObjectId());
+        //mUser = BmobUser.getCurrentUser(App.getInstance(), BmobUser.class);
+        userId = getIntent().getStringExtra(USERID);
+        followersFragment = FollowersFragment.newInstance(userId);
+        followingsFragment = FollowingsFragment.newInstance(userId);
+
+        checkWhich = getIntent().getStringExtra(CHECKFOLLOW);
     }
 
     @Override

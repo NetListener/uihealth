@@ -66,6 +66,10 @@ public class MyUserInfoFragment extends Fragment {
     private UserOtherAttr userOtherAttr;
     private BmobUser mUser;
     private BmobQuery<BmobUser> query;
+    private String CHECKFOLLOWERS = "CHECKFOLLOWERS";
+    private String CHECKFOLLOWINGS = "CHECKFOLLOWINGS";
+    private String CHECKFOLLOW = "CHECKFOLLOW";
+    private String USERID = "USERID";
 
     public static final String TAG = "MyUserInfoFragment";
     public static final String NICKNAME = "NICKNAME";
@@ -84,14 +88,14 @@ public class MyUserInfoFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_startactivity_userinfo, container, false);
         ButterKnife.bind(this, view);
 
         progressbarUserinfofragment.setVisibility(View.VISIBLE);
 
         mUser = BmobUser.getCurrentUser(App.getInstance(), BmobUser.class);
-        String userId = mUser.getObjectId();
+        final String userId = mUser.getObjectId();
 
         //通过其他属性的表获得粉丝数
         query_other = new BmobQuery<>();
@@ -162,6 +166,8 @@ public class MyUserInfoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), FollowNumbersActivity.class);
+                intent.putExtra(CHECKFOLLOW, CHECKFOLLOWERS);
+                intent.putExtra(USERID, userId);
                 startActivity(intent);
             }
         });
@@ -169,6 +175,8 @@ public class MyUserInfoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), FollowNumbersActivity.class);
+                intent.putExtra(CHECKFOLLOW, CHECKFOLLOWINGS);
+                intent.putExtra(USERID, userId);
                 startActivity(intent);
             }
         });

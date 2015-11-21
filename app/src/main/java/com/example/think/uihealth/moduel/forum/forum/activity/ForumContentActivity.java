@@ -19,11 +19,10 @@ import com.example.think.uihealth.model.bean.Forum;
 import com.example.think.uihealth.moduel.forum.forum.activity.fragment.ForumOftenListFragment;
 import com.example.think.uihealth.moduel.forum.forum.activity.fragment.ForumTopicFragment;
 import com.example.think.uihealth.moduel.forum.forum.activity.adapter.ForumContentAdapter;
-import com.example.think.uihealth.moduel.forum.otheruserinfo.OtherUserInfoActivity;
+import com.example.think.uihealth.moduel.forum.userinfo.activity.OtherUserInfoActivity;
 import com.example.think.uihealth.widget.DividerItemDecoration;
 import com.kermit.exutils.utils.ExUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;

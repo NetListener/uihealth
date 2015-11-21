@@ -65,7 +65,7 @@
         <activity android:name=".moduel.forum.homepage.activity.ResultActivity"
                   android:label="@string/app_name"/>
 
-        <activity android:name=".moduel.forum.otheruserinfo.OtherUserInfoActivity"
+        <activity android:name=".moduel.forum.userinfo.activity.OtherUserInfoActivity"
             android:label="@string/app_name"
             >
         </activity>

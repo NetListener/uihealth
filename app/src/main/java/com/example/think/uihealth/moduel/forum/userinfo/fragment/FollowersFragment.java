@@ -50,6 +50,7 @@ public class FollowersFragment extends Fragment {
     private FollowersAdapter mAdapter;
     private LinearLayoutManager linearLayoutManager;
     private String id;
+
     public static final String ID = "ID";
     private static final int STATE_REFRESH = 0;// 下拉刷新
     private static final int STATE_MORE = 1;// 加载更多
@@ -76,7 +77,6 @@ public class FollowersFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putString(ID, id);
         fragment.setArguments(bundle);
-
         return fragment;
     }
 
@@ -112,6 +112,7 @@ public class FollowersFragment extends Fragment {
         query = new BmobQuery<>();
         mAdapter = new FollowersAdapter();
         linearLayoutManager = new LinearLayoutManager(getContext());
+
     }
 
     // TODO: 15/11/17 获取粉丝数据

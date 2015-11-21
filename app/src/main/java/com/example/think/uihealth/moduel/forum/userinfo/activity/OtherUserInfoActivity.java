@@ -1,4 +1,4 @@
-package com.example.think.uihealth.moduel.forum.otheruserinfo;
+package com.example.think.uihealth.moduel.forum.userinfo.activity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -18,6 +18,8 @@ import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.model.bean.Follow;
 import com.example.think.uihealth.model.bean.UserOtherAttr;
 import com.example.think.uihealth.moduel.forum.forum.activity.ForumContentActivity;
+import com.example.think.uihealth.moduel.forum.userinfo.fragment.FollowersFragment;
+import com.example.think.uihealth.moduel.forum.userinfo.fragment.FollowingsFragment;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.kermit.exutils.utils.ExUtils;
@@ -80,9 +82,15 @@ public class OtherUserInfoActivity extends AppCompatActivity {
     private String otherAttrId = "";
     private Boolean isFollow = false;
     private long clickFollowTime;
+    private FollowersFragment followersFragment;
+    private FollowingsFragment followingsFragment;
 
     public static final int state_follow = 1;
     public static final int state_cancelfollow = -1;
+    private String CHECKFOLLOWERS = "CHECKFOLLOWERS";
+    private String CHECKFOLLOWINGS = "CHECKFOLLOWINGS";
+    private String CHECKFOLLOW = "CHECKFOLLOW";
+    private String USERID = "USERID";
 
     Handler handle = new Handler() {
         @Override
@@ -112,6 +120,26 @@ public class OtherUserInfoActivity extends AppCompatActivity {
 
         fetchData();
 
+        layoutActivityOthercheckfollower.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OtherUserInfoActivity.this, FollowNumbersActivity.class);
+                intent.putExtra(CHECKFOLLOW, CHECKFOLLOWERS);
+                intent.putExtra(USERID, userId);
+                startActivity(intent);
+            }
+        });
+
+        layoutActivityOthercheckfollowing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OtherUserInfoActivity.this, FollowNumbersActivity.class);
+                intent.putExtra(CHECKFOLLOW, CHECKFOLLOWINGS);
+                intent.putExtra(USERID, userId);
+                startActivity(intent);
+            }
+        });
+
         layoutActivityTofollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,6 +164,8 @@ public class OtherUserInfoActivity extends AppCompatActivity {
         query_follow = new BmobQuery<>();
         query_other = new BmobQuery<>();
         userOtherAttr = new UserOtherAttr();
+        followersFragment = FollowersFragment.newInstance(userId);
+        followingsFragment = FollowingsFragment.newInstance(userId);
 
         //判断是否已经关注，改变ISfollow的值,
         BmobQuery<Follow> query_follow1 = new BmobQuery<>();
