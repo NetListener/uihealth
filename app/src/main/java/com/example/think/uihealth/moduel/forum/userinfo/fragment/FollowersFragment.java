@@ -120,7 +120,7 @@ public class FollowersFragment extends Fragment {
         query_follow.addWhereEqualTo("befollowUserId", id);
         query_follow.setLimit(10);
         query_follow.setSkip(page * 10);
-        query_follow.order("-time");
+        query_follow.order("-updatedAt");
         query_follow.findObjects(App.getInstance(), new FindListener<Follow>() {
             @Override
             public void onSuccess(List<Follow> list) {

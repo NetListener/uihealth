@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.app.App;
@@ -21,16 +22,13 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.kermit.exutils.utils.ExUtils;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import cn.bmob.v3.AsyncCustomEndpoints;
 import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.listener.CloudCodeListener;
+import cn.bmob.v3.listener.DeleteListener;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
@@ -63,6 +61,8 @@ public class OtherUserInfoActivity extends AppCompatActivity {
     TextView textviewOtherOtherfollowingnumber;
     @Bind(R.id.textview_activity_otherfollowernumber)
     TextView textviewActivityOtherfollowernumber;
+    @Bind(R.id.tofollow)
+    TextView text_isfollow;
 
     private BmobQuery<BmobUser> query;
     private BmobQuery<Follow> query_follow;
@@ -70,28 +70,28 @@ public class OtherUserInfoActivity extends AppCompatActivity {
     private BmobUser mUser;
     private UserOtherAttr userOtherAttr;
     private Intent intent;
-    private List<String> nowUserFollowings;
-    private List<String> otherUserFollowers;
     private String userId;
+    private String followId = "";
     private int otherUserFollowerNumbers;
     private int nowUserFollowingNumbers;
-    private Boolean isSuccess;
+    private Boolean isFollowSuccess;
+    private Boolean isCancelSuccess;
     private Boolean isHave;
     private String otherAttrId = "";
+    private Boolean isFollow = false;
+    private long clickFollowTime;
 
-    Handler handle = new Handler(){
+    public static final int state_follow = 1;
+    public static final int state_cancelfollow = -1;
+
+    Handler handle = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case 1:
-                    changeMyUserFollowingNumber();
-                    Log.i(TAG, String.valueOf(nowUserFollowingNumbers));
-                    if (isSuccess){
-                        ExUtils.Toast("关注成功！");
-                    } else {
-                        ExUtils.Toast("关注失败");
-                    }
+                    int n = (int) msg.obj;
+                    changeMyUserFollowingNumber(n);
                     fetchData();
             }
         }
@@ -115,22 +115,124 @@ public class OtherUserInfoActivity extends AppCompatActivity {
         layoutActivityTofollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                makeFollow();
+                if(System.currentTimeMillis() - clickFollowTime > 5000) {
+                    if (isFollow == false) {
+                        makeFollow();
+                    } else {
+                        cancelFollow();
+                    }
+                    clickFollowTime = System.currentTimeMillis();
+                } else {
+                    ExUtils.Toast("点击不能过于频繁哟～");
+                }
             }
         });
     }
 
-    private void initData(){
+    private void initData() {
         query = new BmobQuery<>();
         intent = getIntent();
         mUser = BmobUser.getCurrentUser(App.getInstance(), BmobUser.class);
         query_follow = new BmobQuery<>();
         query_other = new BmobQuery<>();
         userOtherAttr = new UserOtherAttr();
+
+        //判断是否已经关注，改变ISfollow的值,
+        BmobQuery<Follow> query_follow1 = new BmobQuery<>();
+        query_follow1.addWhereEqualTo("befollowUserId", userId);
+        BmobQuery<Follow> query_follow2 = new BmobQuery<>();
+        query_follow2.addWhereEqualTo("followUseId", mUser.getObjectId());
+        List<BmobQuery<Follow>> andQuerys = new ArrayList<BmobQuery<Follow>>();
+        andQuerys.add(query_follow1);
+        andQuerys.add(query_follow2);
+        query_follow.and(andQuerys);
+        query_follow.findObjects(App.getInstance(), new FindListener<Follow>() {
+            @Override
+            public void onSuccess(List<Follow> list) {
+                Log.i(TAG, String.valueOf(list));
+                if (list.equals(null)) {
+                    isFollow = false;
+                    text_isfollow.setText("加关注");
+                } else {
+                    isFollow = true;
+                    text_isfollow.setText("已关注");
+                    followId = list.get(0).getObjectId();
+                }
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                text_isfollow.setText("加关注");
+                isFollow = false;
+            }
+        });
+        Log.i(TAG, String.valueOf(isFollow));
+    }
+
+    //取消一个关注关系
+    public void cancelFollow(){
+        //根据followID删除
+        Follow follow = new Follow();
+        follow.setObjectId(followId);
+        follow.delete(App.getInstance(), new DeleteListener() {
+            @Override
+            public void onSuccess() {
+                isCancelSuccess = true;
+                //更改数字
+                fetchNowUserData(state_cancelfollow);
+                changeOtherUser(isHave, state_cancelfollow);
+                text_isfollow.setText("加关注");
+                isFollow = false;
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                isCancelSuccess = false;
+            }
+        });
+    }
+    public void changeOtherUser(Boolean isHave, int actionType){
+        //更新他人用户粉丝数据
+        if (isHave) {
+            UserOtherAttr userOtherAttr = new UserOtherAttr();
+            otherUserFollowerNumbers = otherUserFollowerNumbers + actionType;
+            userOtherAttr.setFollowers(otherUserFollowerNumbers);
+            userOtherAttr.update(App.getInstance(), otherAttrId, new UpdateListener() {
+                @Override
+                public void onSuccess() {
+                    isFollowSuccess = true;
+                    isCancelSuccess = true;
+                    ExUtils.Toast("取消关注成功！");
+                }
+
+                @Override
+                public void onFailure(int i, String s) {
+                    ExUtils.Toast(s);
+                    isFollowSuccess = false;
+                    isCancelSuccess = false;
+                }
+            });
+        } else {
+            userOtherAttr.setFollowers(1);
+            BmobUser user = new BmobUser();
+            user.setObjectId(userId);
+            userOtherAttr.setUser(user);
+            userOtherAttr.save(App.getInstance(), new SaveListener() {
+                @Override
+                public void onSuccess() {
+                    isFollowSuccess = true;
+                }
+
+                @Override
+                public void onFailure(int i, String s) {
+                    ExUtils.Toast(s);
+                    isFollowSuccess = false;
+                }
+            });
+        }
     }
     //增加一个关注关系
-    public void makeFollow(){
-
+    public void makeFollow() {
         mProgressbar.setVisibility(View.VISIBLE);
         Follow follow = new Follow();
         follow.setFollowUseId(mUser.getObjectId());
@@ -141,95 +243,85 @@ public class OtherUserInfoActivity extends AppCompatActivity {
 
                 mProgressbar.setVisibility(View.INVISIBLE);
                 //更新本人用户的数据
-                fetchNowUserData();
-                isSuccess = true;
-
-                //更新他人用户粉丝数据
-                if (isHave){
-                    UserOtherAttr userOtherAttr = new UserOtherAttr();
-                    userOtherAttr.setFollowers(++otherUserFollowerNumbers);
-                    userOtherAttr.update(App.getInstance(), otherAttrId, new UpdateListener() {
-                        @Override
-                        public void onSuccess() {
-                            isSuccess = true;
-                        }
-
-                        @Override
-                        public void onFailure(int i, String s) {
-                            ExUtils.Toast(s);
-                            isSuccess = false;
-                        }
-                    });
-                } else {
-                    userOtherAttr.setFollowers(1);
-                    BmobUser user = new BmobUser();
-                    user.setObjectId(userId);
-                    userOtherAttr.setUser(user);
-                    userOtherAttr.save(App.getInstance(), new SaveListener() {
-                        @Override
-                        public void onSuccess() {
-                            isSuccess = true;
-                        }
-
-                        @Override
-                        public void onFailure(int i, String s) {
-                            ExUtils.Toast(s);
-                            isSuccess = false;
-                        }
-                    });
-                }
+                fetchNowUserData(state_follow);
+                isFollowSuccess = true;
+                changeOtherUser(isHave, state_follow);
+                text_isfollow.setText("已关注");
+                isFollow = true;
             }
 
             @Override
             public void onFailure(int i, String s) {
                 ExUtils.Toast(s);
                 mProgressbar.setVisibility(View.INVISIBLE);
-                isSuccess = false;
+                isFollowSuccess = false;
             }
         });
 
 
     }
 
-    public void changeMyUserFollowingNumber(){
+    public void changeMyUserFollowingNumber(int n) {
         BmobUser newUser = new BmobUser();
-        newUser.setFollowing(++nowUserFollowingNumbers);
+        nowUserFollowingNumbers = nowUserFollowingNumbers + n;
+        newUser.setFollowing(nowUserFollowingNumbers);
         newUser.update(App.getInstance(), mUser.getObjectId(), new UpdateListener() {
             @Override
             public void onSuccess() {
-                isSuccess = true;
+                isFollowSuccess = true;
                 Log.i(TAG, String.valueOf(nowUserFollowingNumbers));
             }
 
             @Override
             public void onFailure(int i, String s) {
-                isSuccess = false;
+                isFollowSuccess = false;
                 ExUtils.Toast(s);
             }
         });
     }
-    public void fetchNowUserData(){
+
+    public void fetchNowUserData(final int actionType) {
         query.addWhereEqualTo("objectId", mUser.getObjectId());
         query.findObjects(App.getInstance(), new FindListener<BmobUser>() {
             @Override
             public void onSuccess(List<BmobUser> list) {
-                isSuccess = true;
+                isFollowSuccess = true;
+                isCancelSuccess = true;
                 nowUserFollowingNumbers = list.get(0).getFollowing();
 
                 Message message = new Message();
                 message.what = 1;
+                message.obj = actionType;
                 handle.sendMessage(message);
             }
 
             @Override
             public void onError(int i, String s) {
-                isSuccess = false;
+                isFollowSuccess = false;
+                isCancelSuccess = false;
                 ExUtils.Toast(s);
             }
         });
     }
 
     public void fetchData() {
+
+
+        query_follow.findObjects(App.getInstance(), new FindListener<Follow>() {
+            @Override
+            public void onSuccess(List<Follow> list) {
+                if (!list.equals(null)) {
+                    for (Follow follow : list) {
+                        //otherUserFollowingers.add();
+                    }
+                }
+            }
+
+            @Override
+            public void onError(int i, String s) {
+
+            }
+        });
         //获取他人粉丝数
         BmobUser user = new BmobUser();
         user.setObjectId(userId);
@@ -257,7 +349,7 @@ public class OtherUserInfoActivity extends AppCompatActivity {
 //                Log.i(TAG, String.valueOf(list));
                 BmobUser user = list.get(0);
 
-                if(!user.equals(null)){
+                if (!user.equals(null)) {
                     textviewAcitivtyOthernickname.setText(user.getNickName());
                     textviewOtherOtherfollowingnumber.setText(String.valueOf(user.getFollowing()));
                     //otherUserFollowerNumbers = user.getFollowers();
@@ -266,8 +358,7 @@ public class OtherUserInfoActivity extends AppCompatActivity {
                     } else {
                         imageviewActivityOtheruserPhoto.setImageResource(R.drawable.defaultphoto);
                     }
-                    otherUserFollowers = user.getUserFollowers();
-                    otherUserFollowers.add(mUser.getObjectId());
+
                 }
 
 
