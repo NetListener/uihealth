@@ -11,8 +11,10 @@ import android.widget.EditText;
 
 import com.example.think.uihealth.R;
 
+import com.example.think.uihealth.app.App;
 import com.example.think.uihealth.model.bean.BmobUser;
 
+import com.example.think.uihealth.model.bean.UserOtherAttr;
 import com.example.think.uihealth.moduel.forum.homepage.activity.StartActivity;
 
 import com.gc.materialdesign.views.ButtonRectangle;
@@ -108,11 +110,9 @@ public class RegisterActivity extends AppCompatActivity{
                     //mBmobUser.setUserPhoto(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher));
                     //mBmobUser.setUserPhoto(getResources().getDrawable(R.drawable.ic_launcher));
                     mBmobUser.setUserPhoto("");
-                    mBmobUser.setFollowers(0);
                     mBmobUser.setFollowing(0);
                     mBmobUser.setUserFollowers(new ArrayList<String>());
                     mBmobUser.setUserFollowings(new ArrayList<String>());
-
                     //添加注册的监听回调
                     mBmobUser.signUp(RegisterActivity.this, new SaveListener() {
                         @Override

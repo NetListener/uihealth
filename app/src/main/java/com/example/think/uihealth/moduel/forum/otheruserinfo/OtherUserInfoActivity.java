@@ -3,6 +3,8 @@ package com.example.think.uihealth.moduel.forum.otheruserinfo;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,16 +15,22 @@ import com.example.think.uihealth.R;
 import com.example.think.uihealth.app.App;
 import com.example.think.uihealth.model.bean.BmobUser;
 import com.example.think.uihealth.model.bean.Follow;
+import com.example.think.uihealth.model.bean.UserOtherAttr;
 import com.example.think.uihealth.moduel.forum.forum.activity.ForumContentActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.kermit.exutils.utils.ExUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cn.bmob.v3.AsyncCustomEndpoints;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.CloudCodeListener;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
@@ -58,12 +66,36 @@ public class OtherUserInfoActivity extends AppCompatActivity {
 
     private BmobQuery<BmobUser> query;
     private BmobQuery<Follow> query_follow;
+    private BmobQuery<UserOtherAttr> query_other;
     private BmobUser mUser;
+    private UserOtherAttr userOtherAttr;
     private Intent intent;
     private List<String> nowUserFollowings;
     private List<String> otherUserFollowers;
     private String userId;
-    private Boolean isSuccess = false;
+    private int otherUserFollowerNumbers;
+    private int nowUserFollowingNumbers;
+    private Boolean isSuccess;
+    private Boolean isHave;
+    private String otherAttrId = "";
+
+    Handler handle = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 1:
+                    changeMyUserFollowingNumber();
+                    Log.i(TAG, String.valueOf(nowUserFollowingNumbers));
+                    if (isSuccess){
+                        ExUtils.Toast("关注成功！");
+                    } else {
+                        ExUtils.Toast("关注失败");
+                    }
+                    fetchData();
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +125,8 @@ public class OtherUserInfoActivity extends AppCompatActivity {
         intent = getIntent();
         mUser = BmobUser.getCurrentUser(App.getInstance(), BmobUser.class);
         query_follow = new BmobQuery<>();
+        query_other = new BmobQuery<>();
+        userOtherAttr = new UserOtherAttr();
     }
     //增加一个关注关系
     public void makeFollow(){
@@ -104,74 +138,117 @@ public class OtherUserInfoActivity extends AppCompatActivity {
         follow.save(App.getInstance(), new SaveListener() {
             @Override
             public void onSuccess() {
-                ExUtils.Toast("关注成功!");
+
                 mProgressbar.setVisibility(View.INVISIBLE);
+                //更新本人用户的数据
+                fetchNowUserData();
+                isSuccess = true;
+
+                //更新他人用户粉丝数据
+                if (isHave){
+                    UserOtherAttr userOtherAttr = new UserOtherAttr();
+                    userOtherAttr.setFollowers(++otherUserFollowerNumbers);
+                    userOtherAttr.update(App.getInstance(), otherAttrId, new UpdateListener() {
+                        @Override
+                        public void onSuccess() {
+                            isSuccess = true;
+                        }
+
+                        @Override
+                        public void onFailure(int i, String s) {
+                            ExUtils.Toast(s);
+                            isSuccess = false;
+                        }
+                    });
+                } else {
+                    userOtherAttr.setFollowers(1);
+                    BmobUser user = new BmobUser();
+                    user.setObjectId(userId);
+                    userOtherAttr.setUser(user);
+                    userOtherAttr.save(App.getInstance(), new SaveListener() {
+                        @Override
+                        public void onSuccess() {
+                            isSuccess = true;
+                        }
+
+                        @Override
+                        public void onFailure(int i, String s) {
+                            ExUtils.Toast(s);
+                            isSuccess = false;
+                        }
+                    });
+                }
             }
 
             @Override
             public void onFailure(int i, String s) {
                 ExUtils.Toast(s);
                 mProgressbar.setVisibility(View.INVISIBLE);
+                isSuccess = false;
             }
         });
-//        BmobQuery<BmobUser> query1 = new BmobQuery<>();
-//        query1.addWhereEqualTo("objectId", mUser.getObjectId());
-//        query1.findObjects(App.getInstance(), new FindListener<BmobUser>() {
-//            @Override
-//            public void onSuccess(List<BmobUser> list) {
-//                mProgressbar.setVisibility(View.INVISIBLE);
-//                if (!list.equals(null)) {
-//                    nowUserFollowings = list.get(0).getUserFollowings();
-//                    nowUserFollowings.add(userId);
-//                }
-//                //更新当前用户
-//                BmobUser newUser = new BmobUser();
-//                newUser.setUserFollowings(nowUserFollowings);
-//                newUser.update(App.getInstance(), mUser.getObjectId(), new UpdateListener() {
-//                    @Override
-//                    public void onSuccess() {
-//                        isSuccess = true;
-//                    }
-//
-//                    @Override
-//                    public void onFailure(int i, String s) {
-//                        isSuccess = false;
-//                        ExUtils.Toast(s+"2");
-//                    }
-//                });
-//                BmobUser newUser2 = new BmobUser();
-//                newUser2.setUserFollowers(otherUserFollowers);
-//                Log.i(TAG, userId);
-//                newUser2.update(App.getInstance(), userId, new UpdateListener() {
-//                    @Override
-//                    public void onSuccess() {
-//                        isSuccess = true;
-//                    }
-//
-//                    @Override
-//                    public void onFailure(int i, String s) {
-//                        ExUtils.Toast(s + "1");
-//                        isSuccess = false;
-//                    }
-//                });
-//            }
-//
-//            @Override
-//            public void onError(int i, String s) {
-//                mProgressbar.setVisibility(View.INVISIBLE);
-//                ExUtils.ToastLong(s+"3");
-//            }
-//        });
-//
-//        if(isSuccess == true){
-//            ExUtils.Toast("success!");
-//        } else {
-//            ExUtils.Toast("failed");
-//        }
+
 
     }
 
+    public void changeMyUserFollowingNumber(){
+        BmobUser newUser = new BmobUser();
+        newUser.setFollowing(++nowUserFollowingNumbers);
+        newUser.update(App.getInstance(), mUser.getObjectId(), new UpdateListener() {
+            @Override
+            public void onSuccess() {
+                isSuccess = true;
+                Log.i(TAG, String.valueOf(nowUserFollowingNumbers));
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                isSuccess = false;
+                ExUtils.Toast(s);
+            }
+        });
+    }
+    public void fetchNowUserData(){
+        query.addWhereEqualTo("objectId", mUser.getObjectId());
+        query.findObjects(App.getInstance(), new FindListener<BmobUser>() {
+            @Override
+            public void onSuccess(List<BmobUser> list) {
+                isSuccess = true;
+                nowUserFollowingNumbers = list.get(0).getFollowing();
+
+                Message message = new Message();
+                message.what = 1;
+                handle.sendMessage(message);
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                isSuccess = false;
+                ExUtils.Toast(s);
+            }
+        });
+    }
+
     public void fetchData() {
+        //获取他人粉丝数
+        BmobUser user = new BmobUser();
+        user.setObjectId(userId);
+        query_other.addWhereEqualTo("user", user);
+        query_other.findObjects(App.getInstance(), new FindListener<UserOtherAttr>() {
+            @Override
+            public void onSuccess(List<UserOtherAttr> list) {
+                textviewActivityOtherfollowernumber.setText(String.valueOf(list.get(0).getFollowers()));
+                otherUserFollowerNumbers = list.get(0).getFollowers();
+                isHave = true;
+                otherAttrId = list.get(0).getObjectId();
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                textviewActivityOtherfollowernumber.setText(String.valueOf(0));
+                isHave = false;
+            }
+        });
 
         query.addWhereEqualTo("objectId", userId);
         query.findObjects(App.getInstance(), new FindListener<BmobUser>() {
@@ -182,8 +259,8 @@ public class OtherUserInfoActivity extends AppCompatActivity {
 
                 if(!user.equals(null)){
                     textviewAcitivtyOthernickname.setText(user.getNickName());
-                    textviewActivityOtherfollowernumber.setText(String.valueOf(user.getFollowers()));
                     textviewOtherOtherfollowingnumber.setText(String.valueOf(user.getFollowing()));
+                    //otherUserFollowerNumbers = user.getFollowers();
                     if (user.getUserPhoto() != "") {
                         imageviewActivityOtheruserPhoto.setImageURI(Uri.parse(user.getUserPhoto()));
                     } else {

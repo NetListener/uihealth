@@ -14,7 +14,7 @@ public class BmobUser extends cn.bmob.v3.BmobUser implements Parcelable {
 
     private String nickName;
     private String userPhoto;
-    private int Followers;
+
     private int Following;
     private String gender;
     private List<String> often;
@@ -70,13 +70,6 @@ public class BmobUser extends cn.bmob.v3.BmobUser implements Parcelable {
         this.nickName = nickName;
     }
 
-    public int getFollowers() {
-        return Followers;
-    }
-
-    public void setFollowers(int followers) {
-        Followers = followers;
-    }
 
     public int getFollowing() {
         return Following;
@@ -95,7 +88,6 @@ public class BmobUser extends cn.bmob.v3.BmobUser implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.nickName);
         dest.writeString(this.userPhoto);
-        dest.writeInt(this.Followers);
         dest.writeInt(this.Following);
         dest.writeString(this.gender);
         dest.writeStringList(this.often);
@@ -107,7 +99,6 @@ public class BmobUser extends cn.bmob.v3.BmobUser implements Parcelable {
     protected BmobUser(Parcel in) {
         this.nickName = in.readString();
         this.userPhoto = in.readString();
-        this.Followers = in.readInt();
         this.Following = in.readInt();
         this.gender = in.readString();
         this.often = in.createStringArrayList();

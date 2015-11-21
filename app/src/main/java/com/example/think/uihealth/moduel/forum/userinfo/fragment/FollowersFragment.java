@@ -45,8 +45,8 @@ public class FollowersFragment extends Fragment {
 
     private BmobQuery<BmobUser> query;
     private BmobQuery<Follow> query_follow;
-    private List<String> followerImageUrl = new ArrayList<>();
-    private List<String> followerNickName = new ArrayList<>();
+    private List<String> followerImageUrl;
+    private List<String> followerNickName;
     private FollowersAdapter mAdapter;
     private LinearLayoutManager linearLayoutManager;
     private String id;
@@ -73,7 +73,6 @@ public class FollowersFragment extends Fragment {
 
     public static FollowersFragment newInstance(String id){
         FollowersFragment fragment = new FollowersFragment();
-
         Bundle bundle = new Bundle();
         bundle.putString(ID, id);
         fragment.setArguments(bundle);
@@ -106,6 +105,8 @@ public class FollowersFragment extends Fragment {
     }
 
     private void initData() {
+        followerImageUrl = new ArrayList<>();
+        followerNickName = new ArrayList<>();
         id = getArguments().getString(ID);
         query_follow = new BmobQuery<>();
         query = new BmobQuery<>();
@@ -125,6 +126,7 @@ public class FollowersFragment extends Fragment {
             public void onSuccess(List<Follow> list) {
                 switch (actionType){
                     case STATE_FIRST:
+                        break;
                     case STATE_REFRESH:
                         followerImageUrl.clear();
                         followerNickName.clear();

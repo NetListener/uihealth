@@ -17,6 +17,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.app.App;
 import com.example.think.uihealth.model.bean.BmobUser;
+import com.example.think.uihealth.model.bean.UserOtherAttr;
 import com.example.think.uihealth.moduel.forum.homepage.fragment.HomePageFragment;
 import com.example.think.uihealth.util.GetHttpImageView;
 import com.example.think.uihealth.moduel.forum.forum.activity.fragment.ForumFragment;
@@ -56,7 +57,6 @@ public class StartActivity extends MaterialNavigationDrawer{
     private String userName;
     private int basicColor = Color.parseColor("#33BB77");
     private SimpleDateFormat simpleDateFormat;
-
     private MyUserInfoFragment mUserInfoFragment;
     private ForumFragment mForumFragment;
 
@@ -144,6 +144,8 @@ public class StartActivity extends MaterialNavigationDrawer{
         simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
         mBmobUser = BmobUser.getCurrentUser(App.getInstance(), BmobUser.class);
         String userId = mBmobUser.getObjectId();
+
+
         query = new BmobQuery<>();
         query.addWhereEqualTo("objectId", userId);
         query.findObjects(App.getInstance(), new FindListener<BmobUser>() {
@@ -174,6 +176,8 @@ public class StartActivity extends MaterialNavigationDrawer{
             }
         });
     }
+
+
     public void initFirstFragment(String userName){
         mHomePageFragment = HomePageFragment.newInstance(userName);
     }
@@ -189,7 +193,6 @@ public class StartActivity extends MaterialNavigationDrawer{
         return true;
     }
 
-    MaterialDialog dialog;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

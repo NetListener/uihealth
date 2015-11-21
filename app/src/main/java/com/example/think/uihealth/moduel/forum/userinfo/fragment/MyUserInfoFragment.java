@@ -20,6 +20,7 @@ import com.bmob.BmobProFile;
 import com.example.think.uihealth.R;
 import com.example.think.uihealth.app.App;
 import com.example.think.uihealth.model.bean.BmobUser;
+import com.example.think.uihealth.model.bean.UserOtherAttr;
 import com.example.think.uihealth.moduel.forum.userinfo.activity.ChangeInfoActivity;
 import com.example.think.uihealth.moduel.forum.userinfo.activity.FollowNumbersActivity;
 import com.example.think.uihealth.util.GetHttpImageView;
@@ -30,6 +31,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 
@@ -60,7 +62,8 @@ public class MyUserInfoFragment extends Fragment {
     private String nickName;
     private String imageUrl;
     private Bitmap changeBitmap;
-    private BmobProFile bmobProFile;
+    private BmobQuery<UserOtherAttr> query_other;
+    private UserOtherAttr userOtherAttr;
     private BmobUser mUser;
     private BmobQuery<BmobUser> query;
 
@@ -90,6 +93,21 @@ public class MyUserInfoFragment extends Fragment {
         mUser = BmobUser.getCurrentUser(App.getInstance(), BmobUser.class);
         String userId = mUser.getObjectId();
 
+        //通过其他属性的表获得粉丝数
+        query_other = new BmobQuery<>();
+        query_other.addWhereEqualTo("user", mUser);
+        query_other.findObjects(App.getInstance(), new FindListener<UserOtherAttr>() {
+            @Override
+            public void onSuccess(List<UserOtherAttr> list) {
+                mFollowernumber.setText(String.valueOf(list.get(0).getFollowers()));
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                mFollowernumber.setText(String.valueOf(0));
+            }
+        });
+
         query = new BmobQuery<BmobUser>();
         query.addWhereEqualTo("objectId", userId);
         query.findObjects(App.getInstance(), new FindListener<BmobUser>() {
@@ -100,7 +118,7 @@ public class MyUserInfoFragment extends Fragment {
                     nickName = list.get(0).getNickName();
                     imageUrl = list.get(0).getUserPhoto();
                     mFollowingnumber.setText(String.valueOf(list.get(0).getFollowing()));
-                    mFollowernumber.setText(String.valueOf(list.get(0).getFollowing()));
+
                     ExUtils.ToastLong(String.valueOf(list.get(0).getFollowing()));
                     mTextviewFragmentNickname.setText(nickName);
                     if (imageUrl != null) {

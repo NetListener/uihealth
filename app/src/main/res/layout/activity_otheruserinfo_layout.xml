@@ -202,14 +202,17 @@
             android:layout_weight="1"
             android:id="@+id/layout_activity_tofollow"
             >
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:text="加关注"
+                android:id="@+id/tofollow"
                 android:layout_centerInParent="true"
                 />
+            
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="0dp"
