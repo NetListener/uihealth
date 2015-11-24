@@ -57,6 +57,7 @@ public class CombineTextImageviewView extends RelativeLayout{
             text = a.getString(R.styleable.CombineTextImageviewView_text);
             Log.i(TAG, String.valueOf(marginCenter));
             textSize = a.getDimension(R.styleable.CombineTextImageviewView_textSize, 0);
+
             Log.i(TAG, String.valueOf(textSize));
             textColor = a.getInteger(R.styleable.CombineTextImageviewView_textColor, 0);
         }finally {
