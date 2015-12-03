@@ -107,36 +107,6 @@ public class StartActivity extends MaterialNavigationDrawer{
         super.onResume();
         closeDrawer();
         fetchData();
-//        String userId = mBmobUser.getObjectId();
-//        query.addWhereEqualTo("objectId", userId);
-//        query.findObjects(App.getInstance(), new FindListener<BmobUser>() {
-//            @Override
-//            public void onSuccess(List<BmobUser> list) {
-//                userName = list.get(0).getNickName();
-//                setUsername(userName + ", 欢迎您!");
-//                final String url = list.get(0).getUserPhoto();
-//                if(imageUrl != url){
-//                    new Thread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            Message message = new Message();
-//                            message.what = 1;
-//                            changeBitmap = GetHttpImageView.getHttpBitmap(url);
-//                            changeAvatar = new BitmapDrawable(getResources(), changeBitmap);
-//                            handler.sendMessage(message);
-//                        }
-//                    }).start();
-//                }else {
-//                    if(url == "") {
-//                        changeAvatar = (BitmapDrawable) getResources().getDrawable(R.drawable.defaultphoto);
-//                    }
-//                }
-//            }
-//            @Override
-//            public void onError(int i, String s) {
-//                ExUtils.ToastLong(s);
-//            }
-//        });
     }
 
     public void initData(){

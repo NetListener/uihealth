@@ -67,7 +67,7 @@ public class ResultActivity extends AppCompatActivity {
 
         mPreviousFragment = new ResultPreviousFragment();
         final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.framelayout_resultactivity_exchangebyfragment, mPreviousFragment);
+        transaction.replace(R.id.framelayout_resultactivity_exchangebyfragment, mPreviousFragment);
         //添加这个碎片到返回栈
         transaction.addToBackStack(null);
         transaction.commit();
@@ -78,7 +78,7 @@ public class ResultActivity extends AppCompatActivity {
             public void compareButtonClick(ResultCompareFragment resultCompareFragment) {
                 mCompareFragment = resultCompareFragment;
                 FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
-                transaction1.add(R.id.framelayout_resultactivity_exchangebyfragment, mCompareFragment);
+                transaction1.replace(R.id.framelayout_resultactivity_exchangebyfragment, mCompareFragment);
                 transaction1.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 transaction1.addToBackStack(null);
                 countFragment = 2;

@@ -88,6 +88,7 @@ public class ForumOftenListAdapter extends
         if (mForumList.get(position).getPic() != null &&
                 !TextUtils.isEmpty(mForumList.get(position).getPic().get(0))) {
             holder.mImgItemForumoften.setImageURI(Uri.parse(mForumList.get(position).getPic().get(0)));
+
         } else {
             holder.mImgItemForumoften.setImageResource(R.mipmap.ic_launcher);
         }

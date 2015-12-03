@@ -174,36 +174,7 @@ public class ChangeInfoFragemnt extends Fragment {
             }
         });
 
-//        bmobRealTimeData = new BmobRealTimeData();
-//
-//        bmobRealTimeData.start(getActivity(), new ValueEventListener() {
-//            @Override
-//            public void onConnectCompleted() {
-//                ExUtils.Toast("连接成功");
-//                Log.i(TAG, "hehe");
-//                if(bmobRealTimeData.isConnected()){
-//                    bmobRealTimeData.subRowDelete("_User", mUser.getObjectId());
-//                }else {
-//                    Log.i(TAG, "wrong");
-//                }
-//            }
-//
-//            @Override
-//            public void onDataChange(JSONObject jsonObject) {
-//                try {
-//                    if(BmobRealTimeData.ACTION_UPDATETABLE.equals(jsonObject.optString("action"))) {
-//                        nickName_change = jsonObject.getString("nickName");
-//                        imageUrl_change = jsonObject.getString("userPhoto");
-//                        followers_change = jsonObject.getInt("Followers");
-//                        following_change = jsonObject.getInt("Following");
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//                Log.i(TAG, String.valueOf(jsonObject));
-//
-//            }
-//        });
+
         return viewParent;
     }
     @Override

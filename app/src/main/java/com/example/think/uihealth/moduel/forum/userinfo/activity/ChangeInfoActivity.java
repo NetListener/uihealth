@@ -61,6 +61,4 @@ public class ChangeInfoActivity extends AppCompatActivity{
         transaction.commit();
         fragmentCount = 1;
     }
-
-
 }
